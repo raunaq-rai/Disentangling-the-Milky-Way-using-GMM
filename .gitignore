@@ -1,0 +1,9 @@
+*dustmaps/
+*local_volume_database/
+*~$sentangling the components of the Milky Way with Gaussian.docx
+*.fits
+*.fits.gz
+*targets.txt
+*my_source_ids.txt
+*full_source_ids.txt
+
