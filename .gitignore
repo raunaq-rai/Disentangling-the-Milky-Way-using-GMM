@@ -24,6 +24,7 @@ report.synctex.gz
 *.pyc
 research_project.egg-info/
 src/research_project.egg-info/
+src/__pycache__
 
 
 
