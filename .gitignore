@@ -25,7 +25,7 @@ report.synctex.gz
 research_project.egg-info/
 src/research_project.egg-info/
 src/__pycache__
-
+.DS_Store
 
 
 
