@@ -19,5 +19,5 @@
 *.out
 *Project_List_2024.pdf
 *build/
-*.synctex.gz
+*.gz
 
