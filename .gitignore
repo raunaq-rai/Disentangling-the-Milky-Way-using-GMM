@@ -6,4 +6,17 @@
 *targets.txt
 *my_source_ids.txt
 *full_source_ids.txt
+*target_vis.txt
+*.hdf5
+*.fit
+*cam_logo_bw.png
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*Project_List_2024.pdf
+*build/
 
