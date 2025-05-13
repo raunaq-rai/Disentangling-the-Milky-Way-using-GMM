@@ -1,0 +1,24 @@
+name: research_project_MW_GMM
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.10  # Adjust this if you're using a different version
+  - numpy
+  - pandas
+  - matplotlib
+  - seaborn
+  - astropy
+  - tqdm
+  - scipy
+  - scikit-learn
+  - h5py
+  - fitsio
+  - ipykernel
+  - astroquery
+  - dustmaps
+  - galpy
+  - pip
+  - pip:
+      - pygmmis
+
