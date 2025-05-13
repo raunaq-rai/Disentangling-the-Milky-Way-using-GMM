@@ -26,6 +26,8 @@ research_project.egg-info/
 src/research_project.egg-info/
 src/__pycache__
 .DS_Store
+data/.DS_Store
+figures/.DS_Store
 
 
 
