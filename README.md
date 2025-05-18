@@ -36,3 +36,5 @@ While the halo is commonly associated with the oldest stars, recent studies have
   - [Bovy, Hogg & Roweis (2011)](https://projecteuclid.org/journals/annals-of-applied-statistics/volume-5/issue-2B/Extreme-deconvolution--Inferring-complete-distribution-functions-from-noisy-heterogeneous/10.1214/10-AOAS439.full): "Extreme Deconvolution: Inferring complete distribution functions from noisy, heterogeneous and incomplete observations".
 
 test...
+
+video linking phase space to milkyway properties
