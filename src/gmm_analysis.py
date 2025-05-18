@@ -162,8 +162,16 @@ def extract_gmm_parameters(gmm, df, label, component_assignments=None):
     n_components = gmm.K
     num_stars = len(df)
 
-    all_component_names = ["Stationary halo", "Prograde halo", "GS/E 1", "GS/E 2", "Thick Disc"]
-    component_names = all_component_names[:n_components]
+    # Base set of component names
+    base_names = ["Stationary halo", "Prograde halo", "GS/E 1", "GS/E 2", "Thick Disc"]
+
+    # Extend with generic names if more components than base labels
+    if n_components > len(base_names):
+        extra = [f"Component {i+1}" for i in range(len(base_names), n_components)]
+        component_names = base_names + extra
+    else:
+        component_names = base_names[:n_components]
+
 
     means = gmm.mean.round(2)
     std_devs = np.sqrt(np.diagonal(gmm.covar, axis1=1, axis2=2)).round(2)

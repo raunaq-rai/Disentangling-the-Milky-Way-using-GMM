@@ -1,55 +1,50 @@
 \documentclass[a4paper,12pt]{article}
-\usepackage{graphicx}
 \usepackage[a4paper,margin=1in]{geometry}
-\usepackage{titlesec}
-\usepackage{hyperref}
-\usepackage{amsmath}    % For math environments and symbols
-\usepackage{amssymb}    % For \mathbb and other math symbols
-\usepackage{amsfonts}   % Additional math fonts
-\usepackage{float}
-\setlength{\abovecaptionskip}{-2pt}  
-\setlength{\belowcaptionskip}{1pt}
-\usepackage{subcaption}
-\usepackage[numbers]{natbib}
-\usepackage{pdflscape}
-\usepackage{longtable}
-\usepackage{booktabs}
 \usepackage{graphicx}
-\usepackage{float}
-
-
-
-% Title format
-\titleformat{\section}{\large\bfseries}{\thesection}{1em}{}
-
-% Title settings
-\title{
-    \includegraphics[scale=0.4]{Cam_logo_bw.png}\\
-    \vspace{0.5cm}
-    Disentangling the components of the Milky Way using Gaussian Mixture Modelling
-}
-\author{Raunaq Rai (rsr45@cam.ac.uk)\\
-    Data Intensive Science, Department of Physics, University of Cambridge
-}
-\date{29 June, 2025 \\ \vspace{0.2cm} {\small Word Count: XXXX}}
+\usepackage{setspace}
+\usepackage{titling}
+\usepackage{parskip}
+\usepackage{lmodern}
 
 \begin{document}
 
-\maketitle
+\begin{titlepage}
+    \centering
+    % Logos in corners
+    \includegraphics[width=0.4\textwidth]{Cam_logo_bw.png}\\[1.5cm]
 
 
+    % Title
+    {\huge \bfseries Disentangling the Components of the Milky Way}\\[0.75cm]
+    {\Large \textsc Inferring the Phase-Space Structure of the Milky Way Using Gaussian Mixture Modelling with Extreme Deconvolution}\\[1.5cm]
 
 
+    % Author
+    \vspace{0.5cm}
+    \large
+    \textsc{A REPORT PRESENTED}\\[0.3cm]
+    \textsc{BY}\\[0.3cm]
+    \textsc{RAUNAQ RAI}\\[1cm]
 
+    % Departments
+    \normalsize
+    \textbf{Departments}\\[0.3cm]
+    Department of Physics (Cavendish Laboratory)\\
+    Institute of Astronomy\\[1cm]
 
+    % Degree
+    \textbf{Degree}\\[0.3cm]
+    MPhil in Data Intensive Science\\[1cm]
 
+    % Supervision
+    \textbf{Supervision}\\[0.3cm]
+    Dr Anke Arentsen\\
 
-\bibliographystyle{unsrtnat}
-\bibliography{references}
+    % College Crest and Info
+    \vfill
+    \includegraphics[width=0.5\textwidth]{St_Edmunds_Logo.png}\\[0.5cm]
+    \textsc{29th June 2025}\\
 
-
-
-
-
+\end{titlepage}
 
 \end{document}
