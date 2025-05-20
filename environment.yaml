@@ -4,7 +4,7 @@ channels:
   - defaults
 dependencies:
   - python=3.10  # Adjust this if you're using a different version
-  - numpy
+  - numpy>=1.25,<2
   - pandas
   - matplotlib
   - seaborn
