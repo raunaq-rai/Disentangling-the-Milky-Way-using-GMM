@@ -21,6 +21,8 @@ src/research_project.egg-info/
 *.log
 *.out
 *.toc
+*.lof
+*.lot
 report.synctex.gz
 
 # Ignore data files
