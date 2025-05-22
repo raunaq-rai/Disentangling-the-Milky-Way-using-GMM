@@ -210,21 +210,28 @@ test whether VMP stars were formed in situ or accreted from a satellite.
 % -------- Data --------
 \section{Data}
 
-\subsection{Metallicities from \textit{Gaia}\,XP}
+\subsection{Sample construction}\label{subsec:data_sample}
 
-Our parent catalogue is the bright ($G<16$) red–giant–branch
-sample of \citet{Andrae2023}, who used an
-XGBoost\,\footnote{eXtreme Gradient Boosting} regression model
-trained on APOGEE\,DR17 and a hand–picked set of very/extremely
-metal–poor stars to predict stellar parameters from the
-\textit{Gaia}\,DR3 XP spectra.
-For each of the 17.6\,million giants the catalogue provides
-$[\mathrm{M/H}]$ together with effective temperature and surface gravity; the quoted random uncertainty in
-$[\mathrm{M/H}]$ is $\simeq0.1$\,dex for $G\lesssim15$.
-Stars with a “high-confidence” metallicity flag
-and fall within $-3.5 < [\mathrm{M/H}] < +0.5$ are kept in the sample.
+Our parent catalogue is the bright ($G<16$) red–giant–branch sample of \citet{Andrae2023}.  
+Stellar metallicities are predicted with an eXtreme-Gradient-Boosting (XGBoost\footnote{eXtreme Gradient Boosting}) model trained on high-resolution \textsc{APOGEE}~DR17 spectra and a supplementary set of very metal-poor stars, ensuring reliable performance down to $[\mathrm{M/H}]\simeq-3.5$.  
+For each of the 17.6\,million giants the catalogue delivers homogeneous values of $[\mathrm{M/H}]$, $T_{\mathrm{eff}}$, and $\log g$ with a quoted random uncertainty of $\simeq0.1$\,dex in $[\mathrm{M/H}]$ at $G\!\lesssim\!15$.  
+We retain only entries flagged as “high-confidence’’ and lying in $-3.5<[\mathrm{M/H}]<+0.5$.
 
-\begin{figure}[h]
+Astrometric positions, proper motions, and radial velocities come from the main \textit{Gaia}~DR3 tables \citep{GaiaCollaboration2023}, while heliocentric distances are adopted from the Bayesian photo-geometric catalogue of \citet{BailerJones2021}.  
+Because accurate velocities scale with distance precision, we impose a fractional-parallax-uncertainty cut $\sigma_{\varpi}/\varpi<0.10$ (\textsc{fpu}); stars that fail this threshold are discarded.
+
+XP spectra are susceptible to reddening: heavy extinction dims the sources, lowers the XP signal-to-noise ratio, and biases the machine-learning metallicities.  
+To minimise such systematics we exclude stars with $E(B{-}V)_{\mathrm{SFD}}>0.5$ or Galactic latitude $|b|<10^{\circ}$, using colour-excess values from the SFD map accessed via \textsc{dustmaps} \citep{Green2018}.  
+These criteria remove regions where dust corrections are large and spatially variable, at the expense of a modest loss of sky coverage.
+
+Field-star kinematics can also be skewed by dense sub-structures.  
+Accordingly we mask all objects lying within $1^{\circ}$ of any known globular cluster or dwarf-galaxy satellite, following the list compiled by \citet{Pace2024}.  
+This step eliminates obvious non-field populations (e.g.\ cluster members and recent accretion debris) without significantly reducing the statistical power of the sample.
+
+After the metallicity flag, distance–quality, reddening, latitude, and sub-structure cuts, our working data set comprises $\sim3.4\times10^{6}$ red-giant stars possessing homogeneous metallicities and full six-dimensional phase-space information.  
+This curated sample underpins the chemo-kinematic analysis presented in the remainder of this report.
+
+\begin{figure}
   \centering
   %--- Left panel -------------------------------------------------------------
   \begin{subfigure}[b]{0.32\textwidth}
@@ -259,22 +266,6 @@ and fall within $-3.5 < [\mathrm{M/H}] < +0.5$ are kept in the sample.
   \label{fig:data_properties}
 \end{figure}
 
-
-\subsection{Astrometry, Radial Velocities, and Distances}
-
-Astrometric and spectroscopic measurements are taken from the main
-\textit{Gaia}\,DR3 release \citep{GaiaCollaboration2023}, while
-heliocentric distances are adopted from the Bayesian photo–geometric
-posteriors of \citet{BailerJones2021}.
-We impose a conservative fractional–parallax–uncertainty cut
-$\sigma_\varpi/\varpi<0.1$ (hereafter \textsc{fpu}) to ensure robust
-kinematics and discard objects with \textsc{fpu}$>0.1$.
-To mitigate reddening biases in the XP spectra we exclude stars with
-$E(B-V)_{\rm SFD}>0.5$ or Galactic latitude $|b|<10^{\circ}$ and mask the
-1~deg$^{2}$ regions around known globular clusters and dwarf galaxies \citep{Pace2024}.
-After these selections the working sample contains
-$\sim$3.4\,million stars.
-
 \subsection{Galactocentric Positions and Velocities}
 
 Six–dimensional phase–space coordinates are obtained with
@@ -302,7 +293,7 @@ distributions are stored as per–star velocity uncertainties.
 
 
 
-\begin{figure}[h]
+\begin{figure}
   \centering
   \includegraphics[width=0.94\textwidth]{../figures/vphi_histograms_with_tracks.png}
   \caption{Column-normalised density in the $v_{\phi}$–[M/H] plane.
@@ -333,7 +324,7 @@ reached roughly one-tenth solar metallicity, and full kinematic
 coldness was achieved only after it became near-solar.
 
 
-\begin{figure}[h]
+\begin{figure}
   \centering
   \includegraphics[width=\textwidth]
                    {../figures/vphi_metallicity_histograms.png}
@@ -348,7 +339,7 @@ coldness was achieved only after it became near-solar.
 \end{figure}
 
 
-\begin{figure}[h]
+\begin{figure}
   \centering
   \includegraphics[width=0.3\columnwidth]
                    {../figures/reference_velocity_ellipses.png}
