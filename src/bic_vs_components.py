@@ -47,3 +47,43 @@ def compute_bic_vs_n_components(df_bin, max_components=8, n_init=50):
 
     return BIC_values
 
+
+def plot_bic_vs_n_components(BIC_values, fig_name):
+    """
+    Plots BIC vs. Number of Components and highlights the minimum BIC point.
+
+    Args:
+    - BIC_values: Dictionary with BIC values for each component count.
+    - fig_name: Path/filename to save the plot (e.g. 'output.png').
+    """
+    
+    num_components = sorted([int(k) for k in BIC_values.keys()])
+    
+    smallest_bic = [min(BIC_values[str(N)] if str(N) in BIC_values else BIC_values[N]) for N in num_components]
+    median_bic   = [np.median(BIC_values[str(N)] if str(N) in BIC_values else BIC_values[N]) for N in num_components]
+    largest_bic  = [max(BIC_values[str(N)] if str(N) in BIC_values else BIC_values[N]) for N in num_components]
+    q25_bic      = [np.percentile(BIC_values[str(N)] if str(N) in BIC_values else BIC_values[N], 25) for N in num_components]
+    q75_bic      = [np.percentile(BIC_values[str(N)] if str(N) in BIC_values else BIC_values[N], 75) for N in num_components]
+
+    # Find the minimum BIC value and corresponding component count
+    min_bic = min(smallest_bic)
+    min_index = smallest_bic.index(min_bic)
+    best_n_components = num_components[min_index]
+
+    plt.figure(figsize=(8, 6))
+    plt.plot(num_components, smallest_bic, 'k-', label='Smallest BIC')
+    plt.plot(num_components, q25_bic, 'g-.', label='25th Percentile BIC')
+    plt.plot(num_components, median_bic, 'b--', label='Median BIC')
+    plt.plot(num_components, q75_bic, 'm-.', label='75th Percentile BIC')
+    plt.plot(num_components, largest_bic, 'r:', label='Largest BIC')
+
+    # Highlight the minimum BIC value
+    plt.plot(best_n_components, min_bic, 'ro', markersize=8, label='Minimum BIC')
+
+    plt.xlabel("Number of GMM Components", fontsize=14)
+    plt.ylabel("BIC Value", fontsize=14)
+    plt.legend()
+    plt.grid(True)
+    plt.tight_layout()
+    plt.savefig(fig_name, dpi=300)
+    plt.show()
