@@ -213,7 +213,7 @@ test whether VMP stars were formed in situ or accreted from a satellite.
 \subsection{Sample construction}\label{subsec:data_sample}
 
 Our parent catalogue is the bright ($G<16$) red–giant–branch sample of \citet{Andrae2023}.  
-Stellar metallicities are predicted with an eXtreme-Gradient-Boosting (XGBoost\footnote{eXtreme Gradient Boosting}) model trained on high-resolution \textsc{APOGEE}~DR17 spectra and a supplementary set of very metal-poor stars, ensuring reliable performance down to $[\mathrm{M/H}]\simeq-3.5$.  
+Stellar metallicities are predicted with an eXtreme-Gradient-Boosting model trained on high-resolution \textsc{APOGEE}~DR17 spectra and a supplementary set of very metal-poor stars, ensuring reliable performance down to $[\mathrm{M/H}]\simeq-3.5$.  
 For each of the 17.6\,million giants the catalogue delivers homogeneous values of $[\mathrm{M/H}]$, $T_{\mathrm{eff}}$, and $\log g$ with a quoted random uncertainty of $\simeq0.1$\,dex in $[\mathrm{M/H}]$ at $G\!\lesssim\!15$.  
 We retain only entries flagged as “high-confidence’’ and lying in $-3.5<[\mathrm{M/H}]<+0.5$.
 
@@ -269,7 +269,7 @@ This curated sample underpins the chemo-kinematic analysis presented in the rema
 \subsection{Galactocentric Positions and Velocities}
 
 Six–dimensional phase–space coordinates are obtained with
-\texttt{astropy.coordinates}.  We adopt a Galactocentric frame
+astropy.coordinates.  We adopt a Galactocentric frame
 with $R_{0}=8.1$\,kpc and $Z_{0}=25$\,pc \citep{McMillan2016}, and a solar
 velocity\footnote{Cartesian components $(U,V,W)$, where $U$ is radially
 outwards, $V$ is aligned with Galactic rotation, and $W$ points to the
@@ -278,8 +278,7 @@ $(U_{\odot},V_{\odot},W_{\odot})=(11.1,\,245,\,7.25)$\,km\,s$^{-1}$
 \citep{Schonrich2010}.
 The cylindrical velocity components
 $(v_{R},v_{\phi},v_{Z})$ are extracted from the transformed
-\texttt{SkyCoord} via the
-\texttt{CylindricalRepresentation/CylindricalDifferential} interface.
+SkyCoord module.
 
 To propagate measurement errors we generate
 $N_{\rm MC}=100$ Monte–Carlo realisations per star, drawing
@@ -308,20 +307,16 @@ distributions are stored as per–star velocity uncertainties.
 
 
 As shown in Figure~\ref{fig:vphi_tracks}, stellar azimuthal velocities
-evolve strongly with metallicity.  Halo–like kinematics dominate at
-${\rm [M/H]}\lesssim-1.5$\,dex: the median rotation is
-$|v_{\phi}|\lesssim 20\;\mathrm{km\;s^{-1}}$ and the
-16–84\,percentile span is $\sim120$–$150\;\mathrm{km\;s^{-1}}$,
-indicative of a pressure-supported component.  A rapid spin-up
-appears at ${\rm [M/H]}\simeq-1.3$\,dex, where the median climbs to
-$\sim150\;\mathrm{km\;s^{-1}}$ while the velocity spread contracts.
-By ${\rm [M/H]}\gtrsim-0.5$\,dex the median reaches the Local
+evolve increase with metallicity.  Halo–like kinematics dominate at
+${\rm [M/H]}\lesssim-1.5$ with statstics
+indicative of a pressure-supported component.  A rapid spin-up appears over the 
+metallicity range ${\rm [M/H]} \simeq -1.3$ to $-0.9$, consistent with \citet{Belokurov2022}.
+By ${\rm [M/H]}\gtrsim-0.5$ the stellar azimuthal velocities reaches the Local
 Standard-of-Rest value ($\approx220\;\mathrm{km\;s^{-1}}$) and the
-dispersion falls below $\sim30\;\mathrm{km\;s^{-1}}$, marking the
-transition to the present-day thin disc.  Hence the onset of ordered
-rotation in the Milky Way occurred when the inter-stellar medium
-reached roughly one-tenth solar metallicity, and full kinematic
-coldness was achieved only after it became near-solar.
+velocity dispersion dispersion falls, marking the
+transition to a disc.  Visually, using \ref{fig:vphi_tracks}, we can observe
+that the onset of ordered rotation in the Milky Way occurred when the inter-stellar medium
+reached roughly one-tenth solar metallicity.
 
 
 \begin{figure}
@@ -352,34 +347,202 @@ coldness was achieved only after it became near-solar.
   \label{fig:ref_ellipses}
 \end{figure}
 
-As illustrated in Fig.~\ref{fig:vRvphi_bins}, stars richer than
-${\rm[M/H]}\!\sim\!-1.0$ occupy the top of the $v_R$–$v_\phi$ plane,
-clustering near the thin– and thick-disc ellipses in
-Fig.~\ref{fig:ref_ellipses}.  Their large prograde azimuthal velocity
-($v_\phi\!\gtrsim\!180$ km s$^{-1}$) and small radial dispersion
-indicate rotation-dominated, dynamically cold orbits.
+As shown in Fig.~\ref{fig:vRvphi_bins}, stars with
+${\rm[M/H]}\!\geq\!-1.0$ have a strong prograde bias in azimuthal velocities, 
+with a peak at $v_\phi\!\gtrsim\!180$ km s$^{-1}$ and a relatively narrow
+distribution in $v_R$. As shown in Fig.~\ref{fig:ref_ellipses}, this is consistent with 
+the thin– and thick-disc ellipses. 
 Below ${\rm[M/H]}\simeq-1.0$ the distribution broadens and
-drops toward $v_\phi\!\approx\!0$, signalling a transition to
-pressure-supported kinematics characteristic of the stellar halo and
+drops toward $v_\phi\!\approx\!0$, indicating
+pressure supported kinematics, characteristic of the stellar halo and
 the radial Gaia–Sausage/Enceladus debris.  At the lowest
 metallicities (${\rm[M/H]}\lesssim-1.5$) the contours are nearly
-isotropic with only a mild prograde bias, and the distinct disc
-sequence seen at higher metallicity has vanished.  Hence, any
+isotropic with only a mild prograde bias.  Hence, any
 rotation-supported very-metal-poor disc must contribute at most a
-small fraction of the population—an issue we quantify in
-following analysis
+small fraction of the population. In subsequent analysis we quantitatively assess
+these observations.
 
-
-
+Given we are testing whether a very-metal-poor stellar disc exists, we naturally 
+restrict the sample to stars within \mbox{$|Z|<2.5$ kpc} of the galactic mid-plane. 
+This keeps the focus on stars close to the plane, where any disc-like population 
+(whether formed in situ or deposited by mergers) would be found \citep{Tkachenko_2025}.
 
 
 \section{Methodology}
-Details of your methodology.
+
+\subsection{Gaussian Mixture Model}
+
+To quantitatively investigate the kinematic structure of metal-poor stars and assess 
+the presence of a potential very-metal-poor disc, we use a Gaussian Mixture Model (GMM) framework. 
+GMMs are a class of unsupervised machine learning algorithms commonly used in data science 
+for clustering and density estimation. They model a dataset as a weighted sum of multivariate 
+Gaussian distributions, each corresponding to a latent sub-population within the data.
+
+From a probabilistic perspective, the GMM assumes that each observed data point is generated from a 
+hidden (latent) variable indicating membership in one of the Gaussian components. This latent space 
+formulation allows the model to assign probabilistic classifications to data points, providing a 
+soft clustering where each star has a fractional likelihood of belonging to each component. In our case, 
+the data are three-dimensional velocity vectors $(v_R, v_\phi, v_Z)$, and the latent space captures 
+distinct kinematic substructures in this space.
+
+We implement the GMM fitting using the pyGMMis package \citep{pygmmis}, which extends the standard 
+Expectation-Maximisation (EM) algorithm with the ``Extreme Deconvolution'' technique developed by 
+\citet{Bovy2011}. This method is particularly well-suited to astronomical datasets, as it incorporates 
+measurement uncertainties into the GMM fitting by modifying the EM updates to account for known errors 
+on each data point. In our case, these uncertainties are derived from the Gaia astrometric and 
+spectroscopic data and are represented by diagonal covariance matrices encoding the squared uncertainties 
+in $v_R$, $v_\phi$, and $v_Z$ for each star.
+
+
+\subsection{Number of Components}
+
+We apply the GMM separately to each metallicity bin with ${\rm [M/H]} < -1$, as we are specifically 
+interested in detecting any rotationally supported structure among the very metal-poor stars. An important decision 
+must be made when implementing the appropriate number of components in applying Gaussian Mixture Models. Too few 
+components may underfit the data, missing real substructures, while too many will overfit, leading to spurious 
+and physically uninterpretable results.
+
+We select the optimal number of components using the Bayesian Information Criterion (BIC) \citealt{Schwarz1978}. 
+The BIC is defined as
+
+\begin{equation}
+\mathrm{BIC} = k \ln(n) - 2 \ln \mathcal{L},
+\end{equation}
+
+where $k = (1 + 3 + 6) \times N - 1$ is the total number of free parameters in a model with $N$ Gaussian components 
+(accounting for the weights, means, and covariances), $n$ is the number of stars in the sample, and $\mathcal{L}$ 
+is the maximum likelihood of the fit. The BIC penalizes model complexity, such that adding extra components 
+without a significant gain in likelihood will result in a higher BIC value.
+
+\begin{figure*}
+    \centering
+    % First row
+    \begin{subfigure}[t]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{../figures/bic_vmp.png}
+        \caption{VMP ($-3.0 < \mathrm{[M/H]} < -2.0$)}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{../figures/bic_imp.png}
+        \caption{IMP ($-2.0 < \mathrm{[M/H]} < -1.6$)}
+    \end{subfigure}
+    
+    \vspace{0.5em}
+    
+    % Second row
+    \begin{subfigure}[t]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{../figures/bic_mp1.png}
+        \caption{MP1 ($-1.6 < \mathrm{[M/H]} < -1.3$)}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{../figures/bic_mp2.png}
+        \caption{MP2 ($-1.3 < \mathrm{[M/H]} < -1.0$)}
+    \end{subfigure}
+
+    \caption{BIC distributions as a function of the number of GMM components in each metallicity bin. The opmtimum number of components is shown in red.}
+    \label{fig:bic_vs_n_components}
+\end{figure*}
+
+The Expectation-Maximisation algorithm can become trapped in local minima, so we performed 50 initialisations 
+for each $N$ and recorded the BIC value for each trial. The minimum BIC value across all trials indicated 
+the statistically preferred model and suggests that the global optimum was likely reached. 
+
+To improve convergence and model stability, the GMM components in each trial were initialised using the \texttt{kmeans} algorithm. 
+This is is due to the sensitivity of GMMs to their starting conditions: poor initialisation can lead to convergence 
+on undesirable solutions, particularly in high-dimensional or overlapping data. KMeans clustering provides an
+initialisation point by partitioning the velocity space into compact, roughly spherical clusters. This works well with the 
+assumptions of Gaussian components and often gives faster, more stable convergence and more physically meaningful results. 
+In our application, where stellar substructures are partially overlapping in velocity space, this method applies well.
+
+In Figure~\ref{fig:bic_vs_n_components}, we show the distribution of BIC values across four metallicity bins as
+a function of $N$. The resulting preferred number of components are 2, 4, 5, and 5 for the VMP, IMP, MP1, and MP2 bins.
+
+ 
+\section{Results}
+
+Using the number of components selected by the BIC criteria, we fit the GMM to the data in each metallicity bin as shown in 
+Figure~\ref{fig:gmm_decompositions}. 
+
+\begin{figure*}[h]
+    \centering
+    \begin{subfigure}[t]{0.24\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{../figures/gmm_VMP.png}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{0.24\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{../figures/gmm_IMP.png}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{0.24\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{../figures/gmm_MP1.png}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{0.24\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{../figures/gmm_MP2.png}
+    \end{subfigure}
+    
+    \caption{
+        Gaussian Mixture Model (GMM) decompositions of the stellar velocity distribution in the $v_R$–$v_\phi$ plane for each metallicity bin. 
+        The bottom panel of each subfigure shows the 2D velocity distribution with GMM components overplotted as ellipses representing the 1$\sigma$ contours in $v_R$–$v_\phi$.
+        The top panel shows the fractional contribution.
+    }
+    \label{fig:gmm_decompositions}
+\end{figure*}
+
+\begin{table*}
+\centering
+\begin{tabular}{lccccccc}
+\hline
+\textbf{Components} & \textbf{Weights (\%)} & $\mathbf{v_R}$ & $\boldsymbol{\sigma_R}$ & $\mathbf{v_\phi}$ & $\boldsymbol{\sigma_\phi}$ & $\mathbf{v_Z}$ & $\boldsymbol{\sigma_Z}$ \\
+\hline
+\multicolumn{8}{l}{\textbf{VMP:} $-3.0 < \mathrm{[M/H]} < -2.0$ (4768 stars)} \\
+Stationary halo     & 51.1 & 15.86   & 143.17 &  -9.13  & 117.36 & -0.08 & 122.64 \\
+Prograde halo       & 48.9 & -19.14  & 127.43 &  68.86  &  94.28 & -0.90 &  82.89 \\
+\hline
+\multicolumn{8}{l}{\textbf{IMP:} $-2.0 < \mathrm{[M/H]} < -1.6$ (12052 stars)} \\
+Stationary halo     & 22.0 &  -1.45  & 142.88 &  -9.59  & 132.32 & -0.91 & 124.92 \\
+Prograde halo       & 63.3 &  -0.58  & 107.32 &  68.52  &  93.27 & -1.16 &  72.56 \\
+GS/E(1)             &  7.1 & -226.92 &  70.78 &   5.60  &  44.98 &  8.43 &  88.40 \\
+GS/E(2)             &  7.6 &  217.52 &  74.41 & -12.35  &  51.35 & -4.22 &  89.78 \\
+\hline
+\multicolumn{8}{l}{\textbf{MP1:} $-1.6 < \mathrm{[M/H]} < -1.3$ (19142 stars)} \\
+Stationary halo     & 11.3 &  15.09  & 158.68 &   7.11  & 144.33 & -2.55 & 132.08 \\
+Prograde halo       & 44.5 &  -3.02  & 111.54 &  31.79  &  85.15 & -0.54 &  70.36 \\
+GS/E(1)             & 12.7 & -220.40 &  80.76 &   1.01  &  56.29 &  0.47 &  91.00 \\
+GS/E(2)             &  9.4 &  229.32 &  71.22 &  -0.82  &  43.42 &  1.42 &  92.69 \\
+Thick disc          & 22.1 &  12.93  &  79.56 & 160.32  &  56.58 & -2.31 &  68.83 \\
+\hline
+\multicolumn{8}{l}{\textbf{MP2:} $-1.3 < \mathrm{[M/H]} < -1.0$ (30892 stars)} \\
+Stationary halo     &  6.1 &  -1.17  & 159.06 &   8.07  & 132.05 & -3.37 & 120.46 \\
+Prograde halo       & 39.4 & -13.47  &  95.65 &  53.64  &  77.86 & -3.04 &  71.00 \\
+GS/E(1)             &  7.9 & -224.68 &  74.44 &   5.73  &  44.63 &  2.41 &  87.27 \\
+GS/E(2)             &  9.3 &  199.71 &  81.28 &  -3.30  &  46.84 & -2.07 &  88.99 \\
+Thick disc          & 37.4 &  10.56  &  73.55 & 176.07  &  50.79 &  0.85 &  62.03 \\
+\hline
+\end{tabular}
+\caption{Parameters of the Gaussian mixture model fittings in different metallicity bins.
+ The unit for all velocity columns is km\,s$^{-1}$.}
+\label{tab:gmm_parameters}
+\end{table*}
+
+
+
+
+
+
 
 \subsection{Extreme Deconvolution}
 Discussion of XD.
 
-\section{Results}
 What you found.
 
 \section{Extension direction}
