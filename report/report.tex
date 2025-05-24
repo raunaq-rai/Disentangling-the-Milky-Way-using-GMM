@@ -396,7 +396,7 @@ spectroscopic data and are represented by diagonal covariance matrices encoding 
 in $v_R$, $v_\phi$, and $v_Z$ for each star.
 
 
-\subsection{Number of Components}
+\subsection{Number of Gaussian Components}
 
 We apply the GMM separately to each metallicity bin with ${\rm [M/H]} < -1$, as we are specifically 
 interested in detecting any rotationally supported structure among the very metal-poor stars. An important decision 
@@ -463,6 +463,8 @@ a function of $N$. The resulting preferred number of components are 2, 4, 5, and
 
  
 \section{Results}
+
+\subsection{Gaussian Mixture Model Fit}
 
 Using the number of components selected by the BIC criteria, we fit the GMM to the data in each metallicity bin as shown in 
 Figure~\ref{fig:gmm_decompositions}. We increased the number of initialisations to 100 for the final fitting to ensure convergence to a
@@ -555,6 +557,8 @@ Thick disc          & 37.4 &  10.56  &  73.55 & 176.07  &  50.79 &  0.85 &  62.0
 \label{tab:gmm_parameters}
 \end{table*}
 
+\subsection{Rotational Support and the Onset of Disc Formation}
+
 To assess the degree of rotational support in each component, we compute the ratio 
 $V_{\rm rot} / \sigma_\phi$, where $V_{\rm rot}$ is the mean azimuthal velocity and 
 $\sigma_\phi$ its dispersion. This ratio serves as a conventional diagnostic of disc-like 
@@ -592,6 +596,61 @@ other structures at this intermediate metallicity.
     \caption{Ratio of mean rotational velocity to azimuthal velocity dispersion, $V_{\rm rot} / \sigma_\phi$, for individual GMM components in each metallicity bin. Larger squares correspond to more dominant components. Colours match the GMM components in Figure~\ref{fig:gmm_decompositions}.}
     \label{fig:v_over_sigma}
 \end{figure}
+
+\subsection{Residual Analysis for Hidden Disc Populations}
+
+One of the limitations of GMMs is that they can fail to detect substructures that contribute 
+only weakly to the overall distribution. To address this, we perform a residual analysis to test 
+whether a disc-like population—too weak to be picked up by the GMM—might nonetheless be present 
+in the VMP and IMP metallicity regimes.
+
+We generated a synthetic dataset by drawing the same number of mock stars as observed stars from 
+the best-fit GMM in each bin. Since our GMM uses the Extreme Deconvolution algorithm, which accounts 
+for observational uncertainties during fitting, the raw samples from the model are noise-free. 
+However, comparing these directly to real data would be inappropriate due to the absence of measurement 
+error. To resolve this, we assign each mock star the velocity uncertainties of its nearest neighbour 
+in the observed data (in $(v_R, v_\phi, v_Z)$ space), and then add Gaussian noise according to 
+these uncertainties.
+
+We then bin both the observed and mock data in the $(v_R, v_\phi)$ plane and compute the 
+normalized residual map, defined as
+
+\[
+H_{\mathrm{residual}} = \frac{H_{\mathrm{obs}} - H_{\mathrm{mock}}}{H_{\mathrm{obs}} + H_{\mathrm{mock}} + \epsilon},
+\]
+
+where $H_{\mathrm{obs}}$ and $H_{\mathrm{mock}}$ are the 2D histograms and $\epsilon = 10^{-5}$ is added 
+to avoid division by zero. The residual maps are shown in the top row of Figure~\ref{fig:residuals} for 
+the VMP and IMP bins. The grey dashed ellipses highlight a $2\sigma$ region of a hypothetical thick disc 
+with mean velocity $(v_R, v_\phi) = (0, 180)$\,km\,s$^{-1}$ and dispersions $(\sigma_R, \sigma_\phi) 
+= (70, 50)$\,km\,s$^{-1}$, consistent with the thick disc component seen in the MP2 metallicity bin.
+
+To quantify the possible presence of a hidden disc, we count the excess number of observed stars inside 
+this thick disc ellipse relative to the GMM-generated sample. We repeat this calculation for 200 Monte 
+Carlo realizations to estimate the residual and its uncertainty. The results are shown as horizontal 
+dashed lines in the bottom row of Figure~\ref{fig:residuals}, representing a disc-like residual 
+of $40.4 \pm 24.8$ stars in the VMP bin and $76.9 \pm 42.8$ stars in the IMP bin.
+
+To interpret these residuals, we repeat the same procedure but now inject a mock disc population—
+generated from the same thick disc Gaussian—into the GMM baseline. By varying the injected disc 
+fraction from 0\% to 5\% of the sample and recalculating the residual each time, we construct a 
+relationship between disc fraction and expected residual. This is shown as the solid black line in the 
+bottom panels of Figure~\ref{fig:residuals}, with the red shaded region indicating the $1\sigma$ 
+uncertainty across Monte Carlo trials.
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.49\textwidth]{../figures/vmp_residual_map.png}
+    \includegraphics[width=0.49\textwidth]{../figures/imp_residual_map.png} \\
+    \includegraphics[width=0.49\textwidth]{../figures/vmp_disc_fraction.png}
+    \includegraphics[width=0.49\textwidth]{../figures/imp_disc_fraction.png}
+    \caption{Top: Normalized residual maps between observed and GMM-predicted velocity distributions in $(v_R, v_\phi)$ for the VMP (left) and IMP (right) metallicity bins. Grey ellipses show the $2\sigma$ contour of the fiducial thick disc model. Bottom: Disc residuals as a function of injected disc fraction. The dashed line and blue band indicate the observed residual and its uncertainty. The solid black line and red region show mock test results and their uncertainties.}
+    \label{fig:residuals}
+\end{figure}
+
+
+
+
 
 
 
