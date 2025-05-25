@@ -305,7 +305,6 @@ distributions are stored as per–star velocity uncertainties.
   \label{fig:vphi_tracks}
 \end{figure}
 
-\vspace{-0.8cm}
 
 
 As shown in Figure~\ref{fig:vphi_tracks}, stellar azimuthal velocities
@@ -369,13 +368,18 @@ restrict the sample to stars within \mbox{$|Z|<2.5$ kpc} of the galactic mid-pla
 This keeps the focus on stars close to the plane, where any disc-like population 
 (whether formed in situ or deposited by mergers) would be found \citep{Tkachenko_2025}.
 
+Upon comparison with \citet{zhang2024existencemetalpoordiscmilky}, we note that our 
+sample is approximately the same size - with a difference of less than 0.002\% of the sample size in each bin.
+
+
 
 \section{Methodology}
 
 \subsection{Gaussian Mixture Model}
 
 To quantitatively investigate the kinematic structure of metal-poor stars and assess 
-the presence of a potential very-metal-poor disc, we use a Gaussian Mixture Model (GMM) framework. 
+the presence of a potential very-metal-poor disc, we use a Gaussian Mixture Model (GMM) framework
+ as done by \citet{zhang2024existencemetalpoordiscmilky}. 
 GMMs are a class of unsupervised machine learning algorithms commonly used in data science 
 for clustering and density estimation. They model a dataset as a weighted sum of multivariate 
 Gaussian distributions, each corresponding to a latent sub-population within the data.
@@ -460,6 +464,10 @@ In our application, where stellar substructures are partially overlapping in vel
 
 In Figure~\ref{fig:bic_vs_n_components}, we show the distribution of BIC values across four metallicity bins as
 a function of $N$. The resulting preferred number of components are 2, 4, 5, and 5 for the VMP, IMP, MP1, and MP2 bins.
+This is in agreement with the findings of \citet{zhang2024existencemetalpoordiscmilky}.
+Our analysis, however, selects the lowest BIC each time, removing the need for a subjective choice of the number of components
+when BIC values are very similar. \citet{zhang2024existencemetalpoordiscmilky}, when observing the BIC values for the MP1 bin 
+chooses to use 5 components instead of 6 despite the BIC score for the 6-component model being lower than the 5-component model.
 
  
 \section{Results}
@@ -519,7 +527,12 @@ strong anisotropy and contribute to the broadening of the halo distribution, but
 disc-like kinematics. The absence of a cold, rotating disc in these bins suggests that if a very-metal-poor 
 disc exists, it must be a minor contributor to the local stellar population.
 
-
+Our GMM decomposition recovers the same substructures identified by \citet{zhang2024existencemetalpoordiscmilky} 
+across all metallicity bins. We find similar velocity dispersions and centroid trends for the stationary halo, 
+prograde halo, and GS/E components. Notably, our model assigns a more comparable weight to the 
+prograde halo component in the VMP bin, in contrast to the dominant stationary 
+halo reported by \citet{zhang2024existencemetalpoordiscmilky}. We also observe some variation 
+in the centroid $v_\phi$ values of GS/E substructures, although their bimodal spatial structure is preserved. 
 
 \begin{table*}
 \centering
@@ -661,7 +674,11 @@ uncertainty across Monte Carlo trials.
 
 
 
-\section{Comparison with \citet{zhang2024existencemetalpoordiscmilky}}
+\section{problems with \citet{zhang2024existencemetalpoordiscmilky}}
+
+i do not believe random initial coditions are used for bic and gmm fitting
+in order to get results with astrophsyical meaning, k means inistialisation is required
+this is because gmms are very senstitive to initial conditions, and can easily get stuck in local minima.
 
 \section{Extension direction}
 
