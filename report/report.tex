@@ -209,6 +209,7 @@ test whether VMP stars were formed in situ or accreted from a satellite.
 
 % -------- Data --------
 \section{Data}
+\label{sec:data}
 
 \subsection{Sample construction}\label{subsec:data_sample}
 
@@ -391,7 +392,8 @@ soft clustering where each star has a fractional likelihood of belonging to each
 the data are three-dimensional velocity vectors $(v_R, v_\phi, v_Z)$, and the latent space captures 
 distinct kinematic substructures in this space.
 
-We implement the GMM fitting using the pyGMMis package \citep{pygmmis}, which extends the standard 
+We implement the GMM fitting using the pyGMMis package \citep{pygmmis} in the $v_R$, $v_\phi$, and $v_Z$
+phase space. This algorithm extends the standard 
 Expectation-Maximisation (EM) algorithm with the ``Extreme Deconvolution'' technique developed by 
 \citet{Bovy2011}. This method is particularly well-suited to astronomical datasets, as it incorporates 
 measurement uncertainties into the GMM fitting by modifying the EM updates to account for known errors 
@@ -660,6 +662,113 @@ uncertainty across Monte Carlo trials.
     \caption{Top: Normalized residual maps between observed and GMM-predicted velocity distributions in $(v_R, v_\phi)$ for the VMP (left) and IMP (right) metallicity bins. Grey ellipses show the $2\sigma$ contour of the fiducial thick disc model. Bottom: Disc residuals as a function of injected disc fraction. The dashed line and blue band indicate the observed residual and its uncertainty. The solid black line and red region show mock test results and their uncertainties.}
     \label{fig:residuals}
 \end{figure}
+
+
+\section{Extension analysis}
+\subsection{Alpha–element abundance}\label{subsec:alpha}
+
+We extend the chemo–kinematic analysis by adding the
+\emph{alpha-to-iron ratio} $[\alpha/\mathrm{Fe}]$, where the “alpha’’ elements
+(O, Ne, Mg, Si, S, Ca, Ti) are produced almost entirely in core–collapse
+(\hbox{Type II}) supernovae, whereas most iron is released later by
+thermonuclear (Type Ia) explosions.  Because the two channels operate on
+very different time-scales—$\sim$10–30 Myr for Type II versus
+$\gtrsim$\,0.1–1 Gyr for Type Ia—the quantity $[\alpha/\mathrm{Fe}]$
+encodes the star-formation history of a stellar population:
+
+\begin{itemize}
+  \item \textbf{High $[\alpha/\mathrm{Fe}]$.}  
+        Rapid, intense star formation finished before large numbers of
+        Type Ia events enriched the gas with iron.  This chemistry is
+        typical of the thick disc, the stellar halo and ancient accreted
+        debris.
+
+  \item \textbf{Low $[\alpha/\mathrm{Fe}]$.}  
+        A more prolonged formation history allowed Type Ia ejecta to
+        accumulate, diluting the alpha enhancement.  The present-day thin
+        disc and metal-rich bulge occupy this regime.
+\end{itemize}
+
+Hence the $[\alpha/\mathrm{Fe}]$–$[\mathrm{M/H}]$ plane acts as a chemical
+clock: populations that overlap in $[\mathrm{M/H}]$ but differ in formation
+time-scale separate cleanly in $[\alpha/\mathrm{Fe}]$.
+
+Following \citet{Vis2024}, we divide the sample into high- and low-$[\alpha/{\rm M}]$ 
+sequences using data from \citet{Li2024} and fit an error–convolved Gaussian-mixture model
+as done in previous analysis. Before fitting, chemical-evolution 
+arguments already set clear expectations. In the \textit{high-$\alpha$ branch} we should 
+see a non-rotating halo Gaussian below $[\mathrm{M/H}]!\approx!-1.6$, joined by a 
+prograde, kinematically hot “thick-disc’’ component that quickly gains weight between 
+$[\mathrm{M/H}]!\simeq!-1.6$ and $-1.0$ and dominates for $[\mathrm{M/H}]>-0.7$. In 
+the \textit{low-$\alpha$ branch} a halo Gaussian alone is expected below 
+$[\mathrm{M/H}]!\approx!-1.0$, while a cold, high-weight thin-disc Gaussian—centred 
+near the local standard of rest with $\sigma!\lesssim!30$ km s$^{-1}$—should emerge 
+abruptly for $[\mathrm{M/H}]\gtrsim-0.9$. If a very-metal-poor rotating disc truly 
+exists, the mixture weights will reveal an additional cold Gaussian at 
+$[\mathrm{M/H}]!\lesssim!-2$ in either sequence; otherwise the fits should confirm that 
+all stars in that regime are explained by the halo alone.
+
+\subsection{Data}
+
+\vspace{0.5\baselineskip}
+\noindent\textbf{XP $\alpha$–abundances and cross-match.}  
+We obtain $[\alpha/\mathrm{M}]$ from the neural-network catalogue of
+\citet{Li2024}, which is trained on \textsc{APOGEE}~DR17 and predicts XP
+spectra simultaneously, achieving a typical precision of
+$\sim$0.05 dex for $G<16$.  Cross-matching this list with the
+metallicity-selected red-giant sample of
+Section~\ref{subsec:data_sample}—and applying the same parallax,
+reddening, latitude and sub-structure masks—returns
+$9.6\times10^{6}$ giants that now carry homogeneous values of
+$[\mathrm{M/H}]$, $[\alpha/\mathrm{M}]$ and full 6-D phase-space
+information.
+
+\vspace{0.5\baselineskip}
+\noindent\textbf{Separating high- and low-$\alpha$ discs.}  
+Figure~\ref{fig:alphametal} shows the density of stars in the
+$[\alpha/\mathrm{M}]$–$[\mathrm{M/H}]$ plane.  In a similar fashion to 
+\citet{Chandra_2024} we isolate the two sequences with the piece-wise 
+linear boundary
+
+\[
+\begin{aligned}
+  \text{high-}\alpha:\;&
+   \begin{cases}
+     [\mathrm{M/H}]<-0.60 & [\alpha/\mathrm{M}]>0.28\\
+     -0.60\le[\mathrm{M/H}]\le0.125
+       & [\alpha/\mathrm{M}]>-0.25[\mathrm{M/H}]+0.13\\
+     [\mathrm{M/H}]>0.125 & [\alpha/\mathrm{M}]>0.10
+   \end{cases}\\[3pt]
+  \text{low-}\alpha:\;&
+   \begin{cases}
+     [\mathrm{M/H}]<-0.80 & [\alpha/\mathrm{M}]<0.21\\
+     -0.80\le[\mathrm{M/H}]\le0.07
+       & [\alpha/\mathrm{M}]<-0.21[\mathrm{M/H}]+0.04
+   \end{cases}
+\end{aligned}
+\]
+
+with the transition zone between the cuts (shaded purple in
+Fig.~\ref{fig:alphametal}) discarded.  The resulting
+high-$\alpha$ and low-$\alpha$ subsamples contain 2.2 million and
+7.4 million stars, respectively.  Although the high-$\alpha$ cohort is
+often equated with \emph{in-situ} formation, we emphasise that chemical
+tags alone do not guarantee such a distinction; a detailed discussion
+appears in Section~\ref{sec:discussion}.
+
+\vspace{0.5\baselineskip}
+\noindent\textbf{Context.}  
+The chemical bifurcation dovetails with the “three-phase’’ picture of
+Milky-Way assembly proposed by \citet{Chandra_2024}: an early chaotic,
+high-$\alpha$ phase; a rapid spin-up between
+$-1.3\lesssim[\mathrm{M/H}]\lesssim-0.9$; and subsequent thin-disc
+growth.  By combining $[\alpha/\mathrm{M}]$ with metallicity we can now
+track the emergence of ordered rotation across \emph{both} chemical
+dimensions in our mixture-model analysis (Section~\ref{sec:methods}).
+
+
+
+
 
 
 
