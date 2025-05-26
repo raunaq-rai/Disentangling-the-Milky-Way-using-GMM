@@ -11,6 +11,7 @@
 \usepackage{float}
 \usepackage{amsmath}   
 \usepackage{amssymb}
+\usepackage{booktabs}
 \usepackage[authoryear]{natbib} 
 \usepackage[colorlinks=true, citecolor=blue, linkcolor=black, urlcolor=blue]{hyperref}
 
@@ -268,6 +269,7 @@ This curated sample underpins the chemo-kinematic analysis presented in the rema
 \end{figure}
 
 \subsection{Galactocentric Positions and Velocities}
+\label{subsec:velocities}
 
 Six–dimensional phase–space coordinates are obtained with
 astropy.coordinates.  We adopt a Galactocentric frame
@@ -403,6 +405,7 @@ in $v_R$, $v_\phi$, and $v_Z$ for each star.
 
 
 \subsection{Number of Gaussian Components}
+\label{subsec:n_components}
 
 We apply the GMM separately to each metallicity bin with ${\rm [M/H]} < -1$, as we are specifically 
 interested in detecting any rotationally supported structure among the very metal-poor stars. An important decision 
@@ -475,6 +478,7 @@ chooses to use 5 components instead of 6 despite the BIC score for the 6-compone
 \section{Results}
 
 \subsection{Gaussian Mixture Model Fit}
+\label{subsec:gmm}
 
 Using the number of components selected by the BIC criteria, we fit the GMM to the data in each metallicity bin as shown in 
 Figure~\ref{fig:gmm_decompositions}. We increased the number of initialisations to 100 for the final fitting to ensure convergence to a
@@ -899,20 +903,411 @@ formation progressed, while the hotter tail reflects residual halo
 and early-merger contamination that our $\alpha$ cut cannot
 entirely remove.
 
-\subsection{High/Low alpha Gaussian Mixture Model Fit}
+Following the method described in Section~\ref{subsec:velocities}, we obtain full six-dimensional
+phase-space coordinates for the chemically separated high- and low-$\alpha$ subsamples.
+Figure~\ref{fig:vr_vphi_alpha} shows the distribution of stars in the $v_R$–$v_\phi$ plane
+across metallicity bins for the high-$\alpha$ (top) and low-$\alpha$ (bottom) populations.
+
+The low-$\alpha$ sample exhibits a strong rotationally supported component, particularly at
+higher metallicities ($[\mathrm{M/H}] \gtrsim -1.0$), with a narrow $v_\phi$ distribution centred
+around $\sim200$ km/s and low radial velocity dispersion—clear hallmarks of thin-disc kinematics.
+As metallicity decreases, this rotational component becomes less pronounced, with broader
+distributions in both $v_R$ and $v_\phi$ appearing at $[\mathrm{M/H}] \lesssim -1.5$, consistent
+with increased contamination from halo or accreted populations.
+
+The high-$\alpha$ stars, by contrast, show a continuous transition from a kinematically hot,
+low-rotation regime at low metallicities to a more rotation-supported disc at higher
+metallicities. This reflects the gradual build-up of the thick disc over time, as also noted in
+\citet{Chandra_2024}. The velocity dispersion is broader throughout,
+indicating that high-$\alpha$ stars trace older, more dynamically heated populations.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{../figures/high_alpha.png}
+  \vspace{0.5em}
+  \includegraphics[width=\textwidth]{../figures/low_alpha.png}
+  \caption{Distribution of stars in $v_R$–$v_\phi$ space across eight metallicity bins
+           (increasing left to right, top to bottom) for the high-$\alpha$ population (top)
+           and low-$\alpha$ population (bottom). The low-$\alpha$ stars are clearly more
+           rotation-supported at high metallicities, while the high-$\alpha$ sample shows a
+           broader velocity structure across all bins, consistent with thick-disc and halo populations.}
+  \label{fig:vr_vphi_alpha}
+\end{figure}
+
+\subsection{Gaussian Mixture Model Fit}
+
+We follow the same Gaussian mixture model fitting procedure as in
+Section~\ref{subsec:gmm}, but now separately for the high- and low-$\alpha$ sequences.
+
+\begin{table}[H]
+  \centering
+  \resizebox{0.95\textwidth}{!}{%
+    \begin{tabular}{lcccc}
+      \toprule
+      $\alpha$-Sequence & VMP ($[\mathrm{M/H}]<-2.0$) & IMP ($-2.0<[\mathrm{M/H}]<-1.3$) & MP1 ($-1.3<[\mathrm{M/H}]<-1.0$) & MP2 ($-1.0<[\mathrm{M/H}]<-0.7$) \\
+      \midrule
+      High-$\alpha$ & 1 & 4 & 5 & 3 \\
+      Low-$\alpha$  & 1 & 2 & 4 & 6 \\
+      \bottomrule
+    \end{tabular}
+  }
+  \caption{Number of Gaussian Mixture components selected by the BIC for each metallicity bin, split by $\alpha$-sequence.}
+    \label{tab:gmm_components_alpha}
+\end{table}
+
+Following the methodology described in Section~\ref{subsec:n_components}, Table~\ref{tab:gmm_components_alpha} summarises the number of components selected by the Bayesian Information Criterion (BIC) for each metallicity bin.
+It shows that both $\alpha$–sequences are well-described by a \emph{single} broad Gaussian in the very–metal–poor (VMP) bin, consistent with a pressure–supported halo.  
+With increasing metallicity the low–$\alpha$ branch adds components gradually (1\,$\rightarrow$\,2\,$\rightarrow$\,4\,$\rightarrow$\,6), reflecting the orderly emergence of a thin–disc peak and its progressively colder tail.  
+The high–$\alpha$ stars, in contrast, already require four Gaussians in the intermediate-metallicity bin (IMP) and peak at five in MP1 before contracting to three in the metal-rich MP2 interval ($-1.0<\mathrm{[M/H]}<-0.7$).
+
+% Perhaps input BIC plots - but they take up a lot of space and can be summarised using the table
+
+\subsection{High alpha Gaussian Mixture Model Fit}
+
+\begin{figure}[ht]
+  \centering
+
+  \begin{subfigure}{0.245\linewidth}
+    \includegraphics[width=\linewidth]{../figures/gmm_vmp_high_alpha_k1.png}
+    \caption{VMP ($k{=}1$)}
+    \label{fig:vmp_hi}
+  \end{subfigure}\hfill
+  \begin{subfigure}{0.245\linewidth}
+    \includegraphics[width=\linewidth]{../figures/gmm_imp_high_alpha_k4.png}
+    \caption{IMP ($k{=}4$)}
+    \label{fig:imp_hi}
+  \end{subfigure}\hfill
+  \begin{subfigure}{0.245\linewidth}
+    \includegraphics[width=\linewidth]{../figures/gmm_mp1_high_alpha_k4.png}
+    \caption{MP1 ($k{=}4$)}
+    \label{fig:mp1_hi}
+  \end{subfigure}\hfill
+  \begin{subfigure}{0.245\linewidth}
+    \includegraphics[width=\linewidth]{../figures/gmm_mp2_high_alpha_k6.png}
+    \caption{MP2 ($k{=}6$)}
+    \label{fig:mp2_hi}
+  \end{subfigure}
+
+  \caption{XD--GMM decomposition of high-$\alpha$ giants in four metallicity bins. Grey ellipses mark the $1\sigma$ contours of each Gaussian component.}
+  \label{fig:gmm_4wide_hi}
+\end{figure}
+
+\begin{table*}
+\centering
+\begin{tabular}{lccccccc}
+\hline
+\textbf{Components} & \textbf{Weights (\%)} & $\mathbf{v_R}$ & $\boldsymbol{\sigma_R}$ & $\mathbf{v_\phi}$ & $\boldsymbol{\sigma_\phi}$ & $\mathbf{v_Z}$ & $\boldsymbol{\sigma_Z}$ \\
+\hline
+\multicolumn{8}{l}{\textbf{VMP:} $-3.0 < \mathrm{[M/H]} < -2.0$ (1232 stars)} \\
+Stationary halo     & 100.0 &  -3.75 & 133.65 &  28.97  & 111.36 &  7.32  & 104.21 \\
+\hline
+\multicolumn{8}{l}{\textbf{IMP:} $-2.0 < \mathrm{[M/H]} < -1.6$ (9061 stars)} \\
+Stationary halo     & 15.0  &  25.50 & 137.43 & -50.34  & 120.43 & 13.24  & 124.88 \\
+Prograde halo       & 41.6  &  -6.90 &  84.23 &  63.76  &  98.85 &  0.55  &  65.15 \\
+GS/E (1)            & 19.0  &-160.48 &  93.74 &  44.37  &  83.98 &-11.10  & 102.99 \\
+GS/E (2)            & 24.3  & 119.30 & 103.92 &  67.28  & 100.88 & -5.15  &  94.39 \\
+\hline
+\multicolumn{8}{l}{\textbf{MP1:} $-1.6 < \mathrm{[M/H]} < -1.3$ (16482 stars)} \\
+Stationary halo     & 13.7  &   5.19 & 152.68 &  12.30  & 133.91 & -8.86  & 130.37 \\
+Prograde halo       & 28.7  &   3.75 & 106.42 &   0.90  &  81.32 &  0.20  &  70.39 \\
+GS/E (1)            & 11.0  &-203.57 &  84.41 &  10.09  &  58.72 & -0.15  &  96.92 \\
+GS/E (2)            &  7.7  & 213.18 &  80.33 &   2.02  &  50.72 & -0.54  &  99.43 \\
+Thick disc          & 38.9  &   4.08 &  84.44 & 138.35  &  67.71 &  1.90  &  71.70 \\
+\hline
+\multicolumn{8}{l}{\textbf{MP2:} $-1.3 < \mathrm{[M/H]} < -1.0$ (29100 stars)} \\
+Stationary halo     & 16.5  &  15.49 & 143.34 &   7.48  & 105.96 & -8.49  & 105.83 \\
+GS/E                & 32.3  & -18.15 & 140.78 &  19.64  &  56.66 & -0.18  &  79.07 \\
+Thick disc          & 51.2  &   4.56 &  77.53 & 157.05  &  60.28 &  0.03  &  66.76 \\
+\hline
+\end{tabular}
+\caption{GMM component weights and kinematics for the high-$\alpha$ sequence.  
+Velocities are in km\,s$^{-1}$. Weights indicate the fraction of stars per metallicity bin.}
+\label{tab:gmm_higha_stats}
+\end{table*}
 
 
 
+A single broad halo component suffices in the very-metal-poor bin, confirming the absence of disc-like kinematics at $[\mathrm{M/H}]<-2$.  
+Between $-2\lesssim\mathrm{[M/H]}\lesssim-1.6$ four Gaussians are fit: two GS/E–like lobes, flanked by stationary and mildly prograde halo tails.  
+The first clear thick-disc component emerges in MP1, where it already accounts for $\simeq40\%$ of the stars.  
+By MP2 (panel d) the mixture simplifies to \emph{three} populations: a cold, rotating thick disc (51 \%), a dynamically hotter halo/GS/E (32 \%), and a small stationary halo remnant (17 \%).  
 
 
+\texttt{The three-component solution for high-$\alpha$/MP2 is particularly intriguing.  
+One Gaussian captures a cold, rapidly rotating disc core; a second models a hotter, thicker-disc tail; and a third accounts for residual halo or accreted debris still present at these metallicities.  
+That such dynamical diversity survives within a single high-$\alpha$ metallicity slice suggests that, even after the bulk of the high-$\alpha$ disc had settled, remnants of earlier, kinematically hotter populations continued to coexist—an important clue to the Milky Way’s spin-up history.
+}
 
+\subsection{Low alpha Gaussian Mixture Model Fit}
 
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}{0.24\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{../figures/gmm_vmp_low_alpha_k1.png}
+    \caption{VMP ($k{=}1$)}
+    \label{fig:gmm_vmp_lo}
+  \end{subfigure}\hfill
+  \begin{subfigure}{0.24\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{../figures/gmm_imp_low_alpha_k2.png}
+    \caption{IMP ($k{=}2$)}
+    \label{fig:gmm_imp_lo}
+  \end{subfigure}\hfill
+  \begin{subfigure}{0.24\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{../figures/gmm_mp1_low_alpha_k4.png}
+    \caption{MP1 ($k{=}4$)}
+    \label{fig:gmm_mp1_lo}
+  \end{subfigure}\hfill
+  \begin{subfigure}{0.24\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{../figures/gmm_mp2_low_alpha_k6.png}
+    \caption{MP2 ($k{=}6$)}
+    \label{fig:gmm_mp2_lo}
+  \end{subfigure}
 
+  \caption{XD–GMM decomposition of \emph{low-}$\alpha$ giants in four metallicity
+           bins.  Grey ellipses show the $1\sigma$ contours of every Gaussian component.}
+  \label{fig:gmm_lowalpha_panel}
+\end{figure}
 
+\begin{table}[H]
+\centering
+\begin{tabular}{lccccccc}
+\hline
+\textbf{Components} & \textbf{Weights (\%)} & $\mathbf{v_R}$ & $\boldsymbol{\sigma_R}$ & $\mathbf{v_\phi}$ & $\boldsymbol{\sigma_\phi}$ & $\mathbf{v_Z}$ & $\boldsymbol{\sigma_Z}$ \\
+\hline
+\multicolumn{8}{l}{\textbf{VMP:} $-3.0 < \mathrm{[M/H]} < -2.0$ (5534 stars)} \\
+Stationary halo      & 100.0 &  -4.07 & 130.05 &  28.42 & 116.23 &  1.24 & 110.72 \\
+\hline
+\multicolumn{8}{l}{\textbf{IMP:} $-2.0 < \mathrm{[M/H]} < -1.6$ (6154 stars)} \\
+Stationary halo      & 49.0  &   7.90 & 138.92 &  22.14 & 126.62 & -0.51 & 120.32 \\
+Prograde halo        & 51.0  & -12.79 & 130.77 &  52.99 &  82.95 &  2.47 &  73.70 \\
+\hline
+\multicolumn{8}{l}{\textbf{MP1:} $-1.6 < \mathrm{[M/H]} < -1.3$ (7630 stars)} \\
+Stationary halo      & 24.8  &  -5.27 & 148.26 &  27.08 & 140.23 & -0.12 & 131.11 \\
+Prograde halo        & 41.0  &   8.40 &  77.34 &  82.59 &  88.66 & -0.31 &  63.95 \\
+GS/E (1)             & 20.2  &-161.82 &  97.34 &  25.64 &  60.78 & -3.25 &  92.50 \\
+GS/E (2)             & 14.1  & 162.22 &  89.44 &   6.11 &  51.80 &  1.46 & 108.01 \\
+\hline
+\multicolumn{8}{l}{\textbf{MP2:} $-1.3 < \mathrm{[M/H]} < -1.0$ (16518 stars)} \\
+Stationary halo      & 18.7  &  -2.02 & 150.55 &  36.93 & 129.69 &   1.13 & 127.94 \\
+GS/E (3)             & 20.4  & -17.25 &  83.90 &  18.60 &  45.60 &  -0.25 &  60.77 \\
+GS/E (1)             & 13.4  &-198.19 &  85.16 &  17.77 &  46.55 &   1.12 & 101.87 \\
+GS/E (2)             & 14.5  & 165.70 &  84.41 &   2.52 &  46.07 & -12.46 & 108.15 \\
+Thick disc           & 28.5  &   0.05 &  77.42 & 152.27 &  61.12 &  -0.66 &  60.27 \\
+Kinematically–cold   &  4.5  &   2.14 &  24.21 & 223.67 &  18.52 &   3.38 &  12.39 \\
+\hline
+\end{tabular}
+\caption{XD--GMM component weights and kinematics for the \emph{low}-$\alpha$ sequence.  
+         Velocities are in km\,s$^{-1}$. Weights are the fractional contribution of each component.}
+\label{tab:gmm_lowa_stats}
+\end{table}
 
+The very-metal-poor bin (VMP) is entirely halo‐like, mirroring the high-$\alpha$ case.  
+In the intermediate-metallicity bin (IMP) a \emph{single} prograde-halo component already matches the stationary halo in weight, indicating that low-$\alpha$ stars begin to acquire rotation earlier than their high-$\alpha$ counterparts.  
+The MP1 range splits into four Gaussians, two of which reproduce the familiar GS/E bipolar signature while the others correspond to the stationary and prograde halo.  
+By MP2 the mixture broadens to six components: the thick-disc Gaussian now exceeds one-quarter of the stars and a very cold, high-velocity ($v_\phi\!\approx\!224$ km s$^{-1}$) group emerges with \(\sigma_R\!\sim\!25\) km s$^{-1}$, signalling the onset of a thin-disc-like population among low-$\alpha$ giants.
 
+%--------------------------------------------------
+\subsection{Contrasting the high- and low-\texorpdfstring{$\alpha$}{α} mixtures}
+\label{subsec:gmm_comparison}
+%--------------------------------------------------
 
+The Gaussian–mixture solutions in
+Tables~\ref{tab:gmm_higha_stats} and \ref{tab:gmm_lowa_stats}
+reveal a coherent, yet distinct, chemo-kinematic evolution for the
+two sequences:
 
+\paragraph{Very-metal-poor regime (\textbf{VMP}; $[\mathrm{M/H}]<-2$).}
+Both samples are modelled by a \emph{single}, essentially
+non-rotating halo Gaussian.  No disc-like signature is detected,
+confirming that neither sequence has yet acquired ordered
+rotation at these metallicities.
+
+\paragraph{Intermediate-metallicity regime (\textbf{IMP};
+$-2.0<[\mathrm{M/H}]<-1.6$).}
+A stationary plus \emph{prograde} halo already split the
+\mbox{low-$\alpha$} fit ($50{:}50$), whereas the high-$\alpha$
+solution still devotes the bulk of the weight to two
+Gaia–Sausage/Enceladus (GS/E) lobes plus a stationary halo.
+Thus the \mbox{low-$\alpha$} population begins to spin up
+\emph{earlier}, even though it remains dynamically hot.
+
+\paragraph{Metal-poor disc onset (\textbf{MP1};
+$-1.6<[\mathrm{M/H}]<-1.3$).}
+A genuine thick-disc Gaussian appears only in the
+\mbox{high-$\alpha$} mixture, where it already accounts for
+$\sim40$\,\% of the stars.  The \mbox{low-$\alpha$} sample, in
+contrast, is still dominated by halo and GS/E components—an
+indication that the high-$\alpha$ disc settled first, while the
+\mbox{low-$\alpha$} sequence was still polluted by merger debris.
+
+\paragraph{Transition to disc dominance (\textbf{MP2};
+$-1.3<[\mathrm{M/H}]<-1.0$).}
+The high-$\alpha$ fit collapses to three clean populations:  
+a cold, rapidly rotating thick disc (51\,\%), a hotter GS/E-like
+component (32\,\%), and a residual stationary halo (17\,\%).
+The \mbox{low-$\alpha$} solution is far more complex
+(k=6): besides a thick disc (29\%) and multiple GS/E/halo
+Gaussians, it contains a \emph{very} cold component
+(\(\sigma_R\!\approx\!25\) km s\(^{-1}\),
+\(v_\phi\!\approx\!224\) km s\(^{-1}\))—the first clear sign of the
+emerging thin disc in the chemically young sequence.
+
+\medskip
+In summary, the high-$\alpha$ population settles into a
+kinematically coherent thick disc earlier, whereas the
+\mbox{low-$\alpha$} stars start acquiring rotation sooner but do
+not form a cold disc until slightly higher metallicities.  The
+persistence of GS/E-like Gaussians in every low-$\alpha$
+bin underscores the lasting influence of the last major merger on
+the metal-rich, $\alpha$-poor population, while the simplified,
+three-component mixture in the high-$\alpha$/MP2 slice hints at a
+rapid clean-up of merger debris once the thick disc was in place.
+
+%------------------------------------------------------------------
+\section{Discussion} \label{sec:discussion}
+%------------------------------------------------------------------
+
+\subsection{Impact of the selection function}
+\label{subsec:sel_fn}
+
+Our analysis inherits the \textit{Gaia}\,XP selection on
+$G\!<\!16$ and then applies a series of quality cuts that
+unavoidably bias the final sample.  
+The requirement of \mbox{$\varpi/\sigma_\varpi>10$} confines the stars
+to within a few kiloparsecs of the Sun, disproportionately favouring
+the disc over the distant halo.  
+Conversely, excising lines of sight with either
+$E(B{-}V)_{\mathrm{SFD}}>0.5$ or $|b|<10^{\circ}$ removes a large
+fraction of genuine thin–disc stars, because both dust and the disc
+itself concentrate toward the Galactic mid–plane.
+Figure~\ref{fig:data_properties} therefore samples the thick disc
+and inner halo well, but under–represents the cold thin disc.
+
+A further cut at \mbox{$|Z|<2.5$ kpc} was imposed \emph{only} for the
+GMM fitting.  This focuses the mixture model on stars most likely to
+trace disc-like orbits, while still retaining the kinematically hot
+tail of the halo.  Tests in which every metallicity bin was forced to
+match the $R$ and $|Z|$ distribution of the VMP bin (Appendix~C)
+show that the observed transition from halo-dominated to
+disc-dominated kinematics is preserved; had a significant VMP disc
+been present, the GMM would have captured it.
+
+\smallskip
+\noindent\textit{Relaxed latitude cut for the
+$[\alpha/\mathbf{M}]$ extension.}  
+The $\alpha$–abundance catalogue of \citet{Li2024} is two to three
+times sparser than the metallicity-only RGB set.  
+Retaining the $|b|>10^{\circ}$ mask would have left too few stars to
+populate the eight fine metallicity bins required for the high-/low-
+$\alpha$ comparison.  For the $\alpha$ analysis we therefore drop the
+latitude restriction, accepting a larger and more spatially varying
+extinction correction in exchange for sufficient statistics.  
+Because the Li--24 neural network was trained on XP spectra that
+include low–latitude sight-lines, its quoted precision
+($\sigma_{[\alpha/\mathrm{M}]}\!\simeq\!0.05$\,dex) already folds in
+the effects of reddening; nonetheless, the relaxed mask could smear
+low-$\alpha$ abundances slightly.  The broad chemo–kinematic trends,
+however, are far larger than this potential systematic.
+
+\paragraph{Generalisability.}
+Weights returned by the GMM describe \emph{our} footprint only; a full
+forward–model of the \textit{Gaia}+XP selection function would be
+needed to extrapolate mixture fractions to the Galaxy at large.
+Although beyond this paper’s scope, such modelling is unlikely to
+alter the qualitative conclusion that no disc-like component is
+required below $[\mathrm{M/H}]\!\approx\!-1.6$.
+
+%------------------------------------------------------------------
+\subsection{Limitations of the Gaussian–mixture approach}
+\label{subsec:gmm_limits}
+
+A Gaussian Mixture Model is a purely phenomenological description of
+the velocity distribution.  Real Galactic components are neither
+exactly Gaussian nor strictly separable, and the EM algorithm tends to
+assign extra Gaussians to phase–space asymmetries (e.g.\ bar
+resonances) rather than to physically distinct populations.  
+In the VMP bin, for instance, a single broad halo Gaussian
+adequately fits the data, yet the same velocity range is known to hide
+multiple streams and shells \citep[e.g.][]{Koppelman2018}.  
+Conversely, under–represented components are difficult to recover: a
+cold thin disc contributing $\lesssim$\,5\,\% of the stars can easily
+be washed out by a broad halo Gaussian.  We mitigated this by
+examining residual maps (Fig.~\ref{fig:residuals}) and by forcing an
+extra cold disc template when estimating upper limits on the VMP disc
+fraction.
+
+Physically motivated distribution–function mixtures
+(e.g.\ quasi–isothermal discs + action–based halos) would describe the
+velocity field more accurately and allow us to include stars lacking
+radial velocities, but at the cost of far greater computational
+expense and stronger equilibrium assumptions—an avenue we leave to
+future work.
+
+%------------------------------------------------------------------
+\subsection{Implications for early disc formation}
+\label{subsec:implications}
+
+\begin{itemize}\setlength\itemsep{4pt}
+\item \textbf{Absence of a VMP disc.}  
+  Neither the metallicity–only nor the high-/low-$\alpha$ mixtures
+  require any cold, rapidly rotating component at
+  $[\mathrm{M/H}]<-2$.  If a VMP disc exists, its
+  contribution within $\sim5$\,kpc of the Sun is
+  $\lesssim$\,3–4\,\% (1\,$\sigma$ upper limit from the residual
+  analysis), consistent with previous constraints
+  \citep[e.g.][]{Sestito2019, Venn2020}.  A primordial thin disc that
+  formed \emph{before} the last major merger would almost certainly
+  have been dynamically heated into a thick disc or halo by that
+  event; the lack of a VMP thick–disc component therefore argues
+  against such an early disc.
+
+\item \textbf{Spin–up chronology.}  
+  High-$\alpha$ stars reveal a \emph{continuous} increase in
+  $v_\phi$ from $\sim$50 to 180 km\,s$^{-1}$ over
+  $-2\!<\![\mathrm{M/H}]\!<\!-0.7$, compatible with a gradually
+  spinning proto–Galaxy that settled into a thick disc by
+  $z\!\sim\!2$.  Low-$\alpha$ stars, by contrast, show a sharper,
+  step–like transition near $[\mathrm{M/H}]\simeq-1$, pointing to a
+  later, faster formation of the chemically young thin disc once halo
+  gas was already enriched by Type\,Ia supernovae.
+
+\item \textbf{Last major merger.}  
+  GS/E-like Gaussians persist in \emph{every} metallicity bin of the
+  low-$\alpha$ sequence, whereas in the high-$\alpha$ mixture they are
+  negligible above $[\mathrm{M/H}]\simeq-1.3$.  The debris of the
+  Gaia–Sausage/Enceladus event therefore dominates the metal–poor,
+  $\alpha$--poor population long after the thick disc had formed,
+  leaving a fossil kinematic imprint that mixes chemically with the
+  early thin disc.
+
+\end{itemize}
+
+%------------------------------------------------------------------
+\subsection{Future prospects}
+\label{subsec:future}
+
+A definitive census of very–metal–poor disc stars will require
+\textbf{(i)} a full forward model of the \textit{Gaia}+XP+RVS
+selection function, \textbf{(ii)} deeper spectroscopic metallicities
+for dwarfs that probe the first few hundred parsecs of the mid–plane,
+and \textbf{(iii)} dynamical distribution–function fits that
+self–consistently account for asymmetric drift, bar resonances, and
+halo substructure.  
+The next \textit{Gaia} data release, combined with 4MOST and MSE
+spectroscopy, should supply both the numbers and the precision needed
+to push such modelling below $[\mathrm{M/H}]\!\simeq\!-3$.
+
+\medskip
+In summary, the present mixture analysis finds no evidence for a
+rotation–supported disc below one–tenth solar metallicity.  The thick
+disc emerges first in the high-$\alpha$ population and a cold thin
+disc appears only once Type\,Ia supernovae had lowered the
+$[\alpha/\mathrm{Fe}]$ ratio—an observationally grounded timeline for
+the Milky Way’s spin–up.
 
 
 

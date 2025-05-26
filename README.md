@@ -27,9 +27,9 @@ While the halo is commonly associated with the oldest stars, recent studies have
 ## Resources
 
 - **Data:**
-  - Gaia DR3 vetted RGB sample ([Andrae et al. 2023](https://zenodo.org/records/7945154)).
+  - Gaia DR3 vetted RGB sample with metalicity ([Andrae et al. 2023](https://zenodo.org/records/7945154)).
   - Distances from [Bailer-Jones et al. (2021)](https://ui.adsabs.harvard.edu/abs/2021AJ....161..147B/abstract).
-
+  - Alpha Abundance samples [Li et al. (2024)](https://arxiv.org/abs/2309.14294)
 - **Key publications:**
   - [Zhang, Ardern-Arentsen & Belokurov (2024)](https://arxiv.org/pdf/2311.09294): "On the existence of a very metal-poor disc in the Milky Way".
   - [Belokurov & Deason (2024)](https://arxiv.org/pdf/2402.12443): "Galactic Archaeology with Gaia".
