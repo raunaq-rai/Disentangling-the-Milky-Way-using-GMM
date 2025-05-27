@@ -739,18 +739,19 @@ To guarantee photometric and astrometric fidelity we then enforce
         $(G-W2)<0.2+0.77\,(G_{\rm BP}-W1)$);
   \item rejection of stars within 1 degree of known dwarf galaxies and
         in known globular clusters.
+  \item a reddening cut $E(B-V)<0.5$ to remove stars in the Galactic
+        plane, where the dust extinction is high and the XP
+        metallicities are known to be biased.
+  \item a latitude cut $|b|>10^\circ$ to remove stars in the
+        Galactic plane, where the dust extinction is high and the
+        XP metallicities are known to be biased.
+  \item in this analysis we do not remove stars with a fractional 
+        parallax uncertainty cut as done in Section~\ref{subsec:data_sample}.
+        This cut removes a significant fraction of stars in the
+        very-metal-poor regime, which is the focus of this analysis. 
 \end{itemize}
 
-These criteria are applied \emph{in addition} to the parallax-quality,
-reddening, latitude, and sub-structure masks introduced earlier.
-The resulting data set contains $\simeq1.0\times10^{7}$
-red-giant stars with homogeneous $[\mathrm{M/H}]$ and
-$[\alpha/\mathrm{M}]$ measurements, accompanied by full six-dimensional
-phase-space information.  This chemically enriched sample forms
-the basis of the high- versus low-$\alpha$ kinematic analysis that
-follows.
-We obtain approximately 2.9 million stars which match the stars in our previous
-analysis with around 10 million stars in our sample.
+We obtain approximately 3.4 million stars in our final sample with alpha element abundances.
 
 \begin{figure}[h]
     \centering
@@ -758,7 +759,7 @@ analysis with around 10 million stars in our sample.
     \caption{Density of stars in the $[\alpha/\mathrm{M}]$–$[\mathrm{M/H}]$ plane.
              The high-$\alpha$ and low-$\alpha$ sequences are separated by the
              piece-wise linear boundary . The transition zone
-             between the two sequences is shaded purple and discarded from
+             between the two sequences is clearly removed from this plot and discarded from
              subsequent analysis.}
     \label{fig:alphametal}
 \end{figure}
@@ -791,8 +792,7 @@ separate the two sequences with the piece-wise relations
 \end{aligned}
 \]
 %
-and discard the intermediate “transition’’ band (shaded purple in the
-figure).
+and discard the intermediate “transition’’ band.
 
 This prescription departs slightly from the cuts adopted by
 \citet{Chandra_2024}:  
