@@ -682,10 +682,14 @@ encodes the star-formation history of a stellar population:
 
 \begin{itemize}
   \item \textbf{High $[\alpha/\mathrm{Fe}]$.}  
-        Rapid, intense star formation finished before large numbers of
-        Type Ia events enriched the gas with iron.  This chemistry is
-        typical of the thick disc, the stellar halo and ancient accreted
-        debris.
+      Rapid, intense star formation enriches gas with $\alpha$-elements 
+      before significant iron production from Type Ia supernovae occurs, 
+      leading to elevated $[\alpha/\mathrm{Fe}]$. This chemical signature is typical 
+      of the in-situ thick disc, stellar halo, and some ancient accreted material. 
+      However, at fixed metallicity, accreted populations, especially dwarf galaxies,
+       tend to show lower $[\alpha/\mathrm{Fe}]$ 
+      compared to in-situ stars, reflecting their slower chemical evolution.
+
 
   \item \textbf{Low $[\alpha/\mathrm{Fe}]$.}  
         A more prolonged formation history allowed Type Ia ejecta to
@@ -697,57 +701,73 @@ Hence the $[\alpha/\mathrm{Fe}]$–$[\mathrm{M/H}]$ plane acts as a chemical
 clock: populations that overlap in $[\mathrm{M/H}]$ but differ in formation
 time-scale separate cleanly in $[\alpha/\mathrm{Fe}]$.
 
-Following \citet{Vis2024}, we divide the sample into high- and low-$[\alpha/{\rm M}]$ 
-sequences using data from \citet{Li2024} and fit an error–convolved Gaussian-mixture model
-as done in previous analysis. Before fitting, chemical-evolution 
-arguments already set some expectations. In the \textit{high-$\alpha$ branch} we should 
-see a non-rotating halo Gaussian below $[\mathrm{M/H}]\approx-1.6$, joined by a 
-prograde, kinematically hot “thick-disc’’ component that quickly gains weight between 
-$[\mathrm{M/H}]!\simeq!-1.6$ and $-1.0$ and dominates for $[\mathrm{M/H}]>-0.7$. In 
-the \textit{low-$\alpha$ branch} a halo Gaussian alone is expected below 
-$[\mathrm{M/H}]\approx-1.3$, while a cold, high-weight thin-disc Gaussian—centred 
-near the local standard of rest with $\sigma!\lesssim!30$ km s$^{-1}$—should emerge 
-after this. However, due to selection effects, the thin disc is expected to not be 
-identified - we are interested in disk formation.
+Following \citet{Vis2024}, we separate the RGB catalogue into
+high- and low-$[\alpha/{\rm M}]$ sequences using the XP abundances of
+\citet{Li2024} and model each subset with an error–convolved
+Gaussian–mixture as described earlier.  Before fitting the GMM,
+we can expect to see some differences between the high- and low-$[\alpha/{\rm M}]$ sequences
+as summarised below.  
+
+In the high-$[\alpha/{\rm M}]$ sequence, the oldest, in-situ population formed rapidly from well-mixed,
+$\alpha$-rich gas. Below $[\mathrm{M/H}]\!\approx\!-1.6$ we therefore
+expect a single non-rotating halo Gaussian.  As enrichment proceeds,
+gas spins up and produces the thick disc: a prograde, kinematically
+warm Gaussian whose weight rises steeply between
+$[\mathrm{M/H}]\!\simeq\!-1.6$ and $-1.0$ and dominates for
+$[\mathrm{M/H}]>-0.7$.  Accreted debris from the last major merger
+(Gaia–Sausage/Enceladus, GS/E) should not be prominent here
+because GS/E stars are typically \emph{less} $\alpha$-enhanced than the
+in-situ thick disc at the same metallicity
+\citep[e.g.][]{Helmi2018}; our conservative
+high-$[\alpha/{\rm M}]$ cut should remove most of this material.
+
+In the low-$[\alpha/{\rm M}]$ sequence,
+lower $[\alpha/{\rm M}]$ signals slower enrichment, typical of dwarf
+satellites or the Milky Way disc after Type-Ia supernovae began adding
+iron.  A single halo Gaussian should suffice below
+$[\mathrm{M/H}]\!\approx\!-1.3$, with a cold, high-weight thin-disc
+Gaussian—centred near the Local Standard of Rest and
+$\sigma\!\lesssim\!30\;\mathrm{km\,s^{-1}}$—emerging above that
+threshold.  Our footprint excludes $|b|<10^{\circ}$, however, and thus
+removes most of the geometrically thin disc; the ultra-cold Gaussian
+may therefore be absent at the low metalicities we are inspecting. 
+ The aim is instead to pinpoint the onset
+of disc-like rotation in the low-$[\alpha/{\rm M}]$ sequence despite
+this selection bias.
+
+
+
+
 
 \subsection{Data}
 
 
 We obtain the $\alpha$-to-metal abundance ratios from the
 XP–based catalogue of \citet{Li2024}, whose neural-network
-model—trained on high-resolution \textsc{APOGEE}~DR17
-spectra—achieves a typical precision of $\simeq0.05$\,dex for
+model, trained on high-resolution \textsc{APOGEE}~DR17
+spectra, achieves a typical precision of $\simeq0.05$\,dex for
 bright sources ($G<16$).  
-The $\alpha$ catalogue is first cross-matched with the
-metallicity-selected red-giant branch sample described in
-Section~\ref{subsec:data_sample}.  
-To guarantee photometric and astrometric fidelity we then enforce
+Following \citet{Vis2024}, we cross-match the XP-based $\alpha$ catalogue 
+of \citet{Li2024} with the metallicity-selected red-giant branch sample . This base sample already 
+incorporates the red-giant selection and photometric quality cuts from 
+\citet{Andrae2023}, including limits on surface gravity, colour–magnitude 
+position, and XP calibration reliability. 
 
+To further ensure robust $\alpha$ abundances and kinematics, we apply 
+several additional cuts:
 \begin{itemize}\setlength\itemsep{2pt}
-  \item $G<16$ and a parallax signal-to-noise ratio
-        $\varpi/\sigma_\varpi>5$;
-  \item an effective–temperature cut $T_{\!\mathrm{eff}}<5200$\,K
-        to remove hot stars whose XP metallicities are known to
-        be biased low;
-  \item red-giant selections on the Hertzsprung–Russell diagram
-        (\,$\log g<3.5$, together with the magnitude-colour
-        cuts\footnote{$M_{W1}=W1+5\log_{10}(\varpi/100)$}\,
-        $M_{W1}>-0.3-0.006\,(5500-T_{\!\mathrm{eff}})$,
-        $M_{W1}>-0.01\,(5300-T_{\!\mathrm{eff}})$, and
-        $(G-W2)<0.2+0.77\,(G_{\rm BP}-W1)$);
-  \item rejection of stars within 1 degree of known dwarf galaxies and
-        in known globular clusters.
-  \item a reddening cut $E(B-V)<0.5$ to remove stars in the Galactic
-        plane, where the dust extinction is high and the XP
-        metallicities are known to be biased.
-  \item a latitude cut $|b|>10^\circ$ to remove stars in the
-        Galactic plane, where the dust extinction is high and the
-        XP metallicities are known to be biased.
-  \item in this analysis we do not remove stars with a fractional 
-        parallax uncertainty cut as done in Section~\ref{subsec:data_sample}.
-        This cut removes a significant fraction of stars in the
-        very-metal-poor regime, which is the focus of this analysis. 
+  \item we reject stars within $1^\circ$ of known dwarf galaxies and 
+        those associated with globular clusters;
+  \item a reddening cut $E(B-V)<0.5$ removes stars in regions of high 
+        extinction, where XP abundances are less reliable;
+  \item a Galactic latitude cut $|b|>10^\circ$ similarly avoids 
+        the dust-dominated plane;
+  \item we relax the fractional parallax uncertainty cut relative to 
+        Section~\ref{subsec:data_sample}, requiring only $\mathrm{fpu}<0.2$
+        to retain sufficient stars in the metal-poor regime, which is 
+        the focus of this analysis.
 \end{itemize}
+
 
 We obtain approximately 3.4 million stars in our final sample with alpha element abundances.
 
@@ -766,9 +786,8 @@ We obtain approximately 3.4 million stars in our final sample with alpha element
   
 Figure~\ref{fig:alphametal} displays the logarithmic density of our
 RGB sample in the $[\alpha/\mathrm{M}]$–$[\mathrm{M/H}]$ plane.  Following
-\citet{Chandra_2024}, but with a deliberately \emph{tighter} boundary, we
-separate the two sequences with the piece-wise relations
-%
+\citet{Chandra_2024}, but with a deliberately tighter boundary as in \citet{Vis2024}:
+
 \[
 \begin{aligned}
 \text{high-}\alpha:\;&
@@ -792,30 +811,16 @@ separate the two sequences with the piece-wise relations
 %
 and discard the intermediate “transition’’ band.
 
-This prescription departs slightly from the cuts adopted by
-\citet{Chandra_2024}:  
-our high-$\alpha$ threshold is raised so that the
+This high-$\alpha$ threshold is raised so that the
 chemistry of the Gaia–Sausage/Enceladus debris
 \citep{Belokurov2018,Helmi2018} does not leak into the
 in-situ sequence;  
 and the exclusion band is widened to maximise purity in both
-sub-samples.  
+sub-samples \citep{Vis2024}.  
 
 Figure~\ref{fig:rz_metallicity} shows how metallicity varies with Galactocentric radius \(R\) and height \(z\).
-The all-star map already hints at a global decline in \( [\mathrm{M/H}] \) away from the plane and the Solar circle, 
-albeit modulated by the dust-driven selection hole around \(z\!\approx\!0\).
-
-The high-$\alpha$ giants occupy a comparatively compact domain, \(R\!\lesssim\!10\;\mathrm{kpc}\) 
-and \(|z|\!\lesssim\!3\;\mathrm{kpc}\), and display only a gentle vertical gradient of $\simeq-0.15$\,
-dex\,kpc\(^{-1}\). Such behaviour is expected for the old, kinematically hot thick disc that formed 
-rapidly in the inner Galaxy.
-
-By contrast, low-$\alpha$ stars extend to \(R\!\gtrsim\!14\;\mathrm{kpc}\) and 
-\(|z|\!\approx\!5\;\mathrm{kpc}\). Their mean metallicity falls steeply with height 
-(approx. $-0.35$\,dex\,kpc\(^{-1}\)) and with radius, producing the flared, metal-poor outskirts 
-typical of the thin disc after radial migration \citep{Haywood2013}.  
-The larger scale-height range also accommodates halo contaminants, especially at low \(R\).
-
+The all-star map already hints at a global decline in \( [\mathrm{M/H}] \) away from the plane and the Solar circle.
+This decline is more pronounced in the low-$\alpha$ sequence.
 
 
 \begin{figure}[H]
@@ -879,6 +884,8 @@ The larger scale-height range also accommodates halo contaminants, especially at
   \label{fig:mh_vphi_alpha}
 \end{figure*}
 
+% edit the below paragraph!!--------------
+
 Figure~\ref{fig:mh_vphi_alpha} shows chemo-kinematic
 behaviour for the two disc sequences.  
 In the low-$\alpha$ panel the thin disc dominates
@@ -900,6 +907,8 @@ proto-Galaxy’s in-situ population gradually spun up as star
 formation progressed, while the hotter tail reflects residual halo
 and early-merger contamination that our $\alpha$ cut cannot
 entirely remove.
+
+% edit above -----------------
 
 Following the method described in Section~\ref{subsec:velocities}, we obtain full six-dimensional
 phase-space coordinates for the chemically separated high- and low-$\alpha$ subsamples.
@@ -1040,32 +1049,33 @@ The high–$\alpha$ stars, in contrast, already require four Gaussians in the in
 \hline
 \textbf{Components} & \textbf{Weights (\%)} & $\mathbf{v_R}$ & $\boldsymbol{\sigma_R}$ & $\mathbf{v_\phi}$ & $\boldsymbol{\sigma_\phi}$ & $\mathbf{v_Z}$ & $\boldsymbol{\sigma_Z}$ \\
 \hline
-\multicolumn{8}{l}{\textbf{VMP:} $-3.0 < \mathrm{[M/H]} < -2.0$ (1033 stars)} \\
-Stationary halo     & 100.0 &  -2.40 & 133.08 &  29.80 & 108.47 &  6.80 & 104.61 \\
+\multicolumn{8}{l}{\textbf{VMP:} $-3.0 < \mathrm{[M/H]} < -2.0$ (657 stars)} \\
+Stationary halo     & 100.0 &   1.40 & 137.36 &  35.59 & 111.99 &  7.60 & 102.48 \\
 \hline
-\multicolumn{8}{l}{\textbf{IMP:} $-2.0 < \mathrm{[M/H]} < -1.6$ (7050 stars)} \\
-Stationary halo-like &  18.1 & -70.63 & 103.27 &   2.00 & 136.02 & -13.00 & 120.01 \\
-Prograde halo-like   &  48.5 &  -0.56 &  87.54 &  70.63 &  93.97 &  -1.29 &  66.22 \\
-GS/E (1)            &  11.4 &-188.39 &  87.12 &  28.59 &  62.94 &  -0.62 &  97.96 \\
-GS/E (2)            &  22.0 & 149.33 &  93.80 &  15.31 &  98.88 &  10.40 & 106.66 \\
+\multicolumn{8}{l}{\textbf{IMP:} $-2.0 < \mathrm{[M/H]} < -1.6$ (5219 stars)} \\
+Stationary halo     &  16.7 & -22.06 & 116.74 &  -8.55 & 135.74 & -2.64 & 125.40 \\
+Prograde halo       &  51.9 &  10.84 &  90.56 &  84.51 &  94.79 & -0.76 &  69.42 \\
+GS/E (1)            &  16.8 &-171.35 &  92.33 &  29.12 &  75.23 &  0.50 &  87.09 \\
+GS/E (2)            &  14.5 & 180.48 &  91.48 &  -5.47 &  89.66 & -2.87 &  94.37 \\
 \hline
-\multicolumn{8}{l}{\textbf{MP1:} $-1.6 < \mathrm{[M/H]} < -1.3$ (12899 stars)} \\
-Stationary halo     &  12.9 &   7.52 & 145.38 &  15.28 & 133.61 & -10.39 & 133.93 \\
-Prograde halo       &  37.5 &  -1.29 & 110.47 &  18.28 &  88.55 &  -3.74 &  71.46 \\
-GS/E (1)            &  11.0 &-203.90 &  83.50 &   3.74 &  57.34 &   5.61 &  97.30 \\
-GS/E (2)            &   7.7 & 218.01 &  77.33 &   2.25 &  48.52 &  -2.09 & 104.19 \\
-Thick disc          &  30.9 &   9.38 &  80.76 & 139.48 &  65.87 &   5.41 &  69.98 \\
+\multicolumn{8}{l}{\textbf{MP1:} $-1.6 < \mathrm{[M/H]} < -1.3$ (10265 stars)} \\
+Stationary halo     &   13.7 &   7.44 & 145.24 &  15.90 & 130.80 & -8.97 & 127.11 \\
+Prograde halo       &   41.8 &  -5.85 & 120.77 &  20.31 &  89.59 & -1.29 &  72.85 \\
+GS/E (1)            &   7.6 &-230.09 &  75.81 &   4.65 &  52.41 &  8.69 &  94.68 \\
+GS/E (2)            &   5.7 & 237.61 &  70.43 &  -1.23 &  45.51 & -3.73 &  92.81 \\
+Thick disc          &   31.2 &   9.18 &  80.79 & 148.23 &  62.97 &  2.99 &  68.92 \\
 \hline
-\multicolumn{8}{l}{\textbf{MP2:} $-1.3 < \mathrm{[M/H]} < -1.0$ (20925 stars)} \\
-Stationary halo     &  17.3 &  11.44 & 144.07 &   6.85 & 103.63 &  -6.84 & 105.99 \\
-GS/E                &  33.7 & -17.25 & 138.25 &  17.80 &  55.30 &  -1.66 &  78.42 \\
-Thick Disk          &  49.0 &   5.87 &  75.82 & 156.06 &  58.51 &  -0.43 &  66.60 \\
+\multicolumn{8}{l}{\textbf{MP2:} $-1.3 < \mathrm{[M/H]} < -1.0$ (17314 stars)} \\
+Stationary halo     &  17.7 &  15.91 & 141.96 &   2.13 & 101.75 & -1.68 &  98.90 \\
+GS/E                &  30.5 & -18.50 & 141.08 &  22.42 &  56.55 & -2.40 &  77.98 \\
+Thick Disk          &  51.8 &   5.22 &  76.27 & 159.54 &  57.94 & -0.83 &  67.18 \\
 \hline
 \end{tabular}
 \caption{GMM component weights and kinematics for the high-$\alpha$ sequence.  
 Velocities are in km\,s$^{-1}$. Weights indicate the fraction of stars per metallicity bin.}
 \label{tab:gmm_higha_stats}
 \end{table}
+
 
 \subsection{Low alpha Gaussian Mixture Model Fit}
 
@@ -1107,30 +1117,31 @@ Velocities are in km\,s$^{-1}$. Weights indicate the fraction of stars per metal
 \hline
 \textbf{Components} & \textbf{Weights (\%)} & $\mathbf{v_R}$ & $\boldsymbol{\sigma_R}$ & $\mathbf{v_\phi}$ & $\boldsymbol{\sigma_\phi}$ & $\mathbf{v_Z}$ & $\boldsymbol{\sigma_Z}$ \\
 \hline
-\multicolumn{8}{l}{\textbf{VMP:} $-3.0 < \mathrm{[M/H]} < -2.0$ (4923 stars)} \\
-Stationary halo      & 100.0 &  -4.62 & 129.15 &  27.66 & 115.57 &  1.01 & 111.32 \\
+\multicolumn{8}{l}{\textbf{VMP:} $-3.0 < \mathrm{[M/H]} < -2.0$ (2929 stars)} \\
+Stationary halo     & 100.0 &  -5.82 & 135.18 &  29.55 & 118.56 &  1.34 & 107.10 \\
 \hline
-\multicolumn{8}{l}{\textbf{IMP:} $-2.0 < \mathrm{[M/H]} < -1.6$ (5028 stars)} \\
-Stationary halo      & 45.8  &   8.56 & 137.17 &  19.68 & 125.55 &  1.83 & 124.15 \\
-Prograde halo        & 54.2  & -11.85 & 131.79 &  47.90 &  80.37 &  0.64 &  75.82 \\
+\multicolumn{8}{l}{\textbf{IMP:} $-2.0 < \mathrm{[M/H]} < -1.6$ (3228 stars)} \\
+Stationary halo     &  37.1 &  12.33 & 139.85 &  22.87 & 129.23 & -4.43 & 120.51 \\
+Prograde halo       &  62.9 &  -7.34 & 138.11 &  49.68 &  91.25 &  4.08 &  75.99 \\
 \hline
-\multicolumn{8}{l}{\textbf{MP1:} $-1.6 < \mathrm{[M/H]} < -1.3$ (5946 stars)} \\
-Stationary halo      & 31.0  &   -7.58 & 164.57 &  28.31 & 135.62 &  -4.92 & 121.66 \\
-GS/E                 & 41.8  &  -15.50 &  162.97 &  14.71 &  50.94 &  -1.93 &  73.60 \\
-Thick Disk           & 27.2  & 8.72 &  82.25 &  129.87 &  69.71 & 3.13 &  60.68 \\
+\multicolumn{8}{l}{\textbf{MP1:} $-1.6 < \mathrm{[M/H]} < -1.3$ (3603 stars)} \\
+Stationary halo     &  31.0 &  -7.58 & 164.57 &  28.31 & 135.62 & -4.92 & 121.66 \\
+GS/E                &  41.8 & -15.50 & 162.97 &  14.71 &  50.94 & -1.93 &  73.60 \\
+Thick Disk          &  27.2 &   8.72 &  82.25 & 129.87 &  69.71 &  3.13 &  60.68 \\
 \hline
-\multicolumn{8}{l}{\textbf{MP2:} $-1.3 < \mathrm{[M/H]} < -1.0$ (12651 stars)} \\
-Stationary halo      & 17.8  & 163.48 &  82.07 &   3.39 &  47.81 &-12.64 & 110.72 \\
-Prograde halo        & 22.6  & -15.34 &  82.64 &  17.65 &  44.68 & -1.25 &  60.79 \\
-GS/E (1)             & 16.7  &-191.82 &  85.03 &  23.55 &  50.04 &  2.49 & 104.42 \\
-GS/E (2)             & 16.9  &  -4.81 & 147.30 &  36.45 & 131.74 &  0.75 & 134.58 \\
-Thick disc           & 26.0  &   0.83 &  71.40 & 159.38 &  58.19 & -1.14 &  55.54 \\
+\multicolumn{8}{l}{\textbf{MP2:} $-1.3 < \mathrm{[M/H]} < -1.0$ (7945 stars)} \\
+Stationary halo     &  15.7 &  -2.30 & 158.84 &  36.24 & 137.81 &  2.81 & 131.10 \\
+Prograde halo       &  37.3 & -11.31 &  94.62 &  47.39 &  63.89 & -1.18 &  63.12 \\
+GS/E (1)            &  10.0 &-234.89 &  76.09 &   8.99 &  41.09 & 10.70 &  93.79 \\
+GS/E (2)            &  11.6 & 189.95 &  85.58 &  -9.15 &  43.99 & -8.49 &  89.69 \\
+Thick disc          &  25.4 &   2.13 &  69.98 & 183.15 &  48.36 &  1.75 &  54.21 \\
 \hline
 \end{tabular}
 \caption{XD--GMM component weights and kinematics for the low-$\alpha$ sequence.  
          Velocities are in km\,s$^{-1}$. Weights are the fractional contribution of each component.}
 \label{tab:gmm_lowa_stats}
 \end{table}
+
 
 
 %--------------------------------------------------
