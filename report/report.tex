@@ -73,66 +73,108 @@
 % -------- Introduction --------
 \section{Introduction}
 
-The Milky Way Galaxy, host to our solar system, is a spiral galaxy with a centre located approximately 150\,000\,trillion miles (or 25\,000 light\-years) from Earth. Its formation history is complex and remains an active area of research. Being embedded within the Milky Way means we can study it in greate detail than any external galaxy, testing models of galaxy formation with high-precision observational data. One of the central aims of Galactic Archaeology is to reconstruct the Milky Way’s assembly by examining the chemical compositions and dynamical properties of its stars.
+The Milky Way Galaxy, host to our solar system, is a spiral galaxy with a centre 
+located approximately 150\,000\,trillion miles (or 25\,000 light\-years) from Earth. 
+Its formation history is complex and remains an active area of research. Being embedded 
+within the Milky Way means we can study it in greate detail than any external galaxy, 
+testing models of galaxy formation with high-precision observational data. One of the 
+central aims of Galactic Archaeology is to reconstruct the Milky Way’s assembly by 
+examining the chemical compositions and dynamical properties of its stars.
 
-In this project, we replicate and extend the analysis of \citet{zhang2024existencemetalpoordiscmilky}, who investigated a very metal-poor disc component in the Milky Way. Very metal poor stars, formed from an interstellar medium unpolluted by earlier generations of supernovae, are among the oldest relics in the Galaxy. Discovering them on disc-like orbits would challenge the conventional view that the disc formed later from already enriched gas \citep{BlandHawthorn2016}, implying instead an earlier onset of disc assembly. Using Gaia DR3, the original study applied a Gaussian Mixture Model with Extreme Deconvolution to the velocity distributions of stars across metallicity bins, probing whether a coherent disc signal persists down to the lowest metallicities.
+In this project, we reproduce and extend the analysis of \citet{zhang2024existencemetalpoordiscmilky}, 
+who investigated a very metal-poor disc component in the Milky Way. Very metal poor 
+stars, formed from an interstellar medium unpolluted by earlier generations of 
+supernovae, are among the oldest relics in the Galaxy. Discovering them on disc-like 
+orbits would challenge the conventional view that the disc formed later from already 
+enriched gas \citep{BlandHawthorn2016}, implying instead an earlier onset of disc 
+assembly. Using Gaia DR3, the study by \citet{zhang2024existencemetalpoordiscmilky} 
+applied a Gaussian Mixture Model with Extreme Deconvolution to the velocity 
+distributions of stars across metallicity bins, probing whether a coherent disc signal 
+persists down to the lowest metallicities.
 
 \subsection{Components of the Milky Way}
 
-The Milky Way is commonly decomposed into four stellar components: a \emph{thin disc}, a \emph{thick disc}, a central \emph{bulge/bar}, and a roughly spherical \emph{halo} \citep{BlandHawthorn2016,Helmi2020}.  
-The thin disc dominates, cthe majority of all stars and most of the interstellar gas in the galaxy.  Ongoing star formation is concentrated in the “molecular–gas ring’’ at Galactocentric radii $R\simeq4$–$8\;\mathrm{kpc}$, where young ($\lesssim1\;\mathrm{Gyr}$), metal-rich stars trace nearly circular, co-rotating orbits with low velocity dispersion ($\sigma_\phi \simeq 20\;\mathrm{km\,s^{-1}}$).  
-Above the mid-plane lies the thick disc: an older ($\gtrsim8$–$10\;\mathrm{Gyr}$), moderately metal-poor population with $[\mathrm{Fe/H}]\sim-0.6$ to $-1.0$, a scale height of $z_{\mathrm{scale}}\approx1\;\mathrm{kpc}$, and hotter kinematics ($\sigma_z \simeq 40\;\mathrm{km\,s^{-1}}$) while still retaining net prograde rotation.  
-Inside $R\lesssim2\;\mathrm{kpc}$, the central bulge—partly bar-shaped—hosts both old, metal-rich stars and a younger, actively forming component; stellar motions there combine bar-driven streaming with high random velocities ($\sigma\sim100\;\mathrm{km\,s^{-1}}$).  
-Encasing all of these is the stellar halo, which contributes only a few per cent of the total stellar mass yet harbours the Galaxy’s oldest, most metal-poor stars ($[\mathrm{Fe/H}]\lesssim-1.5$) on highly eccentric or even retrograde orbits.  
-Its low density, rich substructure, and extreme kinematics reveal an origin in the hierarchical accretion and tidal disruption of dwarf galaxies and globular clusters.  
-Together, the spatial distribution, chemistry, and dynamics of these four components encode the Milky Way’s star-formation history and its sequence of merger events.
+The Milky Way is commonly decomposed into four stellar components: a \emph{thin disc}, 
+a \emph{thick disc}, a central \emph{bulge/bar}, and a roughly spherical \emph{halo} 
+\citep{BlandHawthorn2016,Helmi2020}.  
+The thin disc describes the majority of stars and most of the interstellar gas 
+in the galaxy.  Ongoing star formation is concentrated in the “molecular–gas ring’’ where young, 
+metal-rich stars trace nearly circular, co-rotating 
+orbits with low velocity dispersion ($\sigma_\phi \simeq 20\;\mathrm{km\,s^{-1}}$).  
+Above the mid-plane lies the thick disc: an older ($\gtrsim8$–$10\;\mathrm{Gyr}$), 
+moderately metal-poor population , a scale 
+height of $z_{\mathrm{scale}}\approx1\;\mathrm{kpc}$, and hotter kinematics 
+($\sigma_z \simeq 40\;\mathrm{km\,s^{-1}}$) while still retaining net prograde rotation.  
+Inside $R\lesssim2\;\mathrm{kpc}$, the central bulge—partly bar-shaped—hosts both 
+old, metal-rich stars and a younger, actively forming component; stellar motions 
+there combine bar-driven streaming with high random velocities 
+($\sigma\sim100\;\mathrm{km\,s^{-1}}$).  
+Encasing all of these is the stellar halo, which contributes only a few per cent 
+of the total stellar mass yet includes the Galaxy’s oldest, most metal-poor stars 
+($[\mathrm{Fe/H}]\lesssim-1.5$) on highly eccentric or even retrograde orbits.  
+Its low density, rich substructure, and kinematics indicate an origin in the
+ hierarchical accretion and tidal disruption of dwarf galaxies and globular clusters.  
+Together, the spatial distribution, chemistry, and dynamics of these four components 
+include clues to the Milky Way’s star-formation history and its sequence of merger events.
 
 
 \subsection{Metallicity as a Cosmic Clock}
 
-Precise ages for individual old stars are notoriously difficult to measure, so their chemical composition - most commonly the iron-to-hydrogen ratio, $[\mathrm{Fe/H}]$ - is often used as a surrogate clock.  
-Very metal-poor (VMP) stars must have formed before successive generations of Type II and Type Ia supernovae had substantially enriched the interstellar medium, and therefore exhibit low $[\mathrm{Fe/H}]$ values.  
-Metallicity is inferred spectroscopically from the equivalent widths of metal absorption lines such as Fe \textsc{i} and the Ca \textsc{ii} K line; after correcting for effective temperature and surface gravity, their relative strengths give elemental abundances.
-Large surveys (for example APOGEE, GALAH, LAMOST, and the Gaia XP spectra) now provide such measurements for millions of stars, enabling empirical age–metallicity relations that link chemistry to stellar chronometry \citep[e.g.][]{Nordstrom2004,Haywood2013,leung2019deep,Anders2023}.  
-These studies consistently show that stars with $[\mathrm{Fe/H}]\lesssim -1$ are typically older than $\sim10$\,Gyr, making low-metallicity populations valuable probes of the Milky Way’s earliest disc-building epochs.
+Precise ages for individual old stars are difficult to measure, so their chemical 
+composition - most commonly the iron-to-hydrogen ratio, $[\mathrm{Fe/H}]$ - is 
+used as a surrogate clock.  
+Very metal-poor (VMP) stars must have formed before successive generations of Type II 
+and Type Ia supernovae had substantially enriched the interstellar medium, and 
+therefore have low $[\mathrm{Fe/H}]$ values.  
+Metallicity is inferred spectroscopically by measuring the equivalent widths of 
+metal absorption lines, particularly Fe\,\textsc{i} and the Ca\,\textsc{ii} H and 
+K lines at 396.8\,nm and 393.4\,nm, respectively. After correcting for stellar 
+effective temperature and surface gravity, the relative strengths of these lines 
+yield elemental abundances \citep{Gray_2005}.
+Large surveys (for example APOGEE, GALAH, LAMOST, and the Gaia XP spectra) now 
+provide such measurements for millions of stars, enabling empirical age–metallicity 
+relations that link chemistry to stellar chronometry 
+\citep[e.g.][]{Nordstrom2004,Haywood2013,leung2019deep,Anders2023}.  
+These studies consistently show that stars with $[\mathrm{Fe/H}]\lesssim -1$ are 
+typically older than $\sim10$\,Gyr, making low-metallicity populations valuable 
+probes of the Milky Way’s earliest disc-building epochs.
 
 
 %------------------------------------------------------------------
-\subsection{$\Lambda$CDM\,{\rm :} hierarchical growth and a lopsided halo}
+\subsection{$\Lambda$CDM\, Model}
 \label{subsec:LCDM_halo}
 
 In the concordance $\Lambda$CDM model, galaxy-sized haloes assemble hierarchically:  
 small dark-matter clumps form first and then merge to build larger structures.  
-Cosmological $N$-body simulations demonstrate that the number of subhaloes of mass $M$ obeys  
-$\mathrm{d}n/\mathrm{d}M \propto M^{-1.9}$, a near power-law over many decades in mass  
-\citep{Cooper2010,Fall2012}.  
-For a Milky-Way–sized halo this translates to  
+Cosmological $N$-body simulations show that the number of subhaloes of mass $M$ follows  
+$\mathrm{d}n/\mathrm{d}M \propto M^{-1.9}$.  
+For a Milky-Way–sized halo, this implies that over the $\sim$14\,Gyr lifetime of the Universe
+(i.e.\ a Hubble time), the halo experiences:
 \begin{itemize}
-    \item ${\sim}10^{2}$ \textbf{minor} accretions with $M_{\rm sub}\lesssim10^{9}\,M_\odot$, and 
-    \item a few \textbf{major} events with $M_{\rm sub}\gtrsim10^{10}\,M_\odot$
+    \item ${\sim}10^{2}$ \textbf{minor} accretion events with $M_{\rm sub}\lesssim10^{9}\,M_\odot$, and 
+    \item a few \textbf{major} mergers with $M_{\rm sub}\gtrsim10^{10}\,M_\odot$.
 \end{itemize}
-over a Hubble time.  
+  
 
-Only a small subset of these haloes ever form appreciable numbers of stars.  
-Below a critical virial mass $M_{\rm vir}\!\sim\!10^{11}\,M_\odot$, re-ionisation and stellar feedback
-drastically reduce the efficiency of turning gas into stars.  
-Consequently, the stellar-mass–halo-mass (SMHM) relation becomes very steep at the low-mass end  
+Only a small fraction of dark-matter haloes form significant numbers of stars.  
+Below a critical virial mass of $M_{\rm vir}\!\sim\!10^{11}\,M_\odot$, reionisation and stellar feedback 
+strongly suppress the efficiency of star formation.  
+As a result, the stellar-mass–halo-mass (SMHM) relation becomes steep at the low-mass end 
 \citep{Purcell2007,BullockBoylanKolchin2017}:  
-most low-mass subhaloes are effectively ``dark'', whereas a few relatively massive dwarfs are luminous.  
+most low-mass subhaloes remain effectively ``dark'', while only a few relatively massive dwarfs 
+produce observable stellar populations.
 
-Hence, while the Milky Way has absorbed hundreds of subhaloes,  
-\textbf{one or two} of the most massive dwarfs contribute the majority of the halo’s stellar mass;  
-the rest add little more than dark matter and dynamical substructure.  
- 
+Thus, although the Milky Way has accreted hundreds of subhaloes over its history,  
+just one or two of the most massive dwarf galaxies contribute the bulk of the stellar halo’s mass;  
+the rest contribute primarily dark matter and dynamical substructure.
 
-Once accreted, dynamical friction drags the most massive satellites deep into the Galactic potential,  
-their orbits radialise, and their debris is dispersed throughout the inner halo.  
-The disrupted stars inherit coherent signatures—high radial anisotropy,  
-distinctive angular momenta, and chemically narrow sequences—that survive to the present 
-\citep[e.g.][]{HelmiDeZeeuw2000}.  
-Consequently, the stellar halo is not a smooth spheroid but a map of the Galaxy’s merger history, 
-with the inner halo overwhelmingly shaped by a few dominant progenitors (e.g.\ Gaia–Sausage/Enceladus), 
-and the outer halo supplied by many low-mass accretions.
+After accretion, dynamical friction causes the most massive satellites to sink deep into the Galactic potential.  
+Their orbits become increasingly radial, and their stellar debris is dispersed throughout the inner halo.  
+This debris retains coherent signatures—strong radial anisotropy, distinctive angular momenta,  
+and chemically narrow abundance sequences \citep[e.g.][]{HelmiDeZeeuw2000}.  
+As a result, the stellar halo is not a smooth, featureless spheroid but a fossil record of the Galaxy’s 
+merger history: its inner regions are shaped predominantly by a few massive accretions 
+(e.g.\ Gaia-Sausage/Enceladus), while the outer halo reflects contributions from many lower-mass mergers.
 
 %------------------------------------------------------------------
 \subsection{Accretion versus {\it in-situ} disc formation}
