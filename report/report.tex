@@ -225,21 +225,19 @@ consistent with heated debris rather than a long-lived thin disc.
 Furthermore, secular processes such as bar–halo resonances can impart a modest prograde bias to halo stars, 
 mimicking a disc signal \citep{Dillamore2023}.  
 
-Unravelling these possibilities demands six-dimensional phase-space information and precision abundances— 
-the focus of the present study.
-
 \subsection{This Work}
 
 In this study we assess the claim that the Milky Way hosts a very-metal-poor 
-(VMP; $[\mathrm{Fe/H}]<-2$) stellar disc.  Our data set is drawn from \textit{Gaia}~DR3, 
+(VMP; $[\mathrm{Fe/H}]<-2$) stellar disc by reproducing the work by \citet{zhang2024existencemetalpoordiscmilky}. 
+ Our data set is drawn from Gaia DR3, 
 which supplies six–dimensional phase–space coordinates—sky position, parallax–based distance, 
 proper motions, and radial velocity—for each star, together with homogeneous metallicity and 
-$\alpha$-element abundances from the \textit{Gaia} XP pipeline.  To disentangle kinematic 
-sub-populations we model, in successive narrow metallicity bins, the full three-dimensional 
-velocity distribution $(v_R,v_\phi,v_z)$ with a Gaussian Mixture Model whose parameters are inferred 
-via \emph{Extreme Deconvolution}; the XD formalism explicitly folds the individual distance and 
+$\alpha$-element abundances from the Gaia XP pipeline.  To disentangle kinematic 
+sub-populations we model the full three-dimensional 
+velocity distribution $(v_R,v_\phi,v_z)$ with a Gaussian Mixture Model,in successive narrow metallicity bins, whose parameters are inferred 
+via Extreme Deconvolution (XD). The XD formalism explicitly folds the individual distance and 
 proper-motion uncertainties into the likelihood, ensuring that measurement noise does not bias 
-the recovered velocity moments.
+the recovered velocity values.
 
 Astrophysically, a genuine disc should manifest itself as a high-weight Gaussian centred near the Local 
 Standard of Rest ($v_\phi\simeq220\;\mathrm{km\,s^{-1}}$) with small tangential and vertical dispersions 
