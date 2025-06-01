@@ -820,6 +820,7 @@ this selection bias.
 
 
 \subsection{Data}
+\label{subsec:data_vis}
 
 
 We obtain the $\alpha$-to-metal abundance ratios from the
@@ -1355,10 +1356,20 @@ often multimodal structures.
 
 \subsection{Expansion of \citet{Vis2024}}
 
-Having completed the reproducal of \citet{zhang2024existencemetalpoordiscmilky}, we extended XD-GMM analysis
-to the high and low-$\alpha$ sequences of \citet{Vis2024}. Instead of fitting two GMMs as in \cite{Vis2024}, 
-we determine the number of components in each metallicity bin, for each alpha sequence, by fitting GMMs with a 
-range of components and selecting the one with the lowest BIC score. 
+We extended the XD-GMM analysis to the high- and low-$\alpha$ sequences identified by \citet{Vis2024}. 
+Rather than assuming two Gaussian components as in \citet{Vis2024}, we fit a
+Gaussian mixture model with varying numbers of components in each metallicity bin for both sequences. 
+For each case, the optimal number of components was selected based on the minimum BIC score.
+This approach allows us to capture the full complexity of the kinematic structure in both sequences,
+including the presence of multiple halo components and the emergence of thick disc structures at different metallicities.
+
+Were were successfully able to reproduce the figures the data preparation as in \citet{Vis2024} as shown in the plots of 
+Section~\ref{subsec:data_vis}.
+
+The msot interesting aprt of this anaysis was the discovery of GSE-like components in the high-$\alpha$ sequence,
+which was unexpected given the slow star formation history of the GSE progenitor. It is likely that this is due to contamination from 
+low signal-to-noise data, or that the GMM is unable to disentangle overlapping kinematic substructures.
+
 
 
 
