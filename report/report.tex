@@ -749,7 +749,8 @@ uncertainty across Monte Carlo trials.
 
 
 \section{Extension analysis}
-\subsection{Alpha–element abundance}\label{subsec:alpha}
+\subsection{Alpha–element abundance}
+\label{subsec:alpha}
 
 We extend the chemo–kinematic analysis by adding the
 alpha-to-iron ratio $[\alpha/\mathrm{Fe}]$, where the “alpha’’ elements
@@ -1342,49 +1343,88 @@ often multimodal structures.
 
 \subsection{Expansion of \citet{Vis2024}}
 
-We extended the XD-GMM analysis to the high- and low-$\alpha$ sequences identified by \citet{Vis2024}. 
+We extended the XD-GMM analysis to the high and low $\alpha$ sequences identified by \citet{Vis2024}. 
 Rather than assuming two Gaussian components as in \citet{Vis2024}, we fit a
 Gaussian mixture model with varying numbers of components in each metallicity bin for both sequences. 
 For each case, the optimal number of components was selected based on the minimum BIC score.
-This approach allows us to capture the full complexity of the kinematic structure in both sequences,
-including the presence of multiple halo components and the emergence of thick disc structures at different metallicities.
+This allows us to capture the full complexity of the kinematic structure in both sequences,
+including the presence of multiple halo components and the emergence of thick disc structures 
+at different metallicities.
 
-We were successfully able to reproduce the figures the data preparation as in \citet{Vis2024} as shown in the plots of 
+We were successfully able to reproduce the figures and data preparation described in \citet{Vis2024}, as shown in the plots of 
 Section~\ref{subsec:data_vis}.
 
-One of the more unexpected outcomes of this analysis is the identification of GSE-like components within the 
-high-$\alpha$ sequence, despite the Gaia–Sausage/Enceladus progenitor being associated with a slow star formation 
-history that should result in an $\alpha$-poor population. This likely reflects contamination from 
+As outlined in Section~\ref{subsec:alpha}, we expected structural differences between the high- and low-$\alpha$ sequences 
+to emerge in the GMM fits. These expectations were largely met: the high-$\alpha$ stars exhibited a clear transition 
+towards a rotationally supported disc at earlier metallicities, while the low-$\alpha$ stars remained halo-dominated 
+until higher metallicities.
+
+One of the more unexpected outcomes of this analysis is the identification of GS/E components within the 
+high-$\alpha$ sequence, despite the GS/E progenitor being associated with a slow star formation 
+history that should result in an $\alpha$-poor population. This is likely due to contamination from 
 low signal-to-noise abundance measurements, or challenges in separating overlapping kinematic substructures 
 when using GMMs. In future work, it would be helpful to consider how abundance uncertainties, particularly at low 
 metallicities, may affect the classification of stars. Additionally, as seen in Figure~\ref{fig:alphametal}, 
-there appears to be a non-negligible number of low-$\alpha$ stars at $[\mathrm{M/H}]\sim-2.5$ with 
+there appears to be a number of low-$\alpha$ stars at $[\mathrm{M/H}]\sim-2.5$ with 
 [$\alpha$/M]~$\sim$~0.1. It remains unclear whether this population is real or the result of measurement 
 uncertainties, and it would benefit from further investigation.
 
 
+\subsection{Selection Effects and} \label{subsec:selection_effects}
+
+This part of the discussion closely follows the treatment of selection effects in 
+\citet{zhang2024existencemetalpoordiscmilky}. As in their study, our application of quality cuts, such 
+as removing stars with high extinction or low Galactic latitude, and enforcing a strict parallax quality 
+threshold, introduces a non-trivial selection function that affects the relative detectability of 
+different Galactic components.
+
+In particular, the Galactic latitude cut removes many stars near the disc midplane, where the 
+low-$\alpha$ thin disc is most prominent. While relaxing this cut does lead to the identification of a
+colder, low-dispersion disc component in the low-$\alpha$ sequence at higher metallicities, this 
+component is not considered in our analysis. Our focus is on characterising the onset of disc like 
+kinematics across metallicity in both chemical sequences, rather than describing the well established 
+thin disc. Including low latitude stars would bias the sample toward the disc population, introduce 
+uncertainties in the metallicity estimates, since Gaia XP abundances are known to be less reliable in 
+egions of high extinction, and obscure the halo to disc transition that is central to this investigation.
 
 
+It is important to note that the component weights derived in this work reflect the properties of our 
+selected sample and should not be generalised to the full Galaxy without modelling the underlying 
+selection function.
 
-
-
-
-
-
-\subsection{Selection Effects}
 
 \subsection{Limitations of GMM}
 
+Although this part of the discussion mirrors that of \citet{zhang2024existencemetalpoordiscmilky}, 
+it is worth reiterating that the Gaussian mixture model approach has several limitations. 
+By construction, Gaussian mixtures impose symmetric, ellipsoidal structures in velocity space, 
+which is an oversimplification of the true distribution function of Galactic populations. 
+For instance, the velocity distribution of the thin disc is known to be strongly non Gaussian 
+due to features such as asymmetric drift, while the GS/E debris has been shown to display bimodal 
+structure in the radial velocity component \citep{Lancaster2019}. 
+In addition, resonant interactions with the Galactic bar may introduce asymmetric and non Gaussian 
+features in the velocity distributions \citep[e.g.][]{Dillamore2023}. 
+
+We therefore restrict our unconstrained GMM analysis to the range $-3 < \mathrm{[M/H]} < -1$, 
+where the thin disc contribution is minimal. At higher metallicities, the GMM attempts to describe 
+the sharp kinematic features of the thin disc using multiple Gaussians, which are not physically 
+meaningful. While more flexible models based on physically motivated distribution functions 
+could better capture these complexities \citep[e.g.][]{Binney2010}, they require significantly more 
+computational effort and are beyond the scope of this report.
+
+Another known limitation of GMMs is their reduced sensitivity to small subpopulations. 
+We find little evidence for a significant disc like component at low metallicities, but 
+this absence should be interpreted with caution. By freezing a disc like component and re running 
+the GMM, we confirm that any such population, if present, contributes only a small fraction 
+of the total. 
+
+Lastly, while we remove stars near known satellites and apply strict quality cuts that reduce 
+the impact of unmixed debris, it remains possible that residual substructure affects the fitting. 
+The tilt observed in the prograde halo component at low metallicities may reflect such a substructure, 
+and the asymmetric weighting of GS/E components in the IMP bin could be related.
 
 
 
-
-
-\section{problems with \citet{zhang2024existencemetalpoordiscmilky}}
-
-i do not believe random initial coditions are used for bic and gmm fitting
-in order to get results with astrophsyical meaning, k means inistialisation is required
-this is because gmms are very senstitive to initial conditions, and can easily get stuck in local minima.
 
 
 \section{Conclusion}
