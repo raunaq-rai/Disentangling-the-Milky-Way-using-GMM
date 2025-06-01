@@ -227,9 +227,10 @@ mimicking a disc signal \citep{Dillamore2023}.
 
 \subsection{This Work}
 
-In this study we assess the claim that the Milky Way hosts a very-metal-poor 
-(VMP; $[\mathrm{Fe/H}]<-2$) stellar disc by reproducing the work by \citet{zhang2024existencemetalpoordiscmilky}. 
- Our data set is drawn from Gaia DR3, 
+By reproducing the work by \citet{zhang2024existencemetalpoordiscmilky}, this study assesses 
+the claim that the Milky Way hosts a very-metal-poor 
+(VMP; $[\mathrm{Fe/H}]<-2$) stellar disc . 
+Using the catalogue from \citet{Andrae2023}, data set is drawn from Gaia DR3, 
 which supplies six–dimensional phase–space coordinates—sky position, parallax–based distance, 
 proper motions, and radial velocity—for each star, together with homogeneous metallicity and 
 $\alpha$-element abundances from the Gaia XP pipeline.  To disentangle kinematic 
@@ -254,24 +255,48 @@ test whether VMP stars were formed in situ or accreted from a satellite.
 
 \subsection{Sample construction}\label{subsec:data_sample}
 
-Our parent catalogue is the bright ($G<16$) red–giant–branch sample of \citet{Andrae2023}.  
-Stellar metallicities are predicted with an eXtreme-Gradient-Boosting model trained on high-resolution \textsc{APOGEE}~DR17 spectra and a supplementary set of very metal-poor stars, ensuring reliable performance down to $[\mathrm{M/H}]\simeq-3.5$.  
-For each of the 17.6\,million giants the catalogue delivers homogeneous values of $[\mathrm{M/H}]$, $T_{\mathrm{eff}}$, and $\log g$ with a quoted random uncertainty of $\simeq0.1$\,dex in $[\mathrm{M/H}]$ at $G\!\lesssim\!15$.  
-The catalogue only retains entries flagged as “high-confidence’’ and lying in $-3.5<[\mathrm{M/H}]<+0.5$.
+Our catalogue is the bright ($G<16$) red–giant–branch sample of \citet{Andrae2023}.  
+Stellar metallicities are predicted with an Extreme Gradient Boosting model 
+trained on high-resolution \textsc{APOGEE}~DR17 spectra and a supplementary 
+set of very metal-poor stars, ensuring reliable performance down to 
+$[\mathrm{M/H}]\simeq-3.5$.  
+For each of the 17.6\,million giants the catalogue contains values of 
+$[\mathrm{M/H}]$, $T_{\mathrm{eff}}$, and $\log g$ with a random uncertainty 
+of $\simeq0.1$\,dex in $[\mathrm{M/H}]$ at $G\!\lesssim\!15$.  
+The catalogue only retains entries flagged as “high-confidence’’ and lying 
+in $-3.5<[\mathrm{M/H}]<+0.5$.
 
-Astrometric positions, proper motions, and radial velocities come from the main \textit{Gaia}~DR3 tables \citep{GaiaCollaboration2023}, while heliocentric distances are adopted from the Bayesian photo-geometric catalogue of \citet{BailerJones2021}.  
-Because accurate velocities scale with distance precision, we impose a fractional-parallax-uncertainty cut $\sigma_{\varpi}/\varpi<0.10$ (\textsc{fpu}); stars that fail this threshold are discarded.
+Astrometric positions, proper motions, and radial velocities come from the main 
+\textit{Gaia}~DR3 tables \citep{GaiaCollaboration2023}, while heliocentric 
+distances are adopted from the Bayesian photo-geometric catalogue of 
+\citet{BailerJones2021}.  
+Because accurate velocities scale with distance precision, we impose a 
+fractional-parallax-uncertainty cut $\sigma_{\varpi}/\varpi<0.10$ 
+(\textsc{fpu}); stars that fail this threshold are discarded.
 
-XP spectra are susceptible to reddening: heavy extinction dims the sources, lowers the XP signal-to-noise ratio, and biases the machine-learning metallicities.  
-To minimise such systematics we exclude stars with $E(B{-}V)_{\mathrm{SFD}}>0.5$ or Galactic latitude $|b|<10^{\circ}$, using colour-excess values from the SFD map accessed via \textsc{dustmaps} \citep{Green2018}.  
-These criteria remove regions where dust corrections are large and spatially variable, at the expense of a modest loss of sky coverage.
+XP spectra are susceptible to reddening: heavy extinction dims the sources, 
+lowers the XP signal-to-noise ratio, and biases the machine-learning metallicities.  
+As in described \citet{zhang2024existencemetalpoordiscmilky}, to minimise 
+such systematics, stars with $E(B{-}V)_{\mathrm{SFD}}>0.5$ or Galactic latitude 
+$|b|<10^{\circ}$ were excluded. Colour-excess values from the SFD map accessed 
+via dustmaps \citep{Green2018} was used for this.  
+These criteria remove regions where dust corrections are large and spatially 
+variable, at the expense of a loss of sky coverage losing a large number of stars 
+at low galactic latitudes.
 
 Field-star kinematics can also be skewed by dense sub-structures.  
-Accordingly we mask all objects lying within $1^{\circ}$ of any known globular cluster or dwarf-galaxy satellite, following the list compiled by \citet{Pace2024}.  
-This step eliminates obvious non-field populations (e.g.\ cluster members and recent accretion debris) without significantly reducing the statistical power of the sample.
+Accordingly, following \citet{zhang2024existencemetalpoordiscmilky}, we remove 
+all objects lying within $1^{\circ}$ of any known globular cluster or 
+dwarf-galaxy satellite using the list and data of these compiled by 
+\citet{Pace2024}.  
+This step removes obvious non-field populations (e.g.\ cluster members and 
+recent accretion debris) without significantly reducing the statistical power 
+of the sample.
 
-After the metallicity flag, distance–quality, reddening, latitude, and sub-structure cuts, our working data set comprises $\sim3.4\times10^{6}$ red-giant stars possessing homogeneous metallicities and full six-dimensional phase-space information.  
-This curated sample underpins the chemo-kinematic analysis presented in the remainder of this report.
+After the metallicity flag, distance–quality, reddening, latitude, and 
+sub-structure cuts, our working data set comprises $\sim3.4\times10^{6}$ 
+red-giant stars possessing homogeneous metallicities and six-dimensional 
+phase-space information.  
 
 \begin{figure}
   \centering
@@ -522,6 +547,7 @@ chooses to use 5 components instead of 6 despite the BIC score for the 6-compone
 
  
 \section{Results}
+\label{sec:results1}
 
 \subsection{Gaussian Mixture Model Fit}
 \label{subsec:gmm}
@@ -1279,8 +1305,68 @@ GMM to disentangle overlapping kinematic substructures.
 
 %------------------------------------------------------------------
 \section{Discussion} \label{sec:discussion}
-%------------------------------------------------------------------
 
+The discussion of the GMM process mirrors that of the discussion in \citet{zhang2024existencemetalpoordiscmilky}.
+Since the primary goal of this report was to reproduce the results of \citet{zhang2024existencemetalpoordiscmilky},
+the discussion will focus on the differences between the results of this report and those of \citet{zhang2024existencemetalpoordiscmilky}.
+We do however mention the limitations of the GMM approach and selection effects - which are largely 
+the same as those discussed in \citet{zhang2024existencemetalpoordiscmilky}.
+
+\subsection{Reproducability of \citet{zhang2024existencemetalpoordiscmilky}}
+
+The GMM decomposition presented in this report successfully reproduces the same structural features reported 
+by \citet{zhang2024existencemetalpoordiscmilky} by selecting the minimum BIC score for each bin. However, there 
+are several differences in our results worth highlighting.
+
+At the very metal-poor end, our model recovers a nearly even split between stationary and prograde halo 
+components, in contrast to the more dominant non-rotating halo found by \citet{zhang2024existencemetalpoordiscmilky}. 
+Although the underlying stellar samples are largely the same, this discrepancy likely reflects the 
+sensitivity of the GMM to initialisation and the precise kinematic distribution of stars in this 
+low-metallicity regime, where substructure is subtle and overlapping. Notably, the kinematics of the 
+prograde component in our fit are consistent with those reported for Aurora \citep{Belokurov2022}, 
+suggesting it may correspond to an early, slightly rotating in-situ population.
+
+In the intermediate metallicity regime ($-2.0 < \mathrm{[M/H]} < -1.6$), both studies show GSE-like 
+signatures. The agreement in component structure is remarkably consistent, though our fit assigns slightly 
+more weight to the GSE substructures. Interestingly, our GSE components appear with clearer symmetry in radial 
+velocity, which may indicate differences in how the GMM partitions stars with highly eccentric orbits. 
+The recovery of these features in both analyses suggests an ancient radial merger consistent with GS/E \citep{Belokurov2020}.
+
+In the disc onset bin ($-1.6 < \mathrm{[M/H]} < -1.3$), we find a somewhat higher fraction of 
+thick-disc stars than \citet{zhang2024existencemetalpoordiscmilky}, along with slightly lower rotational 
+velocities. This could be due to small variations in how the GMM distinguishes between disc-like and 
+halo-like stars in the transition regime. Despite this, both studies detect a clear emergence of a warm, 
+rotating in-situ component, consistent with the kinematics of a thick disk.
+
+By $[\mathrm{M/H}] > -1.3$, the thick disc becomes a dominant structure in our analysis and that performed
+by \citet{zhang2024existencemetalpoordiscmilky}, almost surpassing the weight of the prograde halo.
+
+In summary, while small discrepancies exist, particularly in the balance between halo and prograde components 
+at low metallicity, there is an overall agreement in results.
+
+We note that we do not attempt to reproduce the action-space analysis of \citet{zhang2024existencemetalpoordiscmilky} in this report. 
+This decision reflects the fact that our analysis focuses on the use of the XD-GMM algorithm, and because of our
+understanding that orbital actions do not generally follow Gaussian distributions. Unlike velocity space, which can often be 
+approximated as locally Gaussian for distinct stellar populations, action space retains strong imprints 
+of past dynamical processes (e.g. mergers, phase-mixing, resonances) that result in highly non-Gaussian, 
+often multimodal structures.
+
+
+
+\subsection{Expansion of \citet{Vis2024}}
+
+Having completed the reproducal of \citet{zhang2024existencemetalpoordiscmilky}, we extended XD-GMM analysis
+to the high and low-$\alpha$ sequences of \citet{Vis2024}. Instead of fitting two GMMs as in \cite{Vis2024}, 
+we determine the number of components in each metallicity bin, for each alpha sequence, by fitting GMMs with a 
+range of components and selecting the one with the lowest BIC score. 
+
+
+
+
+
+\subsection{Selection Effects}
+
+\subsection{Limitations of GMM}
 
 
 
