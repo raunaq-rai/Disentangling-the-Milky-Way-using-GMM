@@ -1397,20 +1397,21 @@ selection function.
 
 Although this part of the discussion mirrors that of \citet{zhang2024existencemetalpoordiscmilky}, 
 it is worth reiterating that the Gaussian mixture model approach has several limitations. 
-By construction, Gaussian mixtures impose symmetric, ellipsoidal structures in velocity space, 
+Gaussian mixtures impose symmetric, ellipsoidal structures in velocity space, 
 which is an oversimplification of the true distribution function of Galactic populations. 
-For instance, the velocity distribution of the thin disc is known to be strongly non Gaussian 
+For instance, the velocity distribution of the thin disc is considered to be non Gaussian 
 due to features such as asymmetric drift, while the GS/E debris has been shown to display bimodal 
-structure in the radial velocity component \citep{Lancaster2019}. 
+structure in the radial velocity component \citep{Lancaster2019,Necib2019}. 
 In addition, resonant interactions with the Galactic bar may introduce asymmetric and non Gaussian 
 features in the velocity distributions \citep[e.g.][]{Dillamore2023}. 
 
-We therefore restrict our unconstrained GMM analysis to the range $-3 < \mathrm{[M/H]} < -1$, 
-where the thin disc contribution is minimal. At higher metallicities, the GMM attempts to describe 
-the sharp kinematic features of the thin disc using multiple Gaussians, which are not physically 
-meaningful. While more flexible models based on physically motivated distribution functions 
-could better capture these complexities \citep[e.g.][]{Binney2010}, they require significantly more 
-computational effort and are beyond the scope of this report.
+Following \citet{zhang2024existencemetalpoordiscmilky}, we therefore restricted our GMM analysis 
+to the range $-3 < \mathrm{[M/H]} < -1$, where the thin disc contribution is minimal. At higher 
+metallicities, the GMM attempts to describe the sharp kinematic features of the thin disc using 
+multiple Gaussians, which are not physically meaningful. While more flexible models based on 
+physically motivated distribution functions could better capture these complexities 
+\citep[e.g.][]{Binney2010}, they require significantly more computational effort and are 
+beyond the scope of the aims of both this report and that of \citet{zhang2024existencemetalpoordiscmilky}.
 
 Another known limitation of GMMs is their reduced sensitivity to small subpopulations. 
 We find little evidence for a significant disc like component at low metallicities, but 
