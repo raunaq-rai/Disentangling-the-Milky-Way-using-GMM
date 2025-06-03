@@ -6,6 +6,7 @@
 \usepackage{parskip}        % No paragraph indent, adds space between
 \usepackage{titlesec}       % For section title formatting
 \usepackage{mathptmx}
+\usepackage{amsmath}
 \usepackage{subcaption}
 \usepackage{float}  % for [H] placement
 \usepackage{amsmath,amssymb}
@@ -123,9 +124,32 @@ and assess the presence of disc-like populations across both chemical tracks.
   \label{fig:gmm_zhang}
 \end{figure}
 
-Below $\mathrm{[M/H]} \sim -1.6$, no disc-like component is detected. The kinematics are fully explained by two broad halo Gaussians—one stationary and one mildly prograde. In the intermediate metallicity bin (IMP), two additional radial components appear, associated with the Gaia–Sausage/Enceladus merger. These are kinematically hot and non-rotating, and contribute to halo anisotropy.
+Below $\mathrm{[M/H]} \sim -2$, no disc-like component is detected. The kinematics are fully 
+explained by two broad halo Gaussians—one stationary and one mildly prograde whos kinematics 
+are likely explained by the Aurora population /cite{Belokurov2022}. In the intermediate 
+metallicity bin (IMP), two additional radial components appear, associated with the 
+Gaia–Sausage/Enceladus merger /cite{Belokurov2018}. These are highly radial, non-rotating, and contribute 
+to halo anisotropy.
 
-Disc-like rotation only emerges above $\mathrm{[M/H]} \sim -1.3$, where we identify a cold, prograde component consistent with an early thick disc. This component strengthens with increasing metallicity, supporting a gradual build-up of ordered rotation as the Galaxy chemically enriched.
+Disc-like rotation only emerges above $\mathrm{[M/H]} \sim -1.6$,  
+prograde component with relatively low dispersion consistent with an early thick disc. 
+This component strengthens with increasing metallicity, supporting a gradual build-up of 
+ordered rotation as the Galaxy chemically enriched.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.6\linewidth]{../figures/v_over_sigma_per_component.png}
+  \caption{Rotational support ($v_\phi / \sigma_\phi$) for each Gaussian component across metallicity bins.}
+  \label{fig:v_over_sigma}
+\end{figure}
+
+As shown in Figure~\ref{fig:v_over_sigma}, stars in the VMP and IMP bins have negligible rotational support, 
+with $v_\phi / \sigma_\phi < 1$. It is generally accepted that a disc-like population should have 
+$v_\phi / \sigma_\phi \gg 1$, confirming the absence of a cold disc for $\mathrm{[M/H]} < -1.6$.
+
+
+
+
 
 
 
