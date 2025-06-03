@@ -4,7 +4,7 @@
 \usepackage{setspace}
 \usepackage{titling}
 \usepackage{parskip}
-\usepackage{lmodern}
+\usepackage{mathptmx}
 \usepackage{subcaption}
 \usepackage{caption}
 \usepackage[dvipsnames,svgnames,x11names]{xcolor}
@@ -23,9 +23,11 @@
     \includegraphics[width=0.4\textwidth]{Cam_logo_bw.png}\\[1.5cm]
 
 
+    \vspace{1cm}
+
     % Title
-    {\large \bfseries Disentangling the Components of the Milky Way}\\[0.75cm]
-    { \textsc Inferring the Structure of the Milky Way in Phase-Space Using Gaussian Mixture Modelling with Extreme Deconvolution}\\[1.5cm]
+    {\LARGE \bfseries Disentangling the Components of the Milky Way}\\[0.75cm]
+    {\large \textsc Inferring the Structure of the Milky Way in Phase-Space Using Gaussian Mixture Modelling with Extreme Deconvolution}\\[1.5cm]
 
     % Author
     \vspace{0.5cm}
@@ -57,11 +59,13 @@
 
 \begin{abstract}
 
-The primary aim of this report is to reproduce the Extreme-Deconvolution 
-Gaussian Mixture Model (XD-GMM) study of \citet{zhang2024existencemetalpoordiscmilky} which 
-investigated the prescence of a very-metal poor disk in the Milky Way. The data set combines bright 
-red-giant stars from \textit{Gaia} DR3 with homogeneous metallicities and XP‐based 
-alpha abundances using data from \citet{Andrae2023}, \citet{Li2024} and \citet{BailerJones2021}. 
+The Milky Way Galaxy is a complex system composed of multiple stellar components,
+each with distinct chemical and kinematic properties. The prescence of a very-metal-poor disk
+structure has been speculated, which would challenge the conventional view that the disk formed 
+later from already enriched gas. By reproducing and extending the Extreme-Deconvolution 
+Gaussian Mixture Model (XD-GMM) study of \citet{zhang2024existencemetalpoordiscmilky}, we 
+investigate the presence of a very-metal-poor disk in the Milky Way using data catalogues from 
+\citet{Andrae2023}, \citet{Li2024} and \citet{BailerJones2021}. 
 
 In general, our results are in agreement with that of \citet{zhang2024existencemetalpoordiscmilky}: 
 below \(\mathrm{[M/H]}\simeq-1.6\) there is no evidence for a coherent,   
@@ -69,7 +73,6 @@ rotationally supported disc component. The prograde rotation signal stems from
 a prograde halo with a net prograde rotation of \(v_{\phi}\simeq68\;\mathrm{km\,s^{-1}}\).  
 In this regime, no component satisfies \(v_{\phi}/\sigma_{\phi}>1\); 
 any thick-disc contribution in the very-metal-poor interval \(-3.0<\mathrm{[M/H]}<-1.6\) must therefore be negligible.
-
 
 Splitting the sample by alpha abundance adds further detail to the kinematic picture. 
 This part of the analysis builds on the framework of \citet{Vis2024}, extending it using 
@@ -81,7 +84,6 @@ feature is the appearance of Gaia--Sausage/Enceladus-like
 components within the high-$\alpha$ regime. This likely reflects misclassified 
 low signal-to-noise abundance measurements, rather than the presence of a truly 
 $\alpha$-rich GS/E population.
-
 
 \end{abstract}
 
@@ -99,7 +101,7 @@ $\alpha$-rich GS/E population.
 \listoftables
 \newpage
 
-% -------- Introduction --------
+
 \section{Introduction}
 
 The Milky Way Galaxy, host to our solar system, is a spiral galaxy with a centre 
@@ -269,11 +271,11 @@ via Extreme Deconvolution (XD). The XD formalism explicitly folds the individual
 proper-motion uncertainties into the likelihood, ensuring that measurement noise does not bias 
 the recovered velocity values.
 
-Astrophysically, a genuine disc should manifest itself as a high-weight Gaussian centred near the Local 
-Standard of Rest ($v_\phi\simeq220\;\mathrm{km\,s^{-1}}$) with small tangential and vertical dispersions 
-($\sigma_\phi,\sigma_z\lesssim30\;\mathrm{km\,s^{-1}}$) and negligible mean radial motion, whereas the 
+Astrophysically, a genuine disc should manifest itself as a high-weight Gaussian centred around 
+$v_\phi\simeq200\;\mathrm{km\,s^{-1}}$ with small tangential and vertical dispersions 
+and negligible mean radial motion, whereas the 
 halo or any heated component should appear as a broad, almost isotropic Gaussian with little net rotation 
-and dispersions of order $120$–$150\;\mathrm{km\,s^{-1}}$.  By tracking how the weight of the cold, 
+and large velocity dispersions.  By tracking how the weight of the cold, 
 rotating component varies with metallicity we can determine when ordered rotation first emerged and 
 test whether VMP stars were formed in situ or accreted from a satellite.
 
@@ -299,13 +301,13 @@ Astrometric positions, proper motions, and radial velocities come from the main
 \textit{Gaia}~DR3 tables \citep{GaiaCollaboration2023}, while heliocentric 
 distances are adopted from the Bayesian photo-geometric catalogue of 
 \citet{BailerJones2021}.  
-Because accurate velocities scale with distance precision, we impose a 
-fractional-parallax-uncertainty cut $\sigma_{\varpi}/\varpi<0.10$ 
-(\textsc{fpu}); stars that fail this threshold are discarded.
+Because accurate velocities scale with distance precision, following \citet{zhang2024existencemetalpoordiscmilky},
+a fractional-parallax-uncertainty cut $\sigma_{\varpi}/\varpi<0.10$ 
+is applied
 
 XP spectra are susceptible to reddening: heavy extinction dims the sources, 
 lowers the XP signal-to-noise ratio, and biases the machine-learning metallicities.  
-As in described \citet{zhang2024existencemetalpoordiscmilky}, to minimise 
+As described \citet{zhang2024existencemetalpoordiscmilky}, to minimise 
 such systematics, stars with $E(B{-}V)_{\mathrm{SFD}}>0.5$ or Galactic latitude 
 $|b|<10^{\circ}$ were excluded. Colour-excess values from the SFD map accessed 
 via dustmaps \citep{Green2018} was used for this.  
@@ -322,7 +324,8 @@ This step removes obvious non-field populations (e.g.\ cluster members and
 recent accretion debris) without significantly reducing the statistical power 
 of the sample.
 
-After the metallicity flag, distance–quality, reddening, latitude, and 
+By following the data cuts of \citet{zhang2024existencemetalpoordiscmilky} of
+distance–quality, reddening, latitude, and 
 sub-structure cuts, our working data set comprises $\sim3.4\times10^{6}$ 
 red-giant stars possessing homogeneous metallicities and six-dimensional 
 phase-space information.  

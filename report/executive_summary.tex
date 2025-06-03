@@ -1,0 +1,67 @@
+\documentclass[a4paper,10pt]{article}
+
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{multicol}       % For multiple columns
+\usepackage{graphicx}       % For including images if needed
+\usepackage{parskip}        % No paragraph indent, adds space between
+\usepackage{titlesec}       % For section title formatting
+\usepackage{mathptmx}
+\usepackage{amsmath,amssymb}
+\usepackage[authoryear]{natbib}
+\usepackage[colorlinks=true, citecolor=blue, linkcolor=black, urlcolor=blue]{hyperref}
+
+
+% Optional: Customize section formatting
+\titleformat{\section}{\large\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection}{1em}{}
+
+\begin{document}
+
+\begin{center}
+    {\Large \textsc{Disentangling the Components of the Milky Way}}\\[0.2cm]
+    {\textsc{Inferring the Structure of the Milky Way in Phase-Space Using Gaussian Mixture Modelling with Extreme Deconvolution}}\\[0.2cm]
+    Raunaq Singh Rai \quad | \quad MPhil Data Intensive Science \quad | \quad University of Cambridge
+\end{center}
+
+\begin{multicols}{2}
+% Start of two-column content
+
+\subsection*{Motivation and Scientific Justification}
+
+Understanding how the Milky Way assembled its structural components is central to the field of 
+Galactic Archaeology. Observational advances, especially through the \textit{Gaia} mission, allow detailed investigation 
+of the chemical and kinematic signatures that trace the Galaxy’s formation history. Among these, the existence of a 
+very-metal-poor (VMP) stellar disc presents a key test of disc formation timescales.
+
+Standard models posit that the Galactic disc formed relatively late, from gas that had already been enriched by several 
+generations of star formation. However, if stars with disc-like orbits are observed at metallicities below $[\mathrm{Fe/H}] 
+\lesssim -1.5$, it would suggest that the disc began assembling much earlier—potentially contemporaneous with or even before 
+major accretion events such as Gaia–Sausage/Enceladus. This would challenge prevailing hierarchical-formation narratives and 
+place new constraints on the interplay between in-situ and ex-situ star formation.
+
+The recent study by Zhang et al.~\cite{zhang2024existencemetalpoordiscmilky} introduced a compelling statistical framework for 
+testing this idea using Extreme-Deconvolution Gaussian Mixture Modelling (XD-GMM). Their findings argue against a cold, 
+rotationally supported VMP disc. However, the method’s sensitivity to substructure, selection effects, and chemical splits 
+(such as alpha abundance) invites closer scrutiny.
+
+This project builds on their approach in two ways. First, we reproduce their metallicity-binned XD-GMM decomposition using 
+the same Gaia DR3-based red giant catalogue. Second, we extend their analysis by splitting the sample into high- and low-alpha 
+sequences using methodology proposed by Viswanathan et al. \cite{Vis2024}, testing whether disc-like kinematics emerge at different metallicities within each branch. In doing so, we aim to 
+clarify whether previous disc-like signals at low metallicity reflect genuine early disc formation or instead arise from noise, 
+misclassification, or accreted debris.
+
+The scientific justification rests on the idea that even a small population of metal-poor stars with coherent, 
+disc-like kinematics could alter our understanding of the Galaxy’s early history. By carefully quantifying kinematic 
+structure across chemical space—and explicitly accounting for measurement uncertainties—we contribute to a clearer, more 
+robust reconstruction of the Milky Way’s formation pathway.
+
+
+\bibliographystyle{unsrt}  % Or use apalike, mnras, etc., depending on your needs
+\bibliography{references}
+
+% End of two-column content
+\end{multicols}
+
+
+
+\end{document}
