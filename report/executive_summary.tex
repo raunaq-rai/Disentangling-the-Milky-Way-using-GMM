@@ -28,32 +28,36 @@
 
 \subsection*{Motivation and Scientific Justification}
 
-Understanding how the Milky Way assembled its structural components is central to the field of 
-Galactic Archaeology. Observational advances, especially through the \textit{Gaia} mission, allow detailed investigation 
-of the chemical and kinematic signatures that trace the Galaxy’s formation history. Among these, the existence of a 
-very-metal-poor (VMP) stellar disc presents a key test of disc formation timescales.
+A central question in Galactic Archaeology is \emph{when} the Milky Way’s disc first settled.  
+Standard models place disc formation after the interstellar medium had already been enriched, implying few (if any) stars on disc-like orbits below $[\mathrm{Fe/H}] \simeq -1.5$.  
+Finding even a small, coherent very-metal-poor (VMP) disc would therefore overturn the “late–disc’’ paradigm and force a rethink of in-situ versus accreted growth.
 
-Standard models posit that the Galactic disc formed relatively late, from gas that had already been enriched by several 
-generations of star formation. However, if stars with disc-like orbits are observed at metallicities below $[\mathrm{Fe/H}] 
-\lesssim -1.5$, it would suggest that the disc began assembling much earlier—potentially contemporaneous with or even before 
-major accretion events such as Gaia–Sausage/Enceladus. This would challenge prevailing hierarchical-formation narratives and 
-place new constraints on the interplay between in-situ and ex-situ star formation.
+Zhang et al.\ (2024) \cite{zhang2024existencemetalpoordiscmilky} tackled this problem with Extreme-Deconvolution Gaussian Mixture Modelling (XD-GMM) of Gaia DR3 red giants and reported \textit{no} cold VMP disc.  
+Their analysis, however, did not separate stars by $\alpha$-abundance, a key tracer of formation timescale.
 
-The recent study by Zhang et al.~\cite{zhang2024existencemetalpoordiscmilky} introduced a compelling statistical framework for 
-testing this idea using Extreme-Deconvolution Gaussian Mixture Modelling (XD-GMM). Their findings argue against a cold, 
-rotationally supported VMP disc. However, the method’s sensitivity to substructure, selection effects, and chemical splits 
-(such as alpha abundance) invites closer scrutiny.
+We reproduce their metallicity-binned XD-GMM on the same bright-RGB catalogue and extend it by splitting the sample into high- and low-$\alpha$ sequences (Viswanathan et al.\ 2024 \cite{Vis2024}).  
+For each chemical branch we fit XD-GMMs in successive metallicity bins, letting the Bayesian Information Criterion choose the minimum number of Gaussian components.  
+Comparing the weights and kinematics of these components lets us decide whether any disc-like signal at low metallicity is genuine or an artefact of noise, misclassification, or accreted debris.
 
-This project builds on their approach in two ways. First, we reproduce their metallicity-binned XD-GMM decomposition using 
-the same Gaia DR3-based red giant catalogue. Second, we extend their analysis by splitting the sample into high- and low-alpha 
-sequences using methodology proposed by Viswanathan et al. \cite{Vis2024}, testing whether disc-like kinematics emerge at different metallicities within each branch. In doing so, we aim to 
-clarify whether previous disc-like signals at low metallicity reflect genuine early disc formation or instead arise from noise, 
-misclassification, or accreted debris.
+By tightening the chemical and kinematic tests in this way, we provide a more robust verdict on early disc formation and thereby refine constraints on the Milky Way’s assembly history.
 
-The scientific justification rests on the idea that even a small population of metal-poor stars with coherent, 
-disc-like kinematics could alter our understanding of the Galaxy’s early history. By carefully quantifying kinematic 
-structure across chemical space—and explicitly accounting for measurement uncertainties—we contribute to a clearer, more 
-robust reconstruction of the Milky Way’s formation pathway.
+\subsection*{Methodology}
+
+We use a cleaned sample of red giant branch (RGB) stars from Gaia DR3, with metallicities and $\alpha$-abundances from Andrae et 
+al. Catalogue~\cite{Andrae2023} and the Li et al. Catalogue~\cite{Li2024}, and distances from the Bailer-Jones et al. 
+Catalogue~\cite{BailerJones2021}. As analysis largely depends on the accuracies of metallicities regions of high extinction, 
+where XP spectra is known to be bias, are excluded with the sacrifice of losing a large proportion of RGB stars from subsequent anaysis..
+
+The velocity distribution $(v_R, v_\phi, v_z)$ is modelled using Extreme-Deconvolution Gaussian Mixture Modelling (XD-GMM) \cite{Bovy2011}\cite{pygmmis}, 
+which accounts for observational uncertainties. We bin stars by metallicity and use the Bayesian Information Criterion (BIC) to determine the 
+number of Gaussian components per bin. This allows us to identify structure without over fitting and introducing too many gaussians.
+
+We extend the original method by splitting the sample into high- and low-$\alpha$ sequences \citep{Vis2024}, fitting separate 
+XD-GMMs to each. By inspecting the component weights and kinematic properties, we quantify the emergence of rotational support 
+and assess the presence of disc-like populations across both chemical tracks.
+
+\subsection*{Key Findings}
+
 
 
 \bibliographystyle{unsrt}  % Or use apalike, mnras, etc., depending on your needs
