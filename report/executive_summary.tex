@@ -32,17 +32,17 @@
 \subsection*{Motivation and Scientific Justification}
 
 A central question in Galactic Archaeology is \emph{when} the Milky Way’s disc first settled.  
-Standard models place disc formation after the interstellar medium had already been enriched, implying few (if any) stars on disc-like orbits below $[\mathrm{Fe/H}] \simeq -1.5$.  
-Finding even a small, coherent very-metal-poor (VMP) disc would therefore overturn the “late–disc’’ paradigm and force a rethink of in-situ versus accreted growth.
+Standard models suggest that the disc formed relatively late, after the interstellar medium had been enriched by multiple generations of stars. 
+This implies a lack of stars with disc-like kinematics at very low metallicities ($[\mathrm{Fe/H}] \lesssim -1.5$). 
+Since metallicity generally increases over cosmic time, it serves as a rough proxy for stellar age—lower-metallicity stars are typically older, having formed when the Galaxy was less chemically evolved. 
+Thus, identifying a coherent, metal-poor disc population would challenge the “late–disc’’ paradigm and force a reassessment of the balance between in-situ star formation and accreted growth.
 
-Zhang et al.\ (2024) \cite{zhang2024existencemetalpoordiscmilky} tackled this problem with Extreme-Deconvolution Gaussian Mixture Modelling (XD-GMM) of Gaia DR3 red giants and reported \textit{no} cold VMP disc.  
-Their analysis, however, did not separate stars by $\alpha$-abundance, a key tracer of formation timescale.
+Zhang et al.\ (2024)~\cite{zhang2024existencemetalpoordiscmilky} addressed this question by applying Extreme-Deconvolution Gaussian Mixture Modelling (XD-GMM) to Gaia DR3 red giants, and found no evidence for a cold, rotation-supported disc at very low metallicity.  
+However, their analysis did not account for $\alpha$-abundance, which can be used as tracer of star formation timescales.
 
-We reproduce their metallicity-binned XD-GMM on the same bright-RGB catalogue and extend it by splitting the sample into high- and low-$\alpha$ sequences (Viswanathan et al.\ 2024 \cite{Vis2024}).  
-For each chemical branch we fit XD-GMMs in successive metallicity bins, letting the Bayesian Information Criterion choose the minimum number of Gaussian components.  
-Comparing the weights and kinematics of these components lets us decide whether any disc-like signal at low metallicity is genuine or an artefact of noise, misclassification, or accreted debris.
-
-By tightening the chemical and kinematic tests in this way, we provide a more robust verdict on early disc formation and thereby refine constraints on the Milky Way’s assembly history.
+We reproduce their metallicity-binned XD-GMM using the same bright RGB catalogue, and extend the work by dividing stars into high and low $\alpha$ sequences following Viswanathan et al.\ (2024)~\cite{Vis2024}.  
+Within each $\alpha$ branch, we perform XD-GMM fits in successive metallicity bins, selecting the optimal number of components via the Bayesian Information Criterion.  
+By inspecting the weights and kinematic properties of these components, we assess whether disc-like signatures at low metallicity are genuine or attributable to contamination, noise, or accreted substructure.
 
 \subsection*{Methodology}
 
@@ -88,64 +88,131 @@ and assess the presence of disc-like populations across both chemical tracks.
     \label{fig:gmm_mp2}
   \end{subfigure}
 
-  \caption{XD–GMM decomposition of red giant kinematics in $v_R$–$v_\phi$ across increasing metallicity bins: very metal-poor (VMP), intermediate (IMP), and two mildly metal-poor bins (MP1, MP2).}
-  \label{fig:gmm_zhang}
-\end{figure}
-
-\subsection*{Key Findings}
-
-\begin{figure}[H]
-  \centering
-  \begin{subfigure}[t]{0.24\linewidth}
-    \includegraphics[width=\linewidth]{../figures/gmm_VMP.png}
-    \caption{VMP}
-    \label{fig:gmm_vmp}
-  \end{subfigure}
-  \hfill
-  \begin{subfigure}[t]{0.24\linewidth}
-    \includegraphics[width=\linewidth]{../figures/gmm_IMP.png}
-    \caption{IMP}
-    \label{fig:gmm_imp}
-  \end{subfigure}
-  \hfill
-  \begin{subfigure}[t]{0.24\linewidth}
-    \includegraphics[width=\linewidth]{../figures/gmm_MP1.png}
-    \caption{MP1}
-    \label{fig:gmm_mp1}
-  \end{subfigure}
-  \hfill
-  \begin{subfigure}[t]{0.24\linewidth}
-    \includegraphics[width=\linewidth]{../figures/gmm_MP2.png}
-    \caption{MP2}
-    \label{fig:gmm_mp2}
-  \end{subfigure}
-
   \caption{XD–GMM decomposition of red giant kinematics across metallicity bins.}
   \label{fig:gmm_zhang}
 \end{figure}
 
 Below $\mathrm{[M/H]} \sim -2$, no disc-like component is detected. The kinematics are fully 
-explained by two broad halo Gaussians—one stationary and one mildly prograde whos kinematics 
-are likely explained by the Aurora population /cite{Belokurov2022}. In the intermediate 
-metallicity bin (IMP), two additional radial components appear, associated with the 
-Gaia–Sausage/Enceladus merger /cite{Belokurov2018}. These are highly radial, non-rotating, and contribute 
-to halo anisotropy.
+explained by two broad halo Gaussians: one stationary and one mildly prograde likely associated 
+with the Aurora population~\cite{Belokurov2022}. In the intermediate metallicity bin, two 
+additional highly radial, non-rotating components emerge, linked to the 
+Gaia–Sausage/Enceladus (GS/E) merger~\cite{Belokurov2018}. These represent remnants of a 
+major head-on collision between the Milky Way and a massive dwarf galaxy, which deposited stars 
+on radial orbits and contributed significantly to the inner halo's anisotropic structure.
 
-Disc-like rotation only emerges above $\mathrm{[M/H]} \sim -1.6$,  
-prograde component with relatively low dispersion consistent with an early thick disc. 
+Disc-like rotation only emerges above $\mathrm{[M/H]} \sim -1.6$: a distinct prograde component with 
+relatively low dispersion, consistent with an early thick disc is observable. 
 This component strengthens with increasing metallicity, supporting a gradual build-up of 
 ordered rotation as the Galaxy chemically enriched.
 
+As shown in Figure~\ref{fig:v_over_sigma}, stars in the VMP and IMP bins have negligible rotational support, 
+with $v_\phi / \sigma_\phi < 1$. It is generally accepted that a disc-like population should have 
+$v_\phi / \sigma_\phi \gtrsim 3$, confirming the absence of a cold disc for $\mathrm{[M/H]} < -1.6$.
+From Figure~\ref{fig:v_over_sigma}, we can conclude that the onset of disc-like rotation occurs 
+above $\mathrm{[M/H]} \sim -1.6$.
+
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.6\linewidth]{../figures/v_over_sigma_per_component.png}
-  \caption{Rotational support ($v_\phi / \sigma_\phi$) for each Gaussian component across metallicity bins.}
+  \includegraphics[width=0.7\linewidth]{../figures/v_over_sigma_per_component.png}
+  \caption{Rotational support ($v_\phi / \sigma_\phi$) for each Gaussian component across metallicity bins.
+  The size of the points indicates the weight of each component.}
   \label{fig:v_over_sigma}
 \end{figure}
 
-As shown in Figure~\ref{fig:v_over_sigma}, stars in the VMP and IMP bins have negligible rotational support, 
-with $v_\phi / \sigma_\phi < 1$. It is generally accepted that a disc-like population should have 
-$v_\phi / \sigma_\phi \gg 1$, confirming the absence of a cold disc for $\mathrm{[M/H]} < -1.6$.
+
+
+
+
+
+Following the methodology proposed by Viswanathan et al.~\cite{Vis2024}, we separated the sample into 
+high- and low-$\alpha$ sequences. This $\alpha$-abundance reflects star formation timescales: high-$\alpha$ 
+stars typically formed rapidly in intense, early starbursts, and are thus older, while low-$\alpha$ stars 
+formed more gradually over extended periods, often in lower-density environments.
+
+Figure~\ref{fig:mh_vphi_alpha} shows how these two populations differ in their kinematic evolution. 
+In the high-$\alpha$ branch, we observe a smooth increase in mean azimuthal velocity and a concurrent 
+decrease in dispersion with increasing metallicity, indicating a gradual spin-up from a dynamically hot 
+halo to a thick disc. In contrast, the low-$\alpha$ population undergoes a sharper transition: 
+rotation and cooling only emerge above $\mathrm{[M/H]} \sim -1.3$, consistent with a younger, thin-disc origin.
+
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}[t]{0.48\linewidth}
+    \includegraphics[width=\linewidth]{../figures/vis_mh_vphi_high_alpha.png}
+    \caption{High-$\alpha$ stars}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[t]{0.48\linewidth}
+    \includegraphics[width=\linewidth]{../figures/vis_mh_vphi_low_alpha.png}
+    \caption{Low-$\alpha$ stars}
+  \end{subfigure}
+  \caption{Median $v_\phi$ and dispersion vs.\ metallicity, split by $\alpha$-sequence.}
+  \label{fig:mh_vphi_alpha}
+\end{figure}
+
+We repeated the GMM decomposition separately on each $\alpha$ sequence (Figure~\ref{fig:gmm_alpha_bins}). 
+In the high-$\alpha$ population, a disc-like component emerges as early as $\mathrm{[M/H]} \sim -1.6$, 
+while in the low-$\alpha$ branch, such a component is only detected above $\mathrm{[M/H]} \sim -1.3$. 
+This supports the interpretation that the high-$\alpha$ thick disc formed earlier and more gradually, 
+whereas the low-$\alpha$ thin disc emerged later in the Galaxy’s evolution.
+
+\begin{figure}[H]
+  \centering
+  % Row 1
+  \begin{subfigure}[t]{0.24\linewidth}
+    \includegraphics[width=\linewidth]{../figures/gmm_vmp_high_alpha_k1.png}
+    \caption{VMP High-$\alpha$}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[t]{0.24\linewidth}
+    \includegraphics[width=\linewidth]{../figures/gmm_imp_high_alpha_k4.png}
+    \caption{IMP High-$\alpha$}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[t]{0.24\linewidth}
+    \includegraphics[width=\linewidth]{../figures/gmm_mp1_high_alpha_k5.png}
+    \caption{MP1 High-$\alpha$}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[t]{0.24\linewidth}
+    \includegraphics[width=\linewidth]{../figures/gmm_mp2_high_alpha_k6.png}
+    \caption{MP2 High-$\alpha$}
+  \end{subfigure}
+
+  \vspace{0.5em}
+
+  % Row 2
+  \begin{subfigure}[t]{0.24\linewidth}
+    \includegraphics[width=\linewidth]{../figures/gmm_vmp_low_alpha_k1.png}
+    \caption{VMP Low-$\alpha$}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[t]{0.24\linewidth}
+    \includegraphics[width=\linewidth]{../figures/gmm_imp_low_alpha_k2.png}
+    \caption{IMP Low-$\alpha$}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[t]{0.24\linewidth}
+    \includegraphics[width=\linewidth]{../figures/gmm_mp1_low_alpha_k4.png}
+    \caption{MP1 Low-$\alpha$}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[t]{0.24\linewidth}
+    \includegraphics[width=\linewidth]{../figures/gmm_mp2_low_alpha_k6.png}
+    \caption{MP2 Low-$\alpha$}
+  \end{subfigure}
+
+  \caption{XD–GMM decomposition across $\alpha$-sequences and metallicity bins. Top: high $\alpha$. Bottom: low $\alpha$.}
+  \label{fig:gmm_alpha_bins}
+\end{figure}
+
+Interestingly, we detect GS/E-like radial components even in the high-$\alpha$ regime. 
+Since GS/E stars are expected to be $\alpha$-poor due to their extended star formation histories, 
+their presence here likely reflects misclassification at low signal-to-noise rather than genuinely 
+$\alpha$-rich accreted progenitors. This highlights the importance of reliable chemical 
+separation in metal-poor regimes, where contamination can obscure interpretations of Galactic structure.
+
+
 
 
 
