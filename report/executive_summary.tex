@@ -6,6 +6,8 @@
 \usepackage{parskip}        % No paragraph indent, adds space between
 \usepackage{titlesec}       % For section title formatting
 \usepackage{mathptmx}
+\usepackage{subcaption}
+\usepackage{float}  % for [H] placement
 \usepackage{amsmath,amssymb}
 \usepackage[authoryear]{natbib}
 \usepackage[colorlinks=true, citecolor=blue, linkcolor=black, urlcolor=blue]{hyperref}
@@ -52,34 +54,6 @@ The velocity distribution $(v_R, v_\phi, v_z)$ is modelled using Extreme-Deconvo
 which accounts for observational uncertainties. We bin stars by metallicity and use the Bayesian Information Criterion (BIC) to determine the 
 number of Gaussian components per bin. This allows us to identify structure without over fitting and introducing too many gaussians.
 
-% --- Reproduced GMM decomposition from Zhang et al. ------------------
-\begin{figure*}[t]
-  \centering
-
-  \begin{subfigure}[t]{0.245\textwidth}
-    \centering\includegraphics[width=\linewidth]{../figures/gmm_VMP.png}
-  \end{subfigure}\hfill
-  \begin{subfigure}[t]{0.245\textwidth}
-    \centering\includegraphics[width=\linewidth]{../figures/gmm_IMP.png}
-  \end{subfigure}\hfill
-  \begin{subfigure}[t]{0.245\textwidth}
-    \centering\includegraphics[width=\linewidth]{../figures/gmm_MP1.png}
-  \end{subfigure}\hfill
-  \begin{subfigure}[t]{0.245\textwidth}
-    \centering\includegraphics[width=\linewidth]{../figures/gmm_MP2.png}
-  \end{subfigure}
-  %
-  \caption{\textbf{XD–GMM decomposition of metal-poor red-giant kinematics.}
-           Each ellipse marks the $1\sigma$ contour of a Gaussian component in
-           the $v_R$–$v_\phi$ plane.  From left to right the panels step up in
-           metallicity, recovering the stationary–halo, prograde–halo and
-           Gaia–Sausage/Enceladus structures reported by
-           \citet{zhang2024existencemetalpoordiscmilky}, and revealing the
-           first appearance of a thick-disc component above
-           $\mathrm{[M/H]}\simeq-1.6$.}
-  \label{fig:gmm_repro_zhang}
-\end{figure*}
-
 
 We extend the original method by splitting the sample into high- and low-$\alpha$ sequences \citep{Vis2024}, fitting separate 
 XD-GMMs to each. By inspecting the component weights and kinematic properties, we quantify the emergence of rotational support 
@@ -87,7 +61,52 @@ and assess the presence of disc-like populations across both chemical tracks.
 
 \subsection*{Key Findings}
 
-Below $\mathrm{[M/H]}\!\simeq\!-1.6$ the velocity field of bright RGB stars is entirely halo–like: two hot Gaussians—one stationary, the other mildly prograde with $\bar{v}_{\phi}\!\approx\!70\;\mathrm{km\,s^{-1}}$—suffice to reproduce the data, and residual tests cap any hidden, rotation–supported disc at $\lesssim3$\,per~cent.  A warm disc component first appears in the $-1.6<\mathrm{[M/H]}<-1.3$ bin, carrying about one-fifth of the weight and rotating at $v_{\phi}\!\sim\!160\;\mathrm{km\,s^{-1}}$; by $-1.3<\mathrm{[M/H]}<-1.0$ it dominates ($\sim40$\,per~cent) and achieves $v_{\phi}/\sigma_{\phi}\!\gtrsim\!3$, signalling the birth of the thick disc.  Throughout $-2.0<\mathrm{[M/H]}<-1.0$ we also recover two highly radial Gaia–Sausage/Enceladus substructures that together account for $\sim$7–13\,per~cent of the sample and contribute no net rotation.
+
+\begin{figure}[H]
+  \centering
+
+  \begin{subfigure}[t]{0.48\linewidth}
+    \includegraphics[width=\linewidth]{../figures/gmm_VMP.png}
+    \caption{Very metal-poor (VMP) bin}
+    \label{fig:gmm_vmp}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[t]{0.48\linewidth}
+    \includegraphics[width=\linewidth]{../figures/gmm_IMP.png}
+    \caption{Intermediate-metallicity (IMP) bin}
+    \label{fig:gmm_imp}
+  \end{subfigure}
+  \\[0.5em]
+  \begin{subfigure}[t]{0.48\linewidth}
+    \includegraphics[width=\linewidth]{../figures/gmm_MP1.png}
+    \caption{Mildly metal-poor (MP1) bin}
+    \label{fig:gmm_mp1}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[t]{0.48\linewidth}
+    \includegraphics[width=\linewidth]{../figures/gmm_MP2.png}
+    \caption{Moderately metal-poor (MP2) bin}
+    \label{fig:gmm_mp2}
+  \end{subfigure}
+
+  \caption{XD–GMM decomposition of red giant kinematics in the $v_R$–$v_\phi$ plane across metallicity bins. Each ellipse marks the $1\sigma$ contour of a fitted Gaussian.}
+  \label{fig:gmm_2x2}
+\end{figure}
+
+
+
+Below $\mathrm{[M/H]}\!\simeq\!-2$ the velocity field of bright RGB stars is entirely halo–like: 
+two hot Gaussians—one stationary, the other mildly prograde with 
+$\bar{v}_{\phi}\!\approx\!70\;\mathrm{km\,s^{-1}}$ which could be traces of Aurora \cite{Belokurov2022}.
+
+suffice to reproduce the data, and residual tests 
+cap any hidden, rotation–supported disc at $\lesssim3$\,per~cent.  A warm disc component first appears 
+in the $-1.6<\mathrm{[M/H]}<-1.3$ bin, carrying about one-fifth of the weight and rotating at 
+$v_{\phi}\!\sim\!160\;\mathrm{km\,s^{-1}}$; by $-1.3<\mathrm{[M/H]}<-1.0$ it dominates 
+($\sim40$\,per~cent) and achieves $v_{\phi}/\sigma_{\phi}\!\gtrsim\!3$, signalling the 
+birth of the thick disc.  Throughout $-2.0<\mathrm{[M/H]}<-1.0$ we also recover two highly 
+radial Gaia–Sausage/Enceladus substructures that together account for $\sim$7–13\,per~cent 
+of the sample and contribute no net rotation.
 
 Splitting the data chemically sharpens the picture.  High-$\alpha$ stars acquire ordered rotation earlier: the thick-disc weight climbs from zero at $\mathrm{[M/H]}<-2$ to roughly one half by $\mathrm{[M/H]}\simeq-1.1$.  Low-$\alpha$ stars, in contrast, remain halo dominated until $\mathrm{[M/H]}>-1.3$ and only then develop a colder, thin-disc precursor (about one quarter of the population).  An unexpected GS/E signature appears within the high-$\alpha$ branch; its chemistry and kinematics suggest it stems from mis-classified, low-signal-to-noise abundances rather than an $\alpha$-rich progenitor.
 
