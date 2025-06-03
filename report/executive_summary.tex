@@ -29,7 +29,7 @@
 \begin{multicols}{2}
 % Start of two-column content
 
-\subsection*{Motivation and Scientific Justification}
+\section*{Motivation and Scientific Justification}
 
 A central question in Galactic Archaeology is \emph{when} the Milky Way’s disc first settled.  
 Standard models suggest that the disc formed relatively late, after the interstellar medium had been enriched by multiple generations of stars. 
@@ -44,7 +44,7 @@ We reproduce their metallicity-binned XD-GMM using the same bright RGB catalogue
 Within each $\alpha$ branch, we perform XD-GMM fits in successive metallicity bins, selecting the optimal number of components via the Bayesian Information Criterion.  
 By inspecting the weights and kinematic properties of these components, we assess whether disc-like signatures at low metallicity are genuine or attributable to contamination, noise, or accreted substructure.
 
-\subsection*{Methodology}
+\section*{Methodology}
 
 We use a cleaned sample of red giant branch (RGB) stars from Gaia DR3, with metallicities and $\alpha$-abundances from Andrae et 
 al. Catalogue~\cite{Andrae2023} and the Li et al. Catalogue~\cite{Li2024}, and distances from the Bailer-Jones et al. 
@@ -60,7 +60,7 @@ We extend the original method by splitting the sample into high- and low-$\alpha
 XD-GMMs to each. By inspecting the component weights and kinematic properties, we quantify the emergence of rotational support 
 and assess the presence of disc-like populations across both chemical tracks.
 
-\subsection*{Key Findings}
+\section*{Key Findings}
 
 \begin{figure}[H]
   \centering
@@ -120,10 +120,6 @@ above $\mathrm{[M/H]} \sim -1.6$.
 \end{figure}
 
 
-
-
-
-
 Following the methodology proposed by Viswanathan et al.~\cite{Vis2024}, we separated the sample into 
 high- and low-$\alpha$ sequences. This $\alpha$-abundance reflects star formation timescales: high-$\alpha$ 
 stars typically formed rapidly in intense, early starbursts, and are thus older, while low-$\alpha$ stars 
@@ -161,22 +157,22 @@ whereas the low-$\alpha$ thin disc emerged later in the Galaxy’s evolution.
   % Row 1
   \begin{subfigure}[t]{0.24\linewidth}
     \includegraphics[width=\linewidth]{../figures/gmm_vmp_high_alpha_k1.png}
-    \caption{VMP High-$\alpha$}
+    \caption{VMP $\alpha_{\mathrm{high}}$}
   \end{subfigure}
   \hfill
   \begin{subfigure}[t]{0.24\linewidth}
     \includegraphics[width=\linewidth]{../figures/gmm_imp_high_alpha_k4.png}
-    \caption{IMP High-$\alpha$}
+    \caption{IMP $\alpha_{\mathrm{high}}$}
   \end{subfigure}
   \hfill
   \begin{subfigure}[t]{0.24\linewidth}
     \includegraphics[width=\linewidth]{../figures/gmm_mp1_high_alpha_k5.png}
-    \caption{MP1 High-$\alpha$}
+    \caption{MP1 $\alpha_{\mathrm{high}}$}
   \end{subfigure}
   \hfill
   \begin{subfigure}[t]{0.24\linewidth}
     \includegraphics[width=\linewidth]{../figures/gmm_mp2_high_alpha_k6.png}
-    \caption{MP2 High-$\alpha$}
+    \caption{MP2 $\alpha_{\mathrm{high}}$}
   \end{subfigure}
 
   \vspace{0.5em}
@@ -184,27 +180,28 @@ whereas the low-$\alpha$ thin disc emerged later in the Galaxy’s evolution.
   % Row 2
   \begin{subfigure}[t]{0.24\linewidth}
     \includegraphics[width=\linewidth]{../figures/gmm_vmp_low_alpha_k1.png}
-    \caption{VMP Low-$\alpha$}
+    \caption{VMP $\alpha_{\mathrm{low}}$}
   \end{subfigure}
   \hfill
   \begin{subfigure}[t]{0.24\linewidth}
     \includegraphics[width=\linewidth]{../figures/gmm_imp_low_alpha_k2.png}
-    \caption{IMP Low-$\alpha$}
+    \caption{IMP $\alpha_{\mathrm{low}}$}
   \end{subfigure}
   \hfill
   \begin{subfigure}[t]{0.24\linewidth}
     \includegraphics[width=\linewidth]{../figures/gmm_mp1_low_alpha_k4.png}
-    \caption{MP1 Low-$\alpha$}
+    \caption{MP1 $\alpha_{\mathrm{low}}$}
   \end{subfigure}
   \hfill
   \begin{subfigure}[t]{0.24\linewidth}
     \includegraphics[width=\linewidth]{../figures/gmm_mp2_low_alpha_k6.png}
-    \caption{MP2 Low-$\alpha$}
+    \caption{MP2 $\alpha_{\mathrm{low}}$}
   \end{subfigure}
 
-  \caption{XD–GMM decomposition across $\alpha$-sequences and metallicity bins. Top: high $\alpha$. Bottom: low $\alpha$.}
+  \caption{XD–GMM decomposition across $\alpha$-sequences and metallicity bins. Top: $\alpha_{\mathrm{high}}$. Bottom: $\alpha_{\mathrm{low}}$.}
   \label{fig:gmm_alpha_bins}
 \end{figure}
+
 
 Interestingly, we detect GS/E-like radial components even in the high-$\alpha$ regime. 
 Since GS/E stars are expected to be $\alpha$-poor due to their extended star formation histories, 
@@ -226,7 +223,7 @@ sequence requires further investigation, likely reflecting contamination or subs
 
 \section*{Conclusion and Research Impact}
 
-We reproduce the key results of Zhang et al.~/cite{zhang2024existencemetalpoordiscmilky} and 
+We reproduce the key results of Zhang et al.~ \cite{zhang2024existencemetalpoordiscmilky} and 
 extend them by separating stars by $\alpha$-abundance. Our findings support a two-phase disc 
 formation model, with the high-$\alpha$ sequence developing rotation at lower metallicity than 
 the low-$\alpha$ population. This demonstrates the power of combining chemistry and kinematics to 
