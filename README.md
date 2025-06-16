@@ -37,9 +37,9 @@ While the halo is commonly associated with the oldest stars, recent studies have
 
 ## Interactive 3D GMM Plots with Weights
 
-Click any of the links below to open the full interactive 3D Plotly widget (with component‐weight bar on the right):
+Click any of the links below to open the full interactive 3D Plotly widget (with component‐weight bar on the right), served via RawGitHack:
 
-- [VMP : −3 < [M/H] < −2](https://cdn.jsdelivr.net/gh/raunaq-rai/Disentangling-the-Milky-Way-using-GMM@main/figures/VMP__-3%5BM_H%5D-2.html)  
-- [IMP : −2 < [M/H] < −1.6](https://cdn.jsdelivr.net/gh/raunaq-rai/Disentangling-the-Milky-Way-using-GMM@main/figures/IMP__-2%5BM_H%5D-1.6.html)  
-- [MP1 : −1.6 < [M/H] < −1.3](https://cdn.jsdelivr.net/gh/raunaq-rai/Disentangling-the-Milky-Way-using-GMM@main/figures/MP1__-1.6%5BM_H%5D-1.3.html)  
-- [MP2 : −1.3 < [M/H] < −1.0](https://cdn.jsdelivr.net/gh/raunaq-rai/Disentangling-the-Milky-Way-using-GMM@main/figures/MP2__-1.3%5BM_H%5D-1.0.html)  
+- [VMP : −3 < [M/H] < −2](https://raw.githack.com/raunaq-rai/Disentangling-the-Milky-Way-using-GMM/main/figures/VMP__-3%5BM_H%5D-2.html)  
+- [IMP : −2 < [M/H] < −1.6](https://raw.githack.com/raunaq-rai/Disentangling-the-Milky-Way-using-GMM/main/figures/IMP__-2%5BM_H%5D-1.6.html)  
+- [MP1 : −1.6 < [M/H] < −1.3](https://raw.githack.com/raunaq-rai/Disentangling-the-Milky-Way-using-GMM/main/figures/MP1__-1.6%5BM_H%5D-1.3.html)  
+- [MP2 : −1.3 < [M/H] < −1.0](https://raw.githack.com/raunaq-rai/Disentangling-the-Milky-Way-using-GMM/main/figures/MP2__-1.3%5BM_H%5D-1.0.html)  
