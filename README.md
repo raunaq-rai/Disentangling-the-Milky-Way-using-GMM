@@ -43,9 +43,6 @@ While the halo is commonly associated with the oldest stars, recent studies have
    - We split stars into four metallicity bins ([M/H] < –1) and fit a separate GMM to each.  
    - The optimal number of Gaussians is chosen by minimizing the Bayesian Information Criterion (BIC) over multiple (50) random initializations, with k-means seeding to ensure stable convergence.  
 
-<div style='border:2px solid #0074D9; background-color:#E8F4FF; padding:16px; border-radius:6px;'>
-
-
 ## Results: Interactive 3D GMM Plots with Weights
 
 2D Visualisations are shown in the report. Below we use plotly to include an interactive visualisation for the 3-D velocity distribution. Please click on each link!!!
@@ -56,5 +53,3 @@ Click any of the links below to open the full interactive 3D Plotly widget (with
 - [IMP : −2 < [M/H] < −1.6](https://raw.githack.com/raunaq-rai/Disentangling-the-Milky-Way-using-GMM/main/figures/IMP__-2%5BM_H%5D-1.6.html)  
 - [MP1 : −1.6 < [M/H] < −1.3](https://raw.githack.com/raunaq-rai/Disentangling-the-Milky-Way-using-GMM/main/figures/MP1__-1.6%5BM_H%5D-1.3.html)  
 - [MP2 : −1.3 < [M/H] < −1.0](https://raw.githack.com/raunaq-rai/Disentangling-the-Milky-Way-using-GMM/main/figures/MP2__-1.3%5BM_H%5D-1.0.html)  
-
-</div>
