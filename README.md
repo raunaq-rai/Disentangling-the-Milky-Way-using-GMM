@@ -1,10 +1,7 @@
 # Disentangling the Components of the Milky Way with Gaussian Mixture Modelling
 
 ## Overview
-This project aims to study the formation history of the Milky Way by analysing its stellar components, with a particular focus on old, low-metallicity stars. The goal is to disentangle the components of the Galaxy (e.g., thin disc, thick disc, and halo) using data from the Gaia DR3 release and apply Gaussian Mixture Modelling (GMM) to identify structures in velocity space.
-
-## Repository
-This repo includes the workflow used and notebook used in this project - note that it is a working progress!!!
+This project aims to study the formation history of the Milky Way by analysing its stellar components, with a particular focus on old, low-metallicity stars. The goal is to disentangle the components of the Galaxy (e.g., thin disc, thick disc, and halo) using data from the Gaia DR3 release and apply Gaussian Mixture Modelling (GMM) to identify structures in velocity space. This report replicates and extends the analysis done by [Zhang et al. (2024)](https://arxiv.org/pdf/2311.09294).
 
 ## Project Goals
 
@@ -12,9 +9,7 @@ The primary goal of this project is to leverage recent advancements in astrometr
 
 1. **Identify and characterise the components of the Milky Way** in different metallicity regimes, focusing on the oldest and most metal-poor stars.
 2. **Test for the presence of a disc component at very low metallicities** ([M/H] < -2) and place quantitative limits on its contribution if present.
-3. **Refine the methodology** for analysing stellar kinematics and chemical properties, paving the way for future investigations into Galactic formation scenarios.
-
-This project introduces novel analysis techniques to address open questions about the formation of the earliest structures in the Milky Way, leveraging state-of-the-art data and statistical methods.
+3. **Expand on analysis** for further understanding the relationship between chemical composition and milkyway components.
 
 ## Why This Matters
 
@@ -35,7 +30,21 @@ While the halo is commonly associated with the oldest stars, recent studies have
   - [Belokurov & Deason (2024)](https://arxiv.org/pdf/2402.12443): "Galactic Archaeology with Gaia".
   - [Bovy, Hogg & Roweis (2011)](https://projecteuclid.org/journals/annals-of-applied-statistics/volume-5/issue-2B/Extreme-deconvolution--Inferring-complete-distribution-functions-from-noisy-heterogeneous/10.1214/10-AOAS439.full): "Extreme Deconvolution: Inferring complete distribution functions from noisy, heterogeneous and incomplete observations".
 
-<div style='border:2px solid #ff9800; padding:16px; border-radius:6px; background-color:#fff8e1;'>
+## Methodology
+
+1. **Gaussian Mixture Modeling**  
+   - We model the 3D velocity distribution \((v_R,\,v_\phi,\,v_Z)\) of stars as a sum of multivariate Gaussians.  
+   - Each Gaussian represents a kinematic sub-population (e.g.\ halo, disc, GS/E) and yields a probabilistic (“soft”) assignment of stars to components.  
+
+2. **Extreme Deconvolution with Uncertainties**  
+   - Fitting is done via the pyGMMis package, which extends EM with “Extreme Deconvolution” to incorporate per-star velocity uncertainties (from Gaia) directly into the likelihood.  
+
+3. **Metallicity Bins & Component Selection**  
+   - We split stars into four metallicity bins ([M/H] < –1) and fit a separate GMM to each.  
+   - The optimal number of Gaussians is chosen by minimizing the Bayesian Information Criterion (BIC) over multiple (50) random initializations, with k-means seeding to ensure stable convergence.  
+
+<div style='border:2px solid #0074D9; background-color:#E8F4FF; padding:16px; border-radius:6px;'>
+
 
 ## Results: Interactive 3D GMM Plots with Weights
 
