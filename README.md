@@ -35,9 +35,11 @@ While the halo is commonly associated with the oldest stars, recent studies have
   - [Belokurov & Deason (2024)](https://arxiv.org/pdf/2402.12443): "Galactic Archaeology with Gaia".
   - [Bovy, Hogg & Roweis (2011)](https://projecteuclid.org/journals/annals-of-applied-statistics/volume-5/issue-2B/Extreme-deconvolution--Inferring-complete-distribution-functions-from-noisy-heterogeneous/10.1214/10-AOAS439.full): "Extreme Deconvolution: Inferring complete distribution functions from noisy, heterogeneous and incomplete observations".
 
-<div style="border:2px solid #ff9800; padding:16px; border-radius:6px; background-color:#fff8e1;">
+<div style='border:2px solid #ff9800; padding:16px; border-radius:6px; background-color:#fff8e1;'>
 
 ## Results: Interactive 3D GMM Plots with Weights
+
+2D Visualisations are shown in the report. Below we use plotly to include an interactive visualisation for the 3-D velocity distribution. Please click on each link!!!
 
 Click any of the links below to open the full interactive 3D Plotly widget (with component‐weight bar on the right), served via RawGitHack:
 
