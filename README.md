@@ -35,7 +35,9 @@ While the halo is commonly associated with the oldest stars, recent studies have
   - [Belokurov & Deason (2024)](https://arxiv.org/pdf/2402.12443): "Galactic Archaeology with Gaia".
   - [Bovy, Hogg & Roweis (2011)](https://projecteuclid.org/journals/annals-of-applied-statistics/volume-5/issue-2B/Extreme-deconvolution--Inferring-complete-distribution-functions-from-noisy-heterogeneous/10.1214/10-AOAS439.full): "Extreme Deconvolution: Inferring complete distribution functions from noisy, heterogeneous and incomplete observations".
 
-## Interactive 3D GMM Plots with Weights
+<div style="border:2px solid #ff9800; padding:16px; border-radius:6px; background-color:#fff8e1;">
+
+## Results: Interactive 3D GMM Plots with Weights
 
 Click any of the links below to open the full interactive 3D Plotly widget (with component‐weight bar on the right), served via RawGitHack:
 
@@ -43,3 +45,5 @@ Click any of the links below to open the full interactive 3D Plotly widget (with
 - [IMP : −2 < [M/H] < −1.6](https://raw.githack.com/raunaq-rai/Disentangling-the-Milky-Way-using-GMM/main/figures/IMP__-2%5BM_H%5D-1.6.html)  
 - [MP1 : −1.6 < [M/H] < −1.3](https://raw.githack.com/raunaq-rai/Disentangling-the-Milky-Way-using-GMM/main/figures/MP1__-1.6%5BM_H%5D-1.3.html)  
 - [MP2 : −1.3 < [M/H] < −1.0](https://raw.githack.com/raunaq-rai/Disentangling-the-Milky-Way-using-GMM/main/figures/MP2__-1.3%5BM_H%5D-1.0.html)  
+
+</div>
