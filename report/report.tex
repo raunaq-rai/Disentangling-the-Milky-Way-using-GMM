@@ -13,6 +13,9 @@
 \usepackage{amssymb}
 \usepackage{booktabs}
 \usepackage[authoryear]{natbib} 
+%TC:macro \href        2 0
+%TC:macro \url         1 0
+%TC:macro \detokenize  1 0
 \usepackage[colorlinks=true, citecolor=blue, linkcolor=black, urlcolor=blue]{hyperref}
 
 \begin{document}
@@ -27,7 +30,8 @@
 
     % Title
     {\LARGE \bfseries Disentangling the Components of the Milky Way}\\[0.75cm]
-    {\large \textsc Inferring the Structure of the Milky Way in Phase-Space Using Gaussian Mixture Modelling with Extreme Deconvolution}\\[1.5cm]
+    {\large \textsc{Inferring the Structure of the Milky Way in Phase-Space Using Gaussian Mixture Modelling with Extreme Deconvolution}}\\[1.5cm]
+
 
     % Author
     \vspace{0.5cm}
@@ -173,7 +177,9 @@ probes of the Milky Way’s earliest epochs.
 
 
 %------------------------------------------------------------------
-\subsection{$\Lambda$CDM\, Model}
+\subsection{\texorpdfstring{$\Lambda$CDM\,Model}{LambdaCDM Model}}
+
+
 \label{subsec:LCDM_halo}
 
 In the concordance $\Lambda$CDM model, galaxy-sized haloes assemble hierarchically:  
@@ -275,7 +281,8 @@ test whether VMP stars were formed in situ or accreted from a satellite.
 \section{Data}
 \label{sec:data}
 
-\subsection{Sample construction}\label{subsec:data_sample}
+\subsection{Sample construction}
+\label{subsec:datasample}
 
 The catalogue used in this work was the bright red–giant–branch sample of \citet{Andrae2023}.  
 Stellar metallicities were predicted with an Extreme Gradient Boosting model 
@@ -609,18 +616,20 @@ indiciative of a disc-like structure. The statistics of the GMM fit are summaris
 which lists the weights, means, and dispersions of each component in the four metallicity bins. 
 
 See the fully interactive 3-D plots for each bin via RawGitHack:
+%TC:ignore
+\noindent\textbf{VMP} (\texttt{-3\textless[M/H]\textless-2}):\\
+\href{https://raw.githack.com/raunaq-rai/Disentangling-the-Milky-Way-using-GMM/main/figures/VMP__-3%5BM_H%5D-2.html}{VMP link}\\[6pt]
 
-\textbf{VMP} (\texttt{-3\textless[M/H]\textless-2}):
-\href{\detokenize{https://raw.githack.com/raunaq-rai/Disentangling-the-Milky-Way-using-GMM/main/figures/VMP__-3%5BM_H%5D-2.html}}{VMP link},
+\noindent\textbf{IMP} (\texttt{-2\textless[M/H]\textless-1.6}):\\
+\href{https://raw.githack.com/raunaq-rai/Disentangling-the-Milky-Way-using-GMM/main/figures/IMP__-2%5BM_H%5D-1.6.html}{IMP link}\\[6pt]
 
-\textbf{IMP} (\texttt{-2\textless[M/H]\textless-1.6}):
-\href{\detokenize{https://raw.githack.com/raunaq-rai/Disentangling-the-Milky-Way-using-GMM/main/figures/IMP__-2%5BM_H%5D-1.6.html}}{IMP link},
+\noindent\textbf{MP1} (\texttt{-1.6\textless[M/H]\textless-1.3}):\\
+\href{https://raw.githack.com/raunaq-rai/Disentangling-the-Milky-Way-using-GMM/main/figures/MP1__-1.6%5BM_H%5D-1.3.html}{MP1 link}\\[6pt]
 
-\textbf{MP1} (\texttt{-1.6\textless[M/H]\textless-1.3}):
-\href{\detokenize{https://raw.githack.com/raunaq-rai/Disentangling-the-Milky-Way-using-GMM/main/figures/MP1__-1.6%5BM_H%5D-1.3.html}}{MP1 link},
+\noindent\textbf{MP2} (\texttt{-1.3\textless[M/H]\textless-1.0}):\\
+\href{https://raw.githack.com/raunaq-rai/Disentangling-the-Milky-Way-using-GMM/main/figures/MP2__-1.3%5BM_H%5D-1.0.html}{MP2 link}
+%TC:endignore
 
-\textbf{MP2} (\texttt{-1.3\textless[M/H]\textless-1.0}):
-\href{\detokenize{https://raw.githack.com/raunaq-rai/Disentangling-the-Milky-Way-using-GMM/main/figures/MP2__-1.3%5BM_H%5D-1.0.html}}{MP2 link}.
 
 
 At $\mathrm{[M/H]} < -1.6$ (the VMP and IMP regimes), a disc component is not observed. Instead, the kinematic structure 
@@ -854,7 +863,7 @@ several additional cuts:
   \item a Galactic latitude cut $|b|>10^\circ$ similarly avoids 
         the dust-dominated plane;
   \item we relax the fractional parallax uncertainty cut relative to 
-        Section~\ref{subsec:data_sample}, requiring only $\mathrm{fpu}<0.2$
+        Section~\ref{subsec:datasample}, requiring only $\mathrm{fpu}<0.2$
         to retain sufficient stars in the metal-poor regime, which is 
         the focus of this analysis.
 \end{itemize}
@@ -1156,20 +1165,19 @@ Detailed BIC scores for each metallicity bin are shown in Figure~\ref{fig:bic_gr
 \end{figure}
 
 See the fully interactive 3-D GMM decompositions served via RawGitHack:
+%TC:ignore
+\noindent\textbf{High–$\alpha$ VMP (\texttt{-3<[M/H]<-2})}:  
+\href{https://raw.githack.com/raunaq-rai/Disentangling-the-Milky-Way-using-GMM/main/figures/VMP_high___-3%5BM_H%5D-2.html}{High–$\alpha$ VMP}
 
-\begin{itemize}
-  \item \textbf{High–$\alpha$ VMP (\texttt{-3<[M/H]<-2})}:%
-    \href{\detokenize{https://raw.githack.com/raunaq-rai/Disentangling-the-Milky-Way-using-GMM/main/figures/VMP_high___-3[M_H]-2.html}}{High–$\alpha$ VMP}
+\noindent\textbf{High–$\alpha$ IMP (\texttt{-2<[M/H]<-1.6})}:  
+\href{https://raw.githack.com/raunaq-rai/Disentangling-the-Milky-Way-using-GMM/main/figures/IMP_high___-2%5BM_H%5D-1.6.html}{High–$\alpha$ IMP}
 
-  \item \textbf{High–$\alpha$ IMP (\texttt{-2<[M/H]<-1.6})}:%
-    \href{\detokenize{https://raw.githack.com/raunaq-rai/Disentangling-the-Milky-Way-using-GMM/main/figures/IMP_high___-2[M_H]-1.6.html}}{High–$\alpha$ IMP}
+\noindent\textbf{High–$\alpha$ MP1 (\texttt{-1.6<[M/H]<-1.3})}:  
+\href{https://raw.githack.com/raunaq-rai/Disentangling-the-Milky-Way-using-GMM/main/figures/MP1_high___-1.6%5BM_H%5D-1.3.html}{High–$\alpha$ MP1}
 
-  \item \textbf{High–$\alpha$ MP1 (\texttt{-1.6<[M/H]<-1.3})}:%
-    \href{\detokenize{https://raw.githack.com/raunaq-rai/Disentangling-the-Milky-Way-using-GMM/main/figures/MP1_high___-1.6[M_H]-1.3.html}}{High–$\alpha$ MP1}
-
-  \item \textbf{High–$\alpha$ MP2 (\texttt{-1.3<[M/H]<-1.0})}:%
-    \href{\detokenize{https://raw.githack.com/raunaq-rai/Disentangling-the-Milky-Way-using-GMM/main/figures/MP2_high___-1.3[M_H]-1.0.html}}{High–$\alpha$ MP2}
-\end{itemize}
+\noindent\textbf{High–$\alpha$ MP2 (\texttt{-1.3<[M/H]<-1.0})}:  
+\href{https://raw.githack.com/raunaq-rai/Disentangling-the-Milky-Way-using-GMM/main/figures/MP2_high___-1.3%5BM_H%5D-1.0.html}{High–$\alpha$ MP2}
+%TC:endignore
 
 
 
@@ -1243,19 +1251,19 @@ Velocities are in km\,s$^{-1}$. Weights indicate the fraction of stars per metal
 
 See the fully interactive 3-D GMM decompositions served via RawGitHack:
 
-\begin{itemize}
-  \item \textbf{Low–$\alpha$ VMP (\texttt{-3<[M/H]<-2})}:%
-    \href{\detokenize{https://raw.githack.com/raunaq-rai/Disentangling-the-Milky-Way-using-GMM/main/figures/VMP_low____-3[M_H]-2.html}}{Low–$\alpha$ VMP}
+%TC:ignore
+\noindent\textbf{Low–$\alpha$ VMP (\texttt{-3<[M/H]<-2})}:  
+\href{https://raw.githack.com/raunaq-rai/Disentangling-the-Milky-Way-using-GMM/main/figures/VMP_low____-3%5BM_H%5D-2.html}{Low–$\alpha$ VMP}
 
-  \item \textbf{Low–$\alpha$ IMP (\texttt{-2<[M/H]<-1.6})}:%
-    \href{\detokenize{https://raw.githack.com/raunaq-rai/Disentangling-the-Milky-Way-using-GMM/main/figures/IMP_low____-2[M_H]-1.6.html}}{Low–$\alpha$ IMP}
+\noindent\textbf{Low–$\alpha$ IMP (\texttt{-2<[M/H]<-1.6})}:  
+\href{https://raw.githack.com/raunaq-rai/Disentangling-the-Milky-Way-using-GMM/main/figures/IMP_low____-2%5BM_H%5D-1.6.html}{Low–$\alpha$ IMP}
 
-  \item \textbf{Low–$\alpha$ MP1 (\texttt{-1.6<[M/H]<-1.3})}:%
-    \href{\detokenize{https://raw.githack.com/raunaq-rai/Disentangling-the-Milky-Way-using-GMM/main/figures/MP1_low____-1.6[M_H]-1.3.html}}{Low–$\alpha$ MP1}
+\noindent\textbf{Low–$\alpha$ MP1 (\texttt{-1.6<[M/H]<-1.3})}:  
+\href{https://raw.githack.com/raunaq-rai/Disentangling-the-Milky-Way-using-GMM/main/figures/MP1_low____-1.6%5BM_H%5D-1.3.html}{Low–$\alpha$ MP1}
 
-  \item \textbf{Low–$\alpha$ MP2 (\texttt{-1.3<[M/H]<-1.0})}:%
-    \href{\detokenize{https://raw.githack.com/raunaq-rai/Disentangling-the-Milky-Way-using-GMM/main/figures/MP2_low____-1.3[M_H]-1.0.html}}{Low–$\alpha$ MP2}
-\end{itemize}
+\noindent\textbf{Low–$\alpha$ MP2 (\texttt{-1.3<[M/H]<-1.0})}:  
+\href{https://raw.githack.com/raunaq-rai/Disentangling-the-Milky-Way-using-GMM/main/figures/MP2_low____-1.3%5BM_H%5D-1.0.html}{Low–$\alpha$ MP2}
+%TC:endignore
 
 \begin{table}[H]
 \centering
@@ -1290,7 +1298,7 @@ Thick disc          &  25.4 &   2.13 &  69.98 & 183.15 &  48.36 &  1.75 &  54.21
 
 
 
-\subsection{Contrasting the high and low $\alpha$ GMMs}
+\subsection{\texorpdfstring{Contrasting the high and low $\alpha$ GMMs}{Contrasting the high/low–alpha GMMs}}
 \label{subsec:gmm_comparison}
 
 The two chemical sequences trace very different roads from a dispersion–supported halo to
@@ -1360,7 +1368,8 @@ the discussion will focus on the differences between the results of this report 
 We do however mention the limitations of the GMM approach and selection effects - which are largely 
 the same as those discussed in \citet{zhang2024existencemetalpoordiscmilky}.
 
-\subsection{Reproducability of \citet{zhang2024existencemetalpoordiscmilky}}
+\subsection{\texorpdfstring{Reproducability of \citet{zhang2024existencemetalpoordiscmilky}}{Reproducability of Zhang et al.\ (2024)}}
+
 
 The GMM decomposition presented in this report successfully reproduces the same structural features reported 
 by \citet{zhang2024existencemetalpoordiscmilky} by selecting the minimum BIC score for each bin. However, there 
@@ -1401,7 +1410,8 @@ often multimodal structures.
 
 
 
-\subsection{Expansion of \citet{Vis2024}}
+\subsection{\texorpdfstring{Expansion of \citet{Vis2024}}{Expansion of Viswanathan et al.\ (2024)}}
+
 
 We extended the XD-GMM analysis to the high and low $\alpha$ sequences identified by \citet{Vis2024}. 
 Rather than assuming two Gaussian components as in \citet{Vis2024}, we fit a
