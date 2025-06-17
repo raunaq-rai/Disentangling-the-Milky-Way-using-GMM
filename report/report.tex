@@ -629,7 +629,7 @@ two components, with the stationary halo contributing 51.1\% and the prograde ha
 dispersions, with only modest rotational support ($\overline{v_\phi} \sim 69$ km\,s$^{-1}$ for the prograde halo) 
 and no evidence for a kinematically cold disc-like structure.
 
-In the IMP bin, the picture remains qualitatively similar, although the prograde halo dominates more strongly 
+In the IMP bin, the picture remains similar, although the prograde halo dominates more strongly 
 (63.3\%) and additional substructure becomes apparent. Two minor components, interpreted as fragments of the 
 Gaia–Sausage/Enceladus (GS/E) merger debris, are also identified, each contributing $\sim$7\% of the population 
 and exhibiting highly radial orbits ($|v_R| > 200$ km\,s$^{-1}$). These GS/E components are characterised by 
@@ -688,9 +688,7 @@ $\sigma_\phi$ its dispersion. This ratio serves as a conventional diagnostic of 
 kinematics, with values $\gtrsim 3$ indicating rotation-supported populations. As shown in 
 Figure~\ref{fig:v_over_sigma}, all components in the VMP and IMP bins fall below this threshold, 
 confirming that the GMM identifies only dynamically hot, dispersion-supported structures in these 
-regimes. This is consistent with the interpretation of the dominant components as stationary and 
-prograde halo populations, with $V_{\rm rot} / \sigma_\phi \approx 0.7$ in both cases (see also 
-Table~\ref{tab:gmm_parameters}).
+regimes.
 
 At higher metallicities, a dynamically colder disc population emerges. In the MP1 bin, the thick 
 disc component (green) rotates at $v_\phi \sim 160$ km\,s$^{-1}$ with $\sigma_\phi \sim 57$ km\,s$^{-1}$, 
@@ -698,19 +696,16 @@ yielding $V_{\rm rot} / \sigma_\phi \approx 2.8$. While just below the canonical
 component’s low vertical dispersion and substantial weight (22.1\%) mark it as a distinct disc-like 
 structure. By the MP2 bin, the disc becomes the dominant component (37.4\%), with 
 $V_{\rm rot} / \sigma_\phi \approx 3.5$, indicating clear rotational support and a well-established 
-thick disc. These trends point to a sharp transition in the stellar kinematics around 
-$\mathrm{[M/H]} \sim -1.5$, consistent with the early onset of disc formation.
+thick disc. These trends suggest a transition in the stellar kinematics around 
+$\mathrm{[M/H]} \sim -1.5$.
 
-Meanwhile, the GS/E components — identifiable in the IMP, MP1, and MP2 bins — remain dynamically 
+Meanwhile, the GS/E components (identifiable in the IMP, MP1, and MP2 bins) remain dynamically 
 distinct, with high $|v_R|$, relatively small $v_\phi$, and negligible rotational support, reinforcing 
 their origin as debris from a major radial merger \citep{Helmi2018}. Notably, given 
 the estimated time of the GS/E accretion event (of order 8–11 Gyr ago \citep{Gallart2019,Belokurov2020,DiMatteo2019}),its stellar 
 debris is expected to be phase-mixed. This 
 implies that the positive and negative $v_R$ components should contribute approximately equally. 
-This symmetry is indeed observed in the two MP bins. However, in the IMP bin the distribution is 
-clearly asymmetric, with the negative $v_R$ GS/E component (aqua) containing nearly twice as many 
-stars as the positive one (orange). This may suggest incomplete phase mixing or contamination by 
-other structures at this intermediate metallicity.
+This symmetry is observed in the IMP and two MP bins. 
 
 
 \begin{figure}[H]
@@ -718,7 +713,7 @@ other structures at this intermediate metallicity.
     \includegraphics[width=\linewidth]{../figures/v_over_sigma_per_component.png}
     \caption{Ratio of mean rotational velocity to azimuthal velocity dispersion, 
     $V_{\rm rot} / \sigma_\phi$, for individual GMM components in each metallicity bin. 
-    Larger squares correspond to more dominant components. Colours match the GMM components 
+    Larger circles correspond to more dominant components. Colours match the GMM components 
     in Figure~\ref{fig:gmm_decompositions}.(A reproduction of Figure 6 from \citet{zhang2024existencemetalpoordiscmilky})}
     \label{fig:v_over_sigma}
 \end{figure}
@@ -726,8 +721,8 @@ other structures at this intermediate metallicity.
 \subsection{Residual Analysis for Hidden Disc Populations}
 
 One of the limitations of GMMs is that they can fail to detect substructures that contribute 
-only weakly to the overall distribution. To address this, we perform a residual analysis to test 
-whether a disc-like population—too weak to be picked up by the GMM—might nonetheless be present 
+only weakly to the overall distribution. To investigate this, we performed a residual analysis to test 
+whether a disc-like population, too weak to be picked up by the GMM, might be present 
 in the VMP and IMP metallicity regimes.
 
 We generated a synthetic dataset by drawing the same number of mock stars as observed stars from 
@@ -740,22 +735,20 @@ these uncertainties.
 
 We then bin both the observed and mock data in the $(v_R, v_\phi)$ plane and compute the 
 normalized residual map, defined as
-
 \[
 H_{\mathrm{residual}} = \frac{H_{\mathrm{obs}} - H_{\mathrm{mock}}}{H_{\mathrm{obs}} + H_{\mathrm{mock}} + \epsilon},
 \]
-
 where $H_{\mathrm{obs}}$ and $H_{\mathrm{mock}}$ are the 2D histograms and $\epsilon = 10^{-5}$ is added 
 to avoid division by zero. The residual maps are shown in the top row of Figure~\ref{fig:residuals} for 
 the VMP and IMP bins. The grey dashed ellipses highlight a $2\sigma$ region of a hypothetical thick disc 
-with mean velocity $(v_R, v_\phi) = (0, 180)$\,km\,s$^{-1}$ and dispersions $(\sigma_R, \sigma_\phi) 
-= (70, 50)$\,km\,s$^{-1}$, consistent with the thick disc component seen in the MP2 metallicity bin.
+with mean velocity $(v_R, v_\phi) = (0, 180)\,\mathrm{km\,s^{-1}}$ and dispersions $(\sigma_R, \sigma_\phi) 
+= (70, 50)\,\mathrm{km\,s^{-1}}$, consistent with the thick disc component seen in the MP2 metallicity bin.
 
 To quantify the possible presence of a hidden disc, we count the excess number of observed stars inside 
-this thick disc ellipse relative to the GMM-generated sample. We repeat this calculation for 200 Monte 
+this thick disc ellipse relative to the GMM-generated sample. We repeat this calculation for 1000 Monte 
 Carlo realizations to estimate the residual and its uncertainty. The results are shown as horizontal 
 dashed lines in the bottom row of Figure~\ref{fig:residuals}, representing a disc-like residual 
-of $40.4 \pm 24.8$ stars in the VMP bin and $76.9 \pm 42.8$ stars in the IMP bin.
+of $38.3 \pm 27.1$ stars in the VMP bin and $78.1 \pm 45.1$ stars in the IMP bin.
 
 To interpret these residuals, we repeat the same procedure but now inject a mock disc population—
 generated from the same thick disc Gaussian—into the GMM baseline. By varying the injected disc 
@@ -763,6 +756,13 @@ fraction from 0\% to 5\% of the sample and recalculating the residual each time,
 relationship between disc fraction and expected residual. This is shown as the solid black line in the 
 bottom panels of Figure~\ref{fig:residuals}, with the red shaded region indicating the $1\sigma$ 
 uncertainty across Monte Carlo trials.
+
+In the bottom panels of Figure~\ref{fig:residuals}, the horizontal blue band shows the observed excess 
+within the thick‐disc ellipse ($\pm1\sigma$), and the solid black curve (with red shading) gives the expected 
+residual when injecting a known disc fraction into the GMM. Their intersection could imply a hidden disc fraction 
+of up to $\sim1\%$ in the VMP bin and IMP bin. These estimates are indicative only: 
+measurement uncertainties, GMM modelling choices, and Gaia‐selection cuts mean that the true disc 
+contribution in the parent VMP/IMP populations may differ \citep{zhang2024existencemetalpoordiscmilky}.  
 
 \begin{figure}[H]
     \centering
