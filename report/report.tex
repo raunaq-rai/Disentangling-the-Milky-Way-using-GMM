@@ -779,75 +779,55 @@ contribution in the parent VMP/IMP populations may differ \citep{zhang2024existe
     \label{fig:residuals}
 \end{figure}
 
+%-------edit the below--------------
 
-\section{Extension analysis}
-\subsection{Alpha–element abundance}
+
+
+
+
+
+
+
+
+
+
+
+\section{Extension Analysis}
+
+We extend the work of \citet{zhang2024existencemetalpoordiscmilky} by adding the $\alpha$–element abundance, $[\alpha/\mathrm{Fe}]$, as a fourth dimension in our XD–GMM fits.  Following \citet{Vis2024}, each metallicity bin is split into “high–$\alpha$” and “low–$\alpha$” subsets (using XP abundances from \citealt{Li2024}), and the GMM is refit independently for each subset.  This chemo–kinematic dissection allows us to test whether the kinematic substructures in the very–metal–poor regime vary with $\alpha$–element enrichment, potentially distinguishing in situ from accreted populations.
+
+\subsection{Alpha–Element Abundance}
 \label{subsec:alpha}
 
-We extend the chemo–kinematic analysis by adding the
-alpha-to-iron ratio $[\alpha/\mathrm{Fe}]$, where the “alpha’’ elements
-(O, Ne, Mg, Si, S, Ca, Ti) are produced almost entirely in core–collapse
-(\hbox{Type II}) supernovae, whereas most iron is released later by
-thermonuclear (Type Ia) explosions.  Because the two channels operate on
-very different time-scales—$\sim$10–30 Myr for Type II versus
-$\gtrsim$\,0.1–1 Gyr for Type Ia—the quantity $[\alpha/\mathrm{Fe}]$
-encodes the star-formation history of a stellar population:
+The ratio $[\alpha/\mathrm{Fe}]$ traces the relative contributions of two supernova types: 
+core–collapse (Type II) and thermonuclear (Type Ia). Type II supernovae result from the deaths of massive 
+stars ($\gtrsim8\,M_\odot$) and explode on short timescales ($\sim10$–$30\,\mathrm{Myr}$) after star 
+formation. They produce large amounts of $\alpha$-elements (O, Ne, Mg, Si, S, Ca, Ti), which are rapidly 
+injected into the interstellar medium. In contrast, Type Ia supernovae arise from white dwarfs in binary 
+systems, requiring hundreds of millions to billions of years to explode ($\gtrsim0.1$–$1\,\mathrm{Gyr}$). 
+These events primarily enrich the interstellar medium with iron and iron-peak elements (e.g.\ Fe, Ni, Co).
+
+Because the two channels operate on different timescales, the $[\alpha/\mathrm{Fe}]$ ratio encodes a 
+population’s formation history:
 
 \begin{itemize}
-  \item \textbf{High $[\alpha/\mathrm{Fe}]$.}  
-      Rapid, intense star formation enriches gas with $\alpha$-elements 
-      before significant iron production from Type Ia supernovae occurs, 
-      leading to elevated $[\alpha/\mathrm{Fe}]$. This chemical signature is typical 
-      of the in-situ thick disc, stellar halo, and some ancient accreted material. 
-      However, at fixed metallicity, accreted populations, especially dwarf galaxies,
-       tend to show lower $[\alpha/\mathrm{Fe}]$ 
-      compared to in-situ stars, reflecting their slower chemical evolution.
-
-
-  \item \textbf{Low $[\alpha/\mathrm{Fe}]$.}  
-        A more prolonged formation history allowed Type Ia ejecta to
-        accumulate, diluting the alpha enhancement.  The present-day thin
-        disc and metal-rich bulge occupy this regime.
+  \item \textbf{High–$[\alpha/\mathrm{Fe}]$:}  
+    Rapid, intense star formation enriches the gas with $\alpha$-elements before Type Ia supernovae 
+    contribute significant iron, leading to elevated $[\alpha/\mathrm{Fe}]$. These stars typically belong 
+    to the in-situ thick disc, stellar halo, and ancient accreted debris. At fixed $[\mathrm{M/H}]$, 
+    accreted populations (e.g.\ dwarf galaxies) generally show lower $[\alpha/\mathrm{Fe}]$ than in-situ 
+    stars \citep{Helmi2018}, reflecting slower chemical evolution.
+    
+  \item \textbf{Low–$[\alpha/\mathrm{Fe}]$:}  
+    A more extended star-formation history allows iron from Type Ia supernovae to accumulate, diluting 
+    the $\alpha$ enrichment. This regime includes the thin disc, metal-rich bulge, and remnants of dwarf 
+    satellites.
 \end{itemize}
 
-Hence the $[\alpha/\mathrm{Fe}]$–$[\mathrm{M/H}]$ plane acts as a chemical
-clock: populations that overlap in $[\mathrm{M/H}]$ but differ in formation
-time-scale separate cleanly in $[\alpha/\mathrm{Fe}]$.
-
-Following \citet{Vis2024}, we separate the RGB catalogue into
-high- and low-$[\alpha/{\rm M}]$ sequences using the XP abundances of
-\citet{Li2024} and model each subset with an error–convolved
-Gaussian–mixture as described earlier.  Before fitting the GMM,
-we can expect to see some differences between the high- and low-$[\alpha/{\rm M}]$ sequences
-as summarised below.  
-
-In the high-$[\alpha/{\rm M}]$ sequence, the oldest, in-situ population formed rapidly from well-mixed,
-$\alpha$-rich gas. Below $[\mathrm{M/H}]\!\approx\!-1.6$ we therefore
-expect a single non-rotating halo Gaussian.  As enrichment proceeds,
-gas spins up and produces the thick disc: a prograde, kinematically
-warm Gaussian whose weight rises steeply between
-$[\mathrm{M/H}]\!\simeq\!-1.6$ and $-1.0$ and dominates for
-$[\mathrm{M/H}]>-0.7$.  Accreted debris from the last major merger
-(Gaia–Sausage/Enceladus, GS/E) should not be prominent here
-because GS/E stars are typically \emph{less} $\alpha$-enhanced than the
-in-situ thick disc at the same metallicity
-\citep[e.g.][]{Helmi2018}; our conservative
-high-$[\alpha/{\rm M}]$ cut should remove most of this material.
-
-In the low-$[\alpha/{\rm M}]$ sequence,
-lower $[\alpha/{\rm M}]$ signals slower enrichment, typical of dwarf
-satellites or the Milky Way disc after Type-Ia supernovae began adding
-iron.  A single halo Gaussian should suffice below
-$[\mathrm{M/H}]\!\approx\!-1.3$, with a cold, high-weight thin-disc
-Gaussian—centred near the Local Standard of Rest and
-$\sigma\!\lesssim\!30\;\mathrm{km\,s^{-1}}$—emerging above that
-threshold.  Our footprint excludes $|b|<10^{\circ}$, however, and thus
-removes most of the geometrically thin disc; the ultra-cold Gaussian
-may therefore be absent at the low metalicities we are inspecting. 
- The aim is instead to pinpoint the onset
-of disc-like rotation in the low-$[\alpha/{\rm M}]$ sequence despite
-this selection bias.
-
+Hence, in the $[\alpha/\mathrm{Fe}]\!-\![\mathrm{M/H}]$ plane, populations that overlap in metallicity but 
+formed on different timescales separate cleanly in $\alpha$ enrichment. By fitting separate XD–GMMs to the 
+high– and low–$\alpha$ sequences within each metallicity bin, we can isolate how disc-like rotation and 
+halo substructures depend on chemical evolution history.
 
 
 
@@ -857,10 +837,7 @@ this selection bias.
 
 
 We obtain the $\alpha$-to-metal abundance ratios from the
-XP–based catalogue of \citet{Li2024}, whose neural-network
-model, trained on high-resolution \textsc{APOGEE}~DR17
-spectra, achieves a typical precision of $\simeq0.05$\,dex for
-bright sources ($G<16$).  
+XP–based catalogue of \citet{Li2024}.
 Following \citet{Vis2024}, we cross-match the XP-based $\alpha$ catalogue 
 of \citet{Li2024} with the metallicity-selected red-giant branch sample . This base sample already 
 incorporates the red-giant selection and photometric quality cuts from 
@@ -883,59 +860,56 @@ several additional cuts:
 \end{itemize}
 
 
-We obtain approximately 3.4 million stars in our final sample with alpha element abundances.
+We obtain approximately 3.4 million stars in our final sample with alpha-element abundances.
 
-\begin{figure}[h]
+Figure~\ref{fig:alphametal} shows the logarithmic density of our
+RGB sample in the $[\alpha/\mathrm{M}]$–$[\mathrm{M/H}]$ plane.
+Following \citet{Chandra_2024}, but with a deliberately tighter boundary as in \citet{Vis2024}, we separate
+the sample into high-$\alpha$ and low-$\alpha$ sequences using the following piecewise definition:
+
+\[
+\begin{aligned}
+\text{high-}\alpha:\;&
+  \begin{cases}
+    [\mathrm{M/H}] < -0.60 &
+      [\alpha/\mathrm{M}] > 0.28 \\
+    -0.60 \le [\mathrm{M/H}] \le 0.125 &
+      [\alpha/\mathrm{M}] > -0.25[\mathrm{M/H}] + 0.13 \\
+    [\mathrm{M/H}] > 0.125 &
+      [\alpha/\mathrm{M}] > 0.10
+  \end{cases} \\[4pt]
+\text{low-}\alpha:\;&
+  \begin{cases}
+    [\mathrm{M/H}] < -0.80 &
+      [\alpha/\mathrm{M}] < 0.21 \\
+    -0.80 \le [\mathrm{M/H}] \le 0.07 &
+      [\alpha/\mathrm{M}] < -0.21[\mathrm{M/H}] + 0.04
+  \end{cases}
+\end{aligned}
+\]
+
+This high-$\alpha$ threshold is raised so that the
+chemistry of the Gaia–Sausage/Enceladus debris
+\citep{Belokurov2018,Helmi2018} does not leak into the
+in-situ sequence; the exclusion band between the branches is widened to maximise purity
+in both sub-samples \citep{Vis2024}.
+
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.49\textwidth]{../figures/alpha_vs_metalicity.png}
     \caption{Density of stars in the $[\alpha/\mathrm{M}]$–$[\mathrm{M/H}]$ plane.
              The high-$\alpha$ and low-$\alpha$ sequences are separated by the
-             piece-wise linear boundary . The transition zone
+             piecewise linear boundary described in the text. The transition zone
              between the two sequences is clearly removed from this plot and discarded from
              subsequent analysis. (A reproduction of Figure 1 in \citet{Vis2024})}
     \label{fig:alphametal}
 \end{figure}
 
 
-  
-Figure~\ref{fig:alphametal} displays the logarithmic density of our
-RGB sample in the $[\alpha/\mathrm{M}]$–$[\mathrm{M/H}]$ plane.  Following
-\citet{Chandra_2024}, but with a deliberately tighter boundary as in \citet{Vis2024}:
-
-\[
-\begin{aligned}
-\text{high-}\alpha:\;&
-  \begin{cases}
-    [\mathrm{M/H}]<-0.60 &
-      [\alpha/\mathrm{M}]>0.28\\
-    -0.60\le[\mathrm{M/H}]\le0.125 &
-      [\alpha/\mathrm{M}]>-0.25[\mathrm{M/H}]+0.13\\
-    [\mathrm{M/H}]>0.125 &
-      [\alpha/\mathrm{M}]>0.10
-  \end{cases}\\[4pt]
-\text{low-}\alpha:\;&
-  \begin{cases}
-    [\mathrm{M/H}]<-0.80 &
-      [\alpha/\mathrm{M}]<0.21\\
-    -0.80\le[\mathrm{M/H}]\le0.07 &
-      [\alpha/\mathrm{M}]<-0.21[\mathrm{M/H}]+0.04
-  \end{cases}
-\end{aligned}
-\]
-%
-and discard the intermediate “transition’’ band.
-
-This high-$\alpha$ threshold is raised so that the
-chemistry of the Gaia–Sausage/Enceladus debris
-\citep{Belokurov2018,Helmi2018} does not leak into the
-in-situ sequence;  
-and the exclusion band is widened to maximise purity in both
-sub-samples \citep{Vis2024}.  
-
-Figure~\ref{fig:rz_metallicity} shows how metallicity varies with Galactocentric radius \(R\) and height \(z\).
-The all-star map already hints at a global decline in \( [\mathrm{M/H}] \) away from the plane and the Solar circle.
-This decline is more pronounced in the low-$\alpha$ sequence.
-
+Figure~\ref{fig:rz_metallicity} shows the distribution of our sample in cylindrical Galactocentric radius 
+$R$ versus height above the midplane $z$, colour–coded by the mean metallicity in each pixel. The top panel 
+presents this distribution for the full RGB sample, while the bottom panels split the data into high–$\alpha$ 
+(left) and low–$\alpha$ (right) subsamples. 
 
 \begin{figure}[H]
   \centering
@@ -971,36 +945,51 @@ This decline is more pronounced in the low-$\alpha$ sequence.
   \label{fig:rz_metallicity}
 \end{figure}
 
-\begin{figure*}
+The high–$\alpha$ population is more centrally concentrated and spans a smaller range in $R$ and $z$ than the 
+low–$\alpha$ stars. The broader vertical extent of the low–$\alpha$ sequence likely reflects contributions 
+from accreted material at large scale heights. A steep negative metallicity gradient with increasing $z$ is 
+evident in the low–$\alpha$ sample and also visible in the full sample, likely due to the dominance of 
+low–$\alpha$ stars in the overall dataset. In contrast, the high–$\alpha$ population exhibits a shallower 
+vertical metallicity gradient and a thicker disc structure. We also observe a metallicity gradient towards 
+larger $R$ in the low–$\alpha$ disc, indicative of radial migration and consistent with flaring commonly 
+seen in the Galactic thin disc \citep[e.g.][]{Haywood2013,ratcliffe2023}.
+
+
+To trace how rotational support evolves with metallicity and $\alpha$–element enrichment, following \citet{Vis2024} 
+we examine the distribution of azimuthal velocity ($v_\phi$) as a function of $[\mathrm{M/H}]$.  
+Figure~\ref{fig:mh_vphi_alpha} presents this relation for (i) the full RGB sample, and (ii) the chemically 
+separated high–$\alpha$ and low–$\alpha$ subsamples derived in Section~\ref{subsec:alpha}.  Each panel shows 
+the column-normalised density in the $[\mathrm{M/H}]$–$v_\phi$ plane together with running medians 
+(red dashed) and 16th/84th percentiles (black).
+
+\begin{figure}[H]
   \centering
   %--------------------------- full sample --------------------------
   \begin{subfigure}[b]{0.32\textwidth}
     \includegraphics[width=\textwidth]{../figures/vis_mh_vphi_all.png}
-    \caption{all RGB stars}
+    \caption{All RGB stars}
   \end{subfigure}\hfill
   %-------------------------- high-α sample --------------------------
   \begin{subfigure}[b]{0.32\textwidth}
     \includegraphics[width=\textwidth]{../figures/vis_mh_vphi_high_alpha.png}
-    \caption{high-$\alpha$ sequence}
+    \caption{High-$\alpha$ sequence}
   \end{subfigure}\hfill
   %-------------------------- low-α sample ---------------------------
   \begin{subfigure}[b]{0.32\textwidth}
     \includegraphics[width=\textwidth]{../figures/vis_mh_vphi_low_alpha.png}
-    \caption{low-$\alpha$ sequence}
+    \caption{Low-$\alpha$ sequence}
   \end{subfigure}
 
-  \caption{Azimuthal velocity as a function of metallicity. 
-           Each panel shows the column-normalised density in the
-           $[\mathrm{M/H}]$–$v_\phi$ plane together with running medians
-           (red dashed) and 16th/84th percentiles (black).  
-           Left: full RGB sample.  Centre / right: chemically separated
-           high-$\alpha$ and low-$\alpha$ subsamples. (A reproduction of Figure 3 in \citet{Vis2024}) }
+  \caption{Azimuthal velocity versus metallicity.  
+           Left: full RGB sample.  
+           Centre: high-$\alpha$ stars.  
+           Right: low-$\alpha$ stars.  
+           Contours show running medians (red) and the 16th/84th percentiles (black).  
+           (Adapted from Fig.\,3 of \citealt{Vis2024}.)}
   \label{fig:mh_vphi_alpha}
-\end{figure*}
+\end{figure}
 
- 
-
-As shown in Figure~\ref{fig:mh_vphi_alpha}, high-$\alpha$ giants 
+The high-$\alpha$ giants 
 exhibit a gradual spin-up with increasing metallicity.  
 At low metallicities ($[\mathrm{M/H}]\lesssim -2$), the population 
 shows mild net prograde rotation with large dispersion, 
@@ -1019,12 +1008,12 @@ to those in the high-$\alpha$ sequence, showing mild prograde rotation and high 
 However, above $[\mathrm{M/H}]\gtrsim -1.2$, the low-$\alpha$ sequence 
 undergoes a sharper transition to a population with high net prograde rotation and lower velocity dispersion. 
 By $[\mathrm{M/H}]\gtrsim -0.5$, the low-$\alpha$ population exhibits kinematics consistent with the thin disc: 
-a strongly rotating, dynamically cold component with lower dispersion than the high-$\alpha$ sequence.
+a strongly rotating, dynamically colder component with lower dispersion than the high-$\alpha$ sequence.
+
+In summary, the high-$\alpha$ population shows a gradual evolution from halo to thick disc, whereas the 
+low-$\alpha$ population exhibits a more abrupt shift to a dynamically cold disc at higher metallicities.
 
 
-In summary, the high-$\alpha$ sequence shows a gradual transition from
-a dynamically hot halo to a thick disc, while the low-$\alpha$ sequence
-shows a more abrupt transition to a dynamically cold disc at higher metallicities.
 
 
 
@@ -1032,6 +1021,8 @@ Following the method described in Section~\ref{subsec:velocities}, we obtain ful
 phase-space coordinates for the chemically separated high- and low-$\alpha$ subsamples.
 Figure~\ref{fig:vr_vphi_alpha} shows the distribution of stars in the $v_R$–$v_\phi$ plane
 across metallicity bins for the high-$\alpha$ (top) and low-$\alpha$ (bottom) populations.
+
+%-----edit----
 
 The low-$\alpha$ sample exhibits a strong rotationally supported component, particularly at
 higher metallicities ($[\mathrm{M/H}] \gtrsim -1.0$), with a narrow $v_\phi$ distribution centred
