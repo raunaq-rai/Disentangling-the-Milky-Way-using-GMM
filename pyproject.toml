@@ -5,15 +5,32 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "research_project"
 version = "0.1.0"
-description = "Disentangling the components of the Milky Way using Gaussian Mixture Modelling with Extreme Deconvolution"
+description = "Disentangling the components of the Milky Way using Gaussian Mixture Models"
 authors = [
   { name = "Raunaq Rai", email = "your-email@example.com" }
 ]
-dependencies = []
+requires-python = ">=3.10"
+dependencies = [
+  "numpy>=1.25,<2",
+  "pandas",
+  "matplotlib",
+  "seaborn",
+  "astropy",
+  "tqdm",
+  "scipy",
+  "scikit-learn",
+  "h5py",
+  "fitsio",
+  "ipykernel",
+  "astroquery",
+  "dustmaps",
+  "galpy",
+  "plotly",
+  "pygmmis"
+]
 
 [tool.pytest.ini_options]
 pythonpath = ["src"]
-
 
 [tool.setuptools]
 package-dir = { "" = "src" }
