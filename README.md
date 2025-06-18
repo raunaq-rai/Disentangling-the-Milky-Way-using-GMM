@@ -3,6 +3,8 @@
 ## Overview
 This project aims to study the formation history of the Milky Way by analysing its stellar components, with a particular focus on old, low-metallicity stars. The goal is to disentangle the components of the Galaxy (e.g., thin disc, thick disc, and halo) using data from the Gaia DR3 release and apply Gaussian Mixture Modelling (GMM) to identify structures in velocity space. This report replicates and extends the analysis done by [Zhang et al. (2024)](https://arxiv.org/pdf/2311.09294).
 
+We then extend this analysis by incorporating alpha-element abundance to analysis as done by [Viswanathan et al . (2024)](https://arxiv.org/abs/2411.12165). We fit a number of gaussian components for each bin governed by BIC score and observe the difference between Milky Way components in teh high and low alpha regimes.
+
 ## Project Goals
 
 The primary goal of this project is to leverage recent advancements in astrometric and spectroscopic data provided by the Gaia satellite's Data Release 3 (DR3) to disentangle the components of the Milky Way using Gaussian Mixture Modelling (GMM). Specifically, we aim to:
@@ -69,26 +71,31 @@ Click any of the links below to open the full interactive 3D Plotly widget (with
 
 2D Visualisations are shown in the report. Below we use plotly to include an interactive visualisation for the 3-D velocity distribution. Please click on each link!!!
 
+**High Alpha**
+
 - **High–α VMP** (`-3 < [M/H] < -2`):  
   [High–α VMP](https://raw.githack.com/raunaq-rai/Disentangling-the-Milky-Way-using-GMM/main/figures/VMP_high___-3[M_H]-2.html)
-
-- **Low–α VMP** (`-3 < [M/H] < -2`):  
-  [Low–α VMP](https://raw.githack.com/raunaq-rai/Disentangling-the-Milky-Way-using-GMM/main/figures/VMP_low____-3[M_H]-2.html)
 
 - **High–α IMP** (`-2 < [M/H] < -1.6`):  
   [High–α IMP](https://raw.githack.com/raunaq-rai/Disentangling-the-Milky-Way-using-GMM/main/figures/IMP_high___-2[M_H]-1.6.html)
 
-- **Low–α IMP** (`-2 < [M/H] < -1.6`):  
-  [Low–α IMP](https://raw.githack.com/raunaq-rai/Disentangling-the-Milky-Way-using-GMM/main/figures/IMP_low____-2[M_H]-1.6.html)
-
 - **High–α MP1** (`-1.6 < [M/H] < -1.3`):  
   [High–α MP1](https://raw.githack.com/raunaq-rai/Disentangling-the-Milky-Way-using-GMM/main/figures/MP1_high___-1.6[M_H]-1.3.html)
 
-- **Low–α MP1** (`-1.6 < [M/H] < -1.3`):  
-  [Low–α MP1](https://raw.githack.com/raunaq-rai/Disentangling-the-Milky-Way-using-GMM/main/figures/MP1_low____-1.6[M_H]-1.3.html)
-
 - **High–α MP2** (`-1.3 < [M/H] < -1.0`):  
   [High–α MP2](https://raw.githack.com/raunaq-rai/Disentangling-the-Milky-Way-using-GMM/main/figures/MP2_high___-1.3[M_H]-1.0.html)
+
+
+**Low Alpha**
+
+- **Low–α VMP** (`-3 < [M/H] < -2`):  
+  [Low–α VMP](https://raw.githack.com/raunaq-rai/Disentangling-the-Milky-Way-using-GMM/main/figures/VMP_low____-3[M_H]-2.html)
+
+- **Low–α IMP** (`-2 < [M/H] < -1.6`):  
+  [Low–α IMP](https://raw.githack.com/raunaq-rai/Disentangling-the-Milky-Way-using-GMM/main/figures/IMP_low____-2[M_H]-1.6.html)
+
+- **Low–α MP1** (`-1.6 < [M/H] < -1.3`):  
+  [Low–α MP1](https://raw.githack.com/raunaq-rai/Disentangling-the-Milky-Way-using-GMM/main/figures/MP1_low____-1.6[M_H]-1.3.html)
 
 - **Low–α MP2** (`-1.3 < [M/H] < -1.0`):  
   [Low–α MP2](https://raw.githack.com/raunaq-rai/Disentangling-the-Milky-Way-using-GMM/main/figures/MP2_low____-1.3[M_H]-1.0.html)
