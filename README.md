@@ -30,6 +30,15 @@ While the halo is commonly associated with the oldest stars, recent studies have
   - [Belokurov & Deason (2024)](https://arxiv.org/pdf/2402.12443): "Galactic Archaeology with Gaia".
   - [Bovy, Hogg & Roweis (2011)](https://projecteuclid.org/journals/annals-of-applied-statistics/volume-5/issue-2B/Extreme-deconvolution--Inferring-complete-distribution-functions-from-noisy-heterogeneous/10.1214/10-AOAS439.full): "Extreme Deconvolution: Inferring complete distribution functions from noisy, heterogeneous and incomplete observations".
 
+## Usage
+
+create environment:
+
+```bash
+conda env create -f environment.yaml
+conda activate research_project_MW_GMM
+python -m ipykernel install --user --name research_project_MW_GMM --display-name "research_project_MW_GMM"
+```
 
 
 ## Methodology
