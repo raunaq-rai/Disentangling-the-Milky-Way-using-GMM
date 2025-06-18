@@ -13,6 +13,7 @@ dependencies:
   - scipy
   - scikit-learn
   - h5py
+  - pytest
   - fitsio
   - ipykernel
   - astroquery
