@@ -96,15 +96,15 @@ $\alpha$-rich GS/E population.
 
 \newpage
 
-% -------- CONTENTS PAGE --------
-\tableofcontents
-\newpage
-
 % -------- FIGURES PAGE --------
 \listoffigures
 \newpage
 % -------- TABLES PAGE --------
 \listoftables
+\newpage
+
+% -------- CONTENTS PAGE --------
+\tableofcontents
 \newpage
 
 
@@ -124,10 +124,7 @@ stars, formed from an interstellar medium unpolluted by earlier generations of
 supernovae, are among the oldest relics in the Galaxy. Discovering them on disc-like 
 orbits would challenge the conventional view that the disc formed later from already 
 enriched gas \citep{BlandHawthorn2016}, implying instead an earlier onset of disc 
-assembly. Using Gaia DR3, the study by \citet{zhang2024existencemetalpoordiscmilky} 
-applied a Gaussian Mixture Model with Extreme Deconvolution to the velocity 
-distributions of stars across metallicity bins, probing whether a coherent disc signal 
-persists down to the lowest metallicities.
+assembly. 
 
 \subsection{Components of the Milky Way}
 
@@ -214,45 +211,51 @@ probes of the Milky Way’s earliest epochs.
 %minor ones.
 
 %------------------------------------------------------------------
-\subsection{Accreted halo and metal-poor disc origins}
+\subsection{Accreted Halo and Metal-poor Disc Origins}
 \label{subsec:halo_disc_origins}
 
-Chemical and kinematic evidence confirms that the metal-poor halo is primarily accreted.  
-The debris of the Gaia–Sausage/Enceladus (GSE) event, for instance, is traced by stars with 
-$-2\!<\![\mathrm{Fe/H}]\!<\!-1$ and extreme orbital anisotropy ($\beta\!\gtrsim\!0.8$; 
-\citealt{Belokurov2018,Helmi2018}). At $[\mathrm{Fe/H}]\!\lesssim\!-2$, an even broader mix 
-of minor mergers emerges, removing any global rotation signal \citep{Lancaster2019,Bird2021}.  
+Chemical and kinematic evidence confirms that the metal-poor halo is largely of accreted origin. 
+In the $\Lambda$CDM framework, Milky Way–mass haloes assemble hierarchically, undergoing 
+numerous minor mergers and a few major ones \citep{Springel2008}. 
+While hundreds of subhaloes are accreted over cosmic time, only a small fraction form stars: 
+below a virial mass of $\sim10^{11}\,M_\odot$, reionisation and feedback suppress star formation 
+\citep{Purcell2007,BullockBoylanKolchin2017}. As a result, the bulk of the stellar halo originates 
+from just one or two massive dwarf galaxies, such as Gaia–Sausage/Enceladus citep{Belokurov2020}, while the rest 
+contribute primarily dark matter and kinematic substructure.
 
-Several studies have uncovered stars in the range 
-$-2\!<\![\mathrm{Fe/H}]\!<\!-1$ with modest eccentricities and net prograde rotation 
-\citep{Norris1985,Chiba2000,Carollo2019,An2020}, reminiscent of a disc.  
-Gaia data have extended such findings to $[\mathrm{Fe/H}]\!<\!-2$  
-\citep{Sestito2019,Venn2020,Cordoni2020,Mardini2022}.  
-Whether these stars reflect (i) a genuine {\it in-situ} metal-poor disc or (ii) spun-up 
-debris from earlier accretion events remains debated.
+The GSE event, traced by stars with $-2 < [\mathrm{Fe/H}] < -1$ and highly radial orbits 
+($\beta \gtrsim 0.8$), is thought to dominate the inner halo \citep{Belokurov2018,Helmi2018}. 
+At lower metallicities ($[\mathrm{Fe/H}] \lesssim -2$), a broader mix of earlier, minor accretion 
+events likely erases any net rotation \citep{Lancaster2019,Bird2021}.
 
-Three broad formation scenarios have been proposed:
+Interestingly, stars with low metallicities and modest eccentricities or prograde motion 
+have also been observed \citep{Norris1985,Chiba2000,Carollo2019,An2020}, even down to 
+$[\mathrm{Fe/H}] < -2$ \citep{Sestito2019,Venn2020,Cordoni2020,Mardini2022}. 
+Whether these represent (i) a genuine \textit{in-situ} metal-poor disc or 
+(ii) spun-up debris from early mergers remains debated.
+
+Three disk formation scenarios are proposed:
 \begin{enumerate}
     \item \textbf{Early {\it in-situ} disc.}  
-          Stars form in a gas-rich disc before $z\!\sim\!4$ and are later heated or migrate outward, 
-          preserving the proto-Galaxy’s chemical signature. 
-    \item \textbf{Proto-galactic building blocks.}  
-          Very metal-poor (VMP) stars originate in several massive, gas-rich satellites accreted at high redshift, 
-          with debris dragged into the disc plane as the gaseous disc settles \citep[e.g.][]{Sestito2020}. 
+          Stars formed in a gas-rich disc before $z\sim4$ and later migrated or were dynamically heated, 
+          preserving early chemical signatures.
+    \item \textbf{Massive early mergers.}  
+          VMP stars formed in a few massive, gas-rich satellites accreted at high redshift; 
+          their debris was deposited into the inner Galaxy as the disc settled \citep[e.g.][]{Sestito2020}.
     \item \textbf{Late, minor prograde mergers.}  
-          Low-mass satellites on aligned orbits are accreted after the disc forms, 
-          depositing a kinematically cold, metal-poor stellar component \citep{Santistevan2021}.
+          Low-mass satellites on aligned orbits were accreted after disc formation, 
+          depositing a cool, metal-poor component \citep{Santistevan2021}.
 \end{enumerate}
 
-Cosmological simulations generally favour scenario\;2: early mergers dominate the VMP star budget, 
-while a coherent disc structure does not emerge until $z\!\lesssim\!2$ \citep{Gurvich2023}.
- 
-Observationally, \citet{Belokurov2022} identified \textit{Aurora}, a kinematically hot, weakly rotating  
-population with $-2\!\lesssim\![\mathrm{Fe/H}]\!\lesssim\!-1.3$, arguing against an extremely early disc.  
-Follow-up work shows Aurora to be centrally concentrated \citep{Rix2022,Arentsen2020,Arentsen2020a}, 
-consistent with heated debris rather than a long-lived thin disc.  
-Furthermore, secular processes such as bar–halo resonances can impart a modest prograde bias to halo stars, 
-mimicking a disc signal \citep{Dillamore2023}.  
+Cosmological simulations generally favour the second scenario, in which early mergers contribute the bulk 
+of the VMP star budget, while a well-defined disc structure forms later, at $z \lesssim 2$ \citep{Gurvich2023}. 
+Observationally, \citet{Belokurov2022} identified \textit{Aurora}, a weakly rotating, kinematically hot population 
+with $-2 \lesssim [\mathrm{Fe/H}] \lesssim -1.3$, arguing against the existence of an extremely early thin disc. 
+Further work shows Aurora to be centrally concentrated \citep{Rix2022,Arentsen2020,Arentsen2020a}, 
+consistent with heated or spun-up debris rather than a long-lived, coherent disc. 
+Moreover, secular processes such as bar–halo resonances may induce a mild prograde bias 
+\citep{Dillamore2023}, mimicking disc-like kinematics in the halo.
+  
 
 \subsection{This Work}
 
@@ -1304,60 +1307,30 @@ Thick disc          &  25.4 &   2.13 &  69.98 & 183.15 &  48.36 &  1.75 &  54.21
 \subsection{\texorpdfstring{Contrasting the high and low $\alpha$ GMMs}{Contrasting the high/low–alpha GMMs}}
 \label{subsec:gmm_comparison}
 
-The two chemical sequences trace very different roads from a dispersion–supported halo to
-rotationally supported discs.
+In the very-metal-poor (VMP; $[\mathrm{M/H}] < -2$) regime, both high- and low-$\alpha$ 
+populations are best fit by a single, non-rotating, isotropic halo component. The similarity 
+between the two sequences suggests that the structure of the stellar halo at these metallicities 
+is insensitive to $\alpha$-abundance.
 
-\paragraph{Very-metal-poor regime (VMP; $[\mathrm{M/H}]<-2$).}
-Both data sets are best described by a \emph{single}, non–rotating halo Gaussian.
-The velocity ellipsoids are close to isotropic
-($\sigma_{R}\!:\!\sigma_{\phi}\!:\!\sigma_{Z}\!\approx\!1\!:\!1\!:\!1$),
-with the high-$\alpha$ stars showing a slightly smaller
-$\sigma_{\phi}$, hinting at an early prograde bias.
-Compared to the results in Section~\ref{subsec:gmm}, where two components were
- identified in this metallicity regime, the emergence of only a single Gaussian 
- here may reflect the smaller sample size, limiting the ability of the model to 
- resolve multiple distinct halo structures.
+In the intermediate-metallicity regime (IMP; $-2.0 < [\mathrm{M/H}] < -1.6$), the low-$\alpha$ 
+sample separates cleanly into stationary and prograde halo components. In contrast, the 
+high-$\alpha$ fit yields four components, including two with highly radial kinematics. These are 
+less physically interpretable and likely reflect overfitting or contamination from $\alpha$-poor 
+stars misclassified at low signal-to-noise, rather than indicating the presence of a genuine 
+high-$\alpha$ GSE population.
 
+At moderately poor metallicity (MP1; $-1.6 < [\mathrm{M/H}] < -1.3$), a thick-disc component 
+emerges clearly in the high-$\alpha$ population, as expected from in-situ star formation and early 
+disc settling. In the low-$\alpha$ sequence, however, a distinct GSE-like component is now evident. 
+This supports the idea that the GSE merger contributed significantly at this metallicity, consistent 
+with the hypothesis that its stars were deposited after the high-$\alpha$ disc had begun to form 
+\citep{Helmi2018}.
 
-\paragraph{Intermediate regime (IMP; $-2.0<[\mathrm{M/H}]<-1.6$).}
-The low-$\alpha$ sample already splits into stationary and prograde halo
-Gaussians (37\,\% vs.\ 63\,\%), whereas the high-$\alpha$ mixture needs
-\textit{four} hot components, two of which have the highly radial kinematics
-characteristic of Gaia–Sausage/Enceladus (GSE).
-The GSE-like signal in the high-$\alpha$ branch is unexpected, as the GSE merger
-originated from a dwarf galaxy with a slower star formation history and is 
-therefore expected to contribute primarily $\alpha$-poor stars. 
-Its appearance here likely reflects mild contamination from \mbox{[$\alpha$/M]} 
-systematics at low signal-to-noise rather than a truly $\alpha$-rich GSE population.
-
-
-\paragraph{Disc onset (MP1; $-1.6<[\mathrm{M/H}]<-1.3$).}
-In both sequences a prograde component with a low dispersion compatible with a thick disk emerges, 
-but with different prominence and kinematics.  
-In the high-$\alpha$ mixture, the thick disc accounts for 31\% of the stars, rotating at 
-$v_{\phi}\!\sim\!148$\,km\,s$^{-1}$, indicating the emergence of a warm, 
-\textit{in-situ} rotating structure.  
-The low-$\alpha$ sample is dominated by non-disc components: the stationary halo and GSE account for 72.8\% 
-of the stars, while the remaining 27.2\% are captured by a thick-disc/prograde halo Gaussian with 
-$v_{\phi}\!\sim\!130$\,km\,s$^{-1}$ and higher dispersions.  
-This suggests that $\alpha$-rich stars settled into a disc structure earlier, while $\alpha$-poor stars at this 
-metallicity remain primarily associated with accreted debris (GS/E).
-
-
-\paragraph{Transition to disc dominance (MP2; $-1.3<[\mathrm{M/H}]<-1.0$).}
-The high-$\alpha$ fit simplifies to three Gaussians—thick disc (52 \%),
-GSE-like halo (31 \%), and a small stationary halo (17 \%).
-The low-$\alpha$ solution remains complex (five Gaussians) but now
-contains a substantial thick disc (25 \%) whose lower dispersion
-($\sigma_{\phi}\!\sim\!48$ km s$^{-1}$) and high $v_{\phi}$ are
-consistent with an early thin–disc precursor.
-The ultra–cold ($\sigma\!\lesssim\!30$ km s$^{-1}$) thin disc is
-\emph{absent} because our latitude/extinction cuts remove most
-mid-plane stars.
-
-  
-
-
+In the metal-richest bin (MP2; $-1.3 < [\mathrm{M/H}] < -1.0$), both sequences show prominent 
+thick-disc components, though the high-$\alpha$ disc is more dominant (52\%) and kinematically 
+warmer. The low-$\alpha$ thick disc is cooler and less massive (25\%), consistent with a younger, 
+possibly thin-disc progenitor. The absence of an ultra-cold thin disc in either case reflects the 
+selection bias against stars near the Galactic plane.
 
 
 
@@ -1366,7 +1339,7 @@ mid-plane stars.
 \section{Discussion} \label{sec:discussion}
 
 The discussion of the GMM process mirrors that of the discussion in \citet{zhang2024existencemetalpoordiscmilky}.
-Since the primary goal of this report was to reproduce the results of \citet{zhang2024existencemetalpoordiscmilky},
+Since the primary goal of this report was to assess the reproducability of \citet{zhang2024existencemetalpoordiscmilky},
 the discussion will focus on the differences between the results of this report and those of \citet{zhang2024existencemetalpoordiscmilky}.
 We do however mention the limitations of the GMM approach and selection effects - which are largely 
 the same as those discussed in \citet{zhang2024existencemetalpoordiscmilky}.
