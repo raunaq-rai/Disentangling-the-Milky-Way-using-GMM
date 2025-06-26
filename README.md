@@ -37,6 +37,8 @@ While the halo is commonly associated with the oldest stars, recent studies have
 create environment:
 
 ```bash
+git clone 'https://gitlab.developers.cam.ac.uk/phy/data-intensive-science-mphil/assessments/projects/rsr45.git'
+cd rsr45
 conda env create -f environment.yaml
 conda activate research_project_MW_GMM
 python -m ipykernel install --user --name research_project_MW_GMM --display-name "research_project_MW_GMM"
@@ -55,6 +57,24 @@ python -m ipykernel install --user --name research_project_MW_GMM --display-name
 3. **Metallicity Bins & Component Selection**  
    - We split stars into four metallicity bins ([M/H] < –1) and fit a separate GMM to each.  
    - The optimal number of Gaussians is chosen by minimizing the Bayesian Information Criterion (BIC) over multiple (50) random initializations, with k-means seeding to ensure stable convergence.  
+
+## Documentation
+
+- Documentation was created using [Sphinx](https://www.sphinx-doc.org/).
+- To build it locally:
+
+  ```bash
+  cd docs
+  make html
+  open build/html/index.html 
+  ```
+- However we include the build file: open using
+
+  ```bash
+  open docs/build/html/index.html
+  ```
+
+- This documentation provides API documentation for all modules in the src directory.
 
 ## Replication Results: Interactive 3D GMM Plots with Weights
 
