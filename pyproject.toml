@@ -7,7 +7,7 @@ name = "research_project"
 version = "0.1.0"
 description = "Disentangling the components of the Milky Way using Gaussian Mixture Models"
 authors = [
-  { name = "Raunaq Rai", email = "your-email@example.com" }
+  { name = "Raunaq Rai", email = "rsr45@cam.ac.uk" }
 ]
 requires-python = ">=3.10"
 dependencies = [
@@ -26,7 +26,8 @@ dependencies = [
   "dustmaps",
   "galpy",
   "plotly",
-  "pygmmis"
+  "pygmmis",
+  "sphinx"
 ]
 
 [tool.pytest.ini_options]
