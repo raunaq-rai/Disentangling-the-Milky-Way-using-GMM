@@ -21,10 +21,9 @@ extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.autosummary',
     'sphinx.ext.napoleon',
-    'sphinx.ext.viewcode',
-    'myst_nb',  
+    'sphinx.ext.viewcode',  
 ]
-nb_execution_mode = "off"
+
 autosummary_generate = True
 
 
