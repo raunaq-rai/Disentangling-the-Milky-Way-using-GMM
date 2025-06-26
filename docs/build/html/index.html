@@ -34,18 +34,86 @@
             
   <section id="disentagling-the-components-of-the-milky-way-documentation">
 <h1>Disentagling the Components of the Milky Way documentation<a class="headerlink" href="#disentagling-the-components-of-the-milky-way-documentation" title="Link to this heading">¶</a></h1>
-<p>Add your content using <code class="docutils literal notranslate"><span class="pre">reStructuredText</span></code> syntax. See the
-<a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/index.html">reStructuredText</a>
-documentation for details.</p>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">¶</a></h2>
+<p>This project investigates the formation history of the Milky Way by analysing its stellar components—specifically old, low-metallicity stars. Using Gaia DR3 data, we apply Gaussian Mixture Modelling (GMM) to disentangle Galactic structures in velocity space. We first replicate the analysis of Zhang et al. (2024) and extend it by including alpha-element abundances, following the approach of Viswanathan et al. (2024).</p>
+</section>
+<section id="goals">
+<h2>Goals<a class="headerlink" href="#goals" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Identify and characterise Milky Way components across metallicity regimes</p></li>
+<li><p>Test for the existence of a disc component at very low metallicities ([M/H] &lt; –2)</p></li>
+<li><p>Examine how chemical composition correlates with Galactic kinematic structure</p></li>
+</ul>
+</section>
+<section id="scientific-motivation">
+<h2>Scientific Motivation<a class="headerlink" href="#scientific-motivation" title="Link to this heading">¶</a></h2>
+<p>The Milky Way comprises multiple structural components including the thin and thick discs and the stellar halo. While the halo is typically considered the home of the oldest stars, recent studies suggest that a disc may exist even at very low metallicities. Confirming this would challenge traditional models of Galactic evolution and provide new insights into the Milky Way’s early assembly.</p>
+</section>
+<section id="resources">
+<h2>Resources<a class="headerlink" href="#resources" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><strong>Data:</strong>
+- Gaia DR3 RGB sample with metallicity ([Andrae et al. 2023](<a class="reference external" href="https://zenodo.org/records/7945154">https://zenodo.org/records/7945154</a>))
+- Distances: [Bailer-Jones et al. (2021)](<a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2021AJ....161..147B/abstract">https://ui.adsabs.harvard.edu/abs/2021AJ….161..147B/abstract</a>)
+- Alpha abundances: [Li et al. (2024)](<a class="reference external" href="https://arxiv.org/abs/2309.14294">https://arxiv.org/abs/2309.14294</a>)</p></li>
+<li><p><strong>Key publications:</strong>
+- Zhang et al. (2024): <a class="reference external" href="https://arxiv.org/pdf/2311.09294">On the existence of a very metal-poor disc</a>
+- Belokurov &amp; Deason (2024): <a class="reference external" href="https://arxiv.org/pdf/2402.12443">Galactic Archaeology with Gaia</a>
+- Bovy et al. (2011): <a class="reference external" href="https://projecteuclid.org/journals/annals-of-applied-statistics/volume-5/issue-2B/Extreme-deconvolution--Inferring-complete-distribution-functions-from-noisy-heterogeneous/10.1214/10-AOAS439.full">Extreme Deconvolution</a></p></li>
+</ul>
+</section>
+<section id="methodology">
+<h2>Methodology<a class="headerlink" href="#methodology" title="Link to this heading">¶</a></h2>
+<ol class="arabic simple">
+<li><p><strong>Gaussian Mixture Modelling</strong>
+The 3D velocity distribution ((v_R, <a href="#id1"><span class="problematic" id="id2">v_</span></a>phi, v_Z)) is modelled as a sum of Gaussians. Each represents a kinematic component (disc, halo, GS/E, etc.).</p></li>
+<li><p><strong>Extreme Deconvolution</strong>
+We use <cite>pyGMMis</cite> to perform Extreme Deconvolution, accounting for individual velocity uncertainties from Gaia.</p></li>
+<li><p><strong>Metallicity Binning and Component Selection</strong>
+Stars are binned by metallicity ([M/H] &lt; –1), and BIC is used to determine the number of Gaussians. We run 50 fits per bin using k-means seeding.</p></li>
+</ol>
+</section>
+<section id="interactive-visualisation">
+<h2>Interactive Visualisation<a class="headerlink" href="#interactive-visualisation" title="Link to this heading">¶</a></h2>
+<p>See README.md or project report for links</p>
+</section>
+<section id="what-s-in-this-documentation">
+<h2>What’s in this documentation?<a class="headerlink" href="#what-s-in-this-documentation" title="Link to this heading">¶</a></h2>
+<p>This documentation provides:</p>
+<ul class="simple">
+<li><p><strong>API documentation</strong> for all modules in the <cite>src/</cite> directory, including:
+- Data loading and preprocessing
+- Model fitting and evaluation
+- Plotting and visualisation functions</p></li>
+</ul>
+<p>Each module includes:
+- Function and class docstrings
+- Argument descriptions
+- Return values
+- Usage examples where available</p>
+</section>
+<section id="contents">
+<h2>Contents<a class="headerlink" href="#contents" title="Link to this heading">¶</a></h2>
 <div class="toctree-wrapper compound">
-<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<p class="caption" role="heading"><span class="caption-text">Project Modules:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="modules.html">src</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="src.html">src package</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="src.html">src package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="src.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.html#module-src.bic_vs_components">src.bic_vs_components module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.html#module-src.gmm_analysis">src.gmm_analysis module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.html#module-src.montecarlo_velocity">src.montecarlo_velocity module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.html#module-src.residual_analysis">src.residual_analysis module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.html#module-src">Module contents</a></li>
+</ul>
+</li>
 </ul>
 </div>
+</section>
 </section>
 
 
@@ -74,9 +142,10 @@ documentation for details.</p>
     </div>
 </search>
 <script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
-<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<p class="caption" role="heading"><span class="caption-text">Project Modules:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="modules.html">src</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src.html">src package</a></li>
 </ul>
 
 <div class="relations">

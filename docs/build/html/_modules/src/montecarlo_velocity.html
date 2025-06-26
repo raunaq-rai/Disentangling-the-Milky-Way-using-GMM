@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>src.montecarlo_velocity &#8212; Disentagling the Components of the Milky Way 0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="../../_static/basic.css?v=686e5160" />
+    <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css?v=27fed22d" />
+    <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for src.montecarlo_velocity</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">montecarlo_velocity.py</span>
+
+<span class="sd">This module provides utilities for computing velocity uncertainties of stars using</span>
+<span class="sd">Monte Carlo sampling, based on astrometric measurements and the Galactocentric frame.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tqdm</span><span class="w"> </span><span class="kn">import</span> <span class="n">tqdm</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">astropy.units</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">u</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">astropy.coordinates</span><span class="w"> </span><span class="kn">import</span> <span class="n">ICRS</span><span class="p">,</span> <span class="n">Galactocentric</span><span class="p">,</span> <span class="n">CylindricalRepresentation</span><span class="p">,</span> <span class="n">CylindricalDifferential</span>
+
+
+<div class="viewcode-block" id="generate_monte_carlo_samples">
+<a class="viewcode-back" href="../../src.html#src.montecarlo_velocity.generate_monte_carlo_samples">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">generate_monte_carlo_samples</span><span class="p">(</span><span class="n">df_chunk</span><span class="p">,</span> <span class="n">n_samples</span><span class="p">,</span> <span class="n">correlation_pmra_pmdec</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Generate Monte Carlo samples for each star using its uncertainties.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">    - df_chunk (pd.DataFrame): Subset of the dataframe containing stellar data.</span>
+<span class="sd">    - n_samples (int): Number of samples per star.</span>
+<span class="sd">    - correlation_pmra_pmdec (float): Correlation coefficient between PMRA and PMDEC.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">    - Tuple of arrays: (ra_samples, dec_samples, distance_samples,</span>
+<span class="sd">                        pmra_samples, pmdec_samples, vlos_samples)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">num_stars</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">df_chunk</span><span class="p">)</span>
+
+    <span class="n">ra</span><span class="p">,</span> <span class="n">dec</span><span class="p">,</span> <span class="n">distance</span> <span class="o">=</span> <span class="n">df_chunk</span><span class="p">[</span><span class="s1">&#39;ra&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">df_chunk</span><span class="p">[</span><span class="s1">&#39;dec&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">df_chunk</span><span class="p">[</span><span class="s1">&#39;rpgeo&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+    <span class="n">pmra</span><span class="p">,</span> <span class="n">pmdec</span> <span class="o">=</span> <span class="n">df_chunk</span><span class="p">[</span><span class="s1">&#39;pmra&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">df_chunk</span><span class="p">[</span><span class="s1">&#39;pmdec&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+    <span class="n">vlos</span> <span class="o">=</span> <span class="n">df_chunk</span><span class="p">[</span><span class="s1">&#39;radial_velocity&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+
+    <span class="n">pmra_err</span> <span class="o">=</span> <span class="n">df_chunk</span><span class="p">[</span><span class="s1">&#39;pmra_error&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+    <span class="n">pmdec_err</span> <span class="o">=</span> <span class="n">df_chunk</span><span class="p">[</span><span class="s1">&#39;pmdec_error&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+    <span class="n">dist_err</span> <span class="o">=</span> <span class="n">df_chunk</span><span class="p">[</span><span class="s1">&#39;rpgeo_error&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+    <span class="n">vlos_err</span> <span class="o">=</span> <span class="n">df_chunk</span><span class="p">[</span><span class="s1">&#39;radial_velocity_error&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+    <span class="n">parallax_err</span> <span class="o">=</span> <span class="n">df_chunk</span><span class="p">[</span><span class="s1">&#39;parallax_error&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+
+    <span class="n">ra_samples</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">ra</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">],</span> <span class="n">parallax_err</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">],</span> <span class="p">(</span><span class="n">num_stars</span><span class="p">,</span> <span class="n">n_samples</span><span class="p">))</span>
+    <span class="n">dec_samples</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">dec</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">],</span> <span class="n">parallax_err</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">],</span> <span class="p">(</span><span class="n">num_stars</span><span class="p">,</span> <span class="n">n_samples</span><span class="p">))</span>
+    <span class="n">distance_samples</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">distance</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">],</span> <span class="n">dist_err</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">],</span> <span class="p">(</span><span class="n">num_stars</span><span class="p">,</span> <span class="n">n_samples</span><span class="p">))</span>
+    <span class="n">vlos_samples</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">vlos</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">],</span> <span class="n">vlos_err</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">],</span> <span class="p">(</span><span class="n">num_stars</span><span class="p">,</span> <span class="n">n_samples</span><span class="p">))</span>
+
+    <span class="n">pmra_samples</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">num_stars</span><span class="p">,</span> <span class="n">n_samples</span><span class="p">))</span>
+    <span class="n">pmdec_samples</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">num_stars</span><span class="p">,</span> <span class="n">n_samples</span><span class="p">))</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">num_stars</span><span class="p">),</span> <span class="n">desc</span><span class="o">=</span><span class="s2">&quot;Generating Monte Carlo Samples&quot;</span><span class="p">):</span>
+        <span class="n">cov</span> <span class="o">=</span> <span class="n">correlation_pmra_pmdec</span> <span class="o">*</span> <span class="n">pmra_err</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">pmdec_err</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">cov_matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">pmra_err</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">cov</span><span class="p">],</span> <span class="p">[</span><span class="n">cov</span><span class="p">,</span> <span class="n">pmdec_err</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">]])</span>
+        <span class="n">samples</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">multivariate_normal</span><span class="p">([</span><span class="n">pmra</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">pmdec</span><span class="p">[</span><span class="n">i</span><span class="p">]],</span> <span class="n">cov_matrix</span><span class="p">,</span> <span class="n">n_samples</span><span class="p">)</span>
+        <span class="n">pmra_samples</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:],</span> <span class="n">pmdec_samples</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">samples</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">samples</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span>
+
+    <span class="n">dec_samples</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">dec_samples</span><span class="p">,</span> <span class="o">-</span><span class="mi">90</span><span class="p">,</span> <span class="mi">90</span><span class="p">)</span>
+    <span class="n">ra_samples</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mod</span><span class="p">(</span><span class="n">ra_samples</span><span class="p">,</span> <span class="mi">360</span><span class="p">)</span>
+    <span class="n">distance_samples</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">distance_samples</span><span class="p">,</span> <span class="mf">1e-5</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">ra_samples</span><span class="p">,</span> <span class="n">dec_samples</span><span class="p">,</span> <span class="n">distance_samples</span><span class="p">,</span> <span class="n">pmra_samples</span><span class="p">,</span> <span class="n">pmdec_samples</span><span class="p">,</span> <span class="n">vlos_samples</span></div>
+
+
+
+<div class="viewcode-block" id="compute_velocity_components_with_uncertainty">
+<a class="viewcode-back" href="../../src.html#src.montecarlo_velocity.compute_velocity_components_with_uncertainty">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">compute_velocity_components_with_uncertainty</span><span class="p">(</span><span class="n">ra</span><span class="p">,</span> <span class="n">dec</span><span class="p">,</span> <span class="n">distance</span><span class="p">,</span> <span class="n">pmra</span><span class="p">,</span> <span class="n">pmdec</span><span class="p">,</span> <span class="n">vlos</span><span class="p">,</span> <span class="n">gc_frame</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Compute cylindrical velocity components (v_R, v_phi, v_Z) in km/s for stars, </span>
+<span class="sd">    transforming input astrometric data to a Galactocentric frame.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    ra, dec : astropy.units.Quantity</span>
+<span class="sd">        Sky positions (e.g., in degrees).</span>
+<span class="sd">    distance : astropy.units.Quantity</span>
+<span class="sd">        Distances (e.g., in parsecs).</span>
+<span class="sd">    pmra, pmdec : astropy.units.Quantity</span>
+<span class="sd">        Proper motions (e.g., in mas/yr).</span>
+<span class="sd">    vlos : astropy.units.Quantity</span>
+<span class="sd">        Radial velocities (e.g., in km/s).</span>
+<span class="sd">    gc_frame : Galactocentric</span>
+<span class="sd">        Target Galactocentric frame.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    v_R, v_phi, v_Z : np.ndarray</span>
+<span class="sd">        Cylindrical velocity components in km/s, with NaNs for invalid inputs.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Identify valid rows</span>
+    <span class="n">mask</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="n">ra</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">np</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="n">dec</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">np</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="n">distance</span><span class="p">)</span> <span class="o">&amp;</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="n">pmra</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">np</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="n">pmdec</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">np</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="n">vlos</span><span class="p">)</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Preallocate output arrays</span>
+    <span class="n">v_R_full</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full_like</span><span class="p">(</span><span class="n">ra</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+    <span class="n">v_phi_full</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full_like</span><span class="p">(</span><span class="n">ra</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+    <span class="n">v_Z_full</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full_like</span><span class="p">(</span><span class="n">ra</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">mask</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">v_R_full</span><span class="p">,</span> <span class="n">v_phi_full</span><span class="p">,</span> <span class="n">v_Z_full</span>
+
+    <span class="n">coords</span> <span class="o">=</span> <span class="n">ICRS</span><span class="p">(</span>
+        <span class="n">ra</span><span class="o">=</span><span class="n">ra</span><span class="p">[</span><span class="n">mask</span><span class="p">],</span> <span class="n">dec</span><span class="o">=</span><span class="n">dec</span><span class="p">[</span><span class="n">mask</span><span class="p">],</span> <span class="n">distance</span><span class="o">=</span><span class="n">distance</span><span class="p">[</span><span class="n">mask</span><span class="p">],</span>
+        <span class="n">pm_ra_cosdec</span><span class="o">=</span><span class="n">pmra</span><span class="p">[</span><span class="n">mask</span><span class="p">],</span> <span class="n">pm_dec</span><span class="o">=</span><span class="n">pmdec</span><span class="p">[</span><span class="n">mask</span><span class="p">],</span> <span class="n">radial_velocity</span><span class="o">=</span><span class="n">vlos</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span>
+    <span class="p">)</span>
+
+    <span class="n">cg</span> <span class="o">=</span> <span class="n">coords</span><span class="o">.</span><span class="n">transform_to</span><span class="p">(</span><span class="n">gc_frame</span><span class="p">)</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">cg_cyl</span> <span class="o">=</span> <span class="n">cg</span><span class="o">.</span><span class="n">represent_as</span><span class="p">(</span><span class="n">CylindricalRepresentation</span><span class="p">,</span> <span class="n">CylindricalDifferential</span><span class="p">)</span>
+        <span class="n">v_R</span> <span class="o">=</span> <span class="n">cg_cyl</span><span class="o">.</span><span class="n">differentials</span><span class="p">[</span><span class="s1">&#39;s&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">d_rho</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">km</span><span class="o">/</span><span class="n">u</span><span class="o">.</span><span class="n">s</span><span class="p">)</span><span class="o">.</span><span class="n">value</span>
+        <span class="n">v_phi</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="n">cg_cyl</span><span class="o">.</span><span class="n">differentials</span><span class="p">[</span><span class="s1">&#39;s&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">d_phi</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">rad</span><span class="o">/</span><span class="n">u</span><span class="o">.</span><span class="n">s</span><span class="p">)</span> <span class="o">*</span> <span class="n">cg_cyl</span><span class="o">.</span><span class="n">rho</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">km</span><span class="p">))</span><span class="o">.</span><span class="n">value</span>
+        <span class="n">v_Z</span> <span class="o">=</span> <span class="n">cg_cyl</span><span class="o">.</span><span class="n">differentials</span><span class="p">[</span><span class="s1">&#39;s&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">d_z</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">km</span><span class="o">/</span><span class="n">u</span><span class="o">.</span><span class="n">s</span><span class="p">)</span><span class="o">.</span><span class="n">value</span>
+
+        <span class="n">v_R_full</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span> <span class="o">=</span> <span class="n">v_R</span>
+        <span class="n">v_phi_full</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span> <span class="o">=</span> <span class="n">v_phi</span>
+        <span class="n">v_Z_full</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span> <span class="o">=</span> <span class="n">v_Z</span>
+
+    <span class="k">except</span> <span class="p">(</span><span class="ne">AttributeError</span><span class="p">,</span> <span class="ne">TypeError</span><span class="p">)</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="c1"># Catch cases where differentials are missing entirely (e.g. empty cg)</span>
+        <span class="k">pass</span>
+
+    <span class="k">return</span> <span class="n">v_R_full</span><span class="p">,</span> <span class="n">v_phi_full</span><span class="p">,</span> <span class="n">v_Z_full</span></div>
+
+
+
+<div class="viewcode-block" id="compute_velocity_components_for_samples">
+<a class="viewcode-back" href="../../src.html#src.montecarlo_velocity.compute_velocity_components_for_samples">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">compute_velocity_components_for_samples</span><span class="p">(</span><span class="n">ra_samples</span><span class="p">,</span> <span class="n">dec_samples</span><span class="p">,</span> <span class="n">distance_samples</span><span class="p">,</span>
+                                            <span class="n">pmra_samples</span><span class="p">,</span> <span class="n">pmdec_samples</span><span class="p">,</span> <span class="n">vlos_samples</span><span class="p">,</span> <span class="n">gc_frame</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Compute (v_R, v_phi, v_Z) for all Monte Carlo samples.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">    - v_R_samples, v_phi_samples, v_Z_samples: np.ndarray</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">num_stars</span><span class="p">,</span> <span class="n">n_samples</span> <span class="o">=</span> <span class="n">ra_samples</span><span class="o">.</span><span class="n">shape</span>
+
+    <span class="n">v_R_samples</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">num_stars</span><span class="p">,</span> <span class="n">n_samples</span><span class="p">))</span>
+    <span class="n">v_phi_samples</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">num_stars</span><span class="p">,</span> <span class="n">n_samples</span><span class="p">))</span>
+    <span class="n">v_Z_samples</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">num_stars</span><span class="p">,</span> <span class="n">n_samples</span><span class="p">))</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">n_samples</span><span class="p">),</span> <span class="n">desc</span><span class="o">=</span><span class="s2">&quot;Computing Velocities for Monte Carlo Samples&quot;</span><span class="p">):</span>
+        <span class="n">v_R</span><span class="p">,</span> <span class="n">v_phi</span><span class="p">,</span> <span class="n">v_Z</span> <span class="o">=</span> <span class="n">compute_velocity_components_with_uncertainty</span><span class="p">(</span>
+            <span class="n">ra_samples</span><span class="p">[:,</span> <span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">deg</span><span class="p">,</span> <span class="n">dec_samples</span><span class="p">[:,</span> <span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">deg</span><span class="p">,</span>
+            <span class="n">distance_samples</span><span class="p">[:,</span> <span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">pc</span><span class="p">,</span>
+            <span class="n">pmra_samples</span><span class="p">[:,</span> <span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">mas</span><span class="o">/</span><span class="n">u</span><span class="o">.</span><span class="n">yr</span><span class="p">,</span> <span class="n">pmdec_samples</span><span class="p">[:,</span> <span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">mas</span><span class="o">/</span><span class="n">u</span><span class="o">.</span><span class="n">yr</span><span class="p">,</span>
+            <span class="n">vlos_samples</span><span class="p">[:,</span> <span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">km</span><span class="o">/</span><span class="n">u</span><span class="o">.</span><span class="n">s</span><span class="p">,</span> <span class="n">gc_frame</span>
+        <span class="p">)</span>
+        <span class="n">v_R_samples</span><span class="p">[:,</span> <span class="n">i</span><span class="p">],</span> <span class="n">v_phi_samples</span><span class="p">[:,</span> <span class="n">i</span><span class="p">],</span> <span class="n">v_Z_samples</span><span class="p">[:,</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">v_R</span><span class="p">,</span> <span class="n">v_phi</span><span class="p">,</span> <span class="n">v_Z</span>
+
+    <span class="k">return</span> <span class="n">v_R_samples</span><span class="p">,</span> <span class="n">v_phi_samples</span><span class="p">,</span> <span class="n">v_Z_samples</span></div>
+
+
+
+<div class="viewcode-block" id="process_data_monte_carlo">
+<a class="viewcode-back" href="../../src.html#src.montecarlo_velocity.process_data_monte_carlo">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">process_data_monte_carlo</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">gc_frame</span><span class="p">,</span> <span class="n">chunk_size</span><span class="o">=</span><span class="mi">100000</span><span class="p">,</span> <span class="n">n_samples</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">correlation_pmra_pmdec</span><span class="o">=</span><span class="mf">0.0</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Process dataset in chunks, compute Monte Carlo velocity uncertainties.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">    - pd.DataFrame: With added v_R_uncertainty, v_phi_uncertainty, v_Z_uncertainty</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">num_chunks</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span> <span class="o">//</span> <span class="n">chunk_size</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="n">df_combined</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">chunk_num</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_chunks</span><span class="p">):</span>
+        <span class="n">start_idx</span><span class="p">,</span> <span class="n">end_idx</span> <span class="o">=</span> <span class="n">chunk_num</span> <span class="o">*</span> <span class="n">chunk_size</span><span class="p">,</span> <span class="nb">min</span><span class="p">((</span><span class="n">chunk_num</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">chunk_size</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">))</span>
+        <span class="n">df_chunk</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">start_idx</span><span class="p">:</span><span class="n">end_idx</span><span class="p">]</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="n">ra_samp</span><span class="p">,</span> <span class="n">dec_samp</span><span class="p">,</span> <span class="n">dist_samp</span><span class="p">,</span> <span class="n">pmra_samp</span><span class="p">,</span> <span class="n">pmdec_samp</span><span class="p">,</span> <span class="n">vlos_samp</span> <span class="o">=</span> <span class="n">generate_monte_carlo_samples</span><span class="p">(</span>
+            <span class="n">df_chunk</span><span class="p">,</span> <span class="n">n_samples</span><span class="p">,</span> <span class="n">correlation_pmra_pmdec</span>
+        <span class="p">)</span>
+
+        <span class="n">v_R_samp</span><span class="p">,</span> <span class="n">v_phi_samp</span><span class="p">,</span> <span class="n">v_Z_samp</span> <span class="o">=</span> <span class="n">compute_velocity_components_for_samples</span><span class="p">(</span>
+            <span class="n">ra_samp</span><span class="p">,</span> <span class="n">dec_samp</span><span class="p">,</span> <span class="n">dist_samp</span><span class="p">,</span> <span class="n">pmra_samp</span><span class="p">,</span> <span class="n">pmdec_samp</span><span class="p">,</span> <span class="n">vlos_samp</span><span class="p">,</span> <span class="n">gc_frame</span>
+        <span class="p">)</span>
+
+        <span class="n">df_chunk</span><span class="p">[</span><span class="s1">&#39;v_R_uncertainty&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">v_R_samp</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">df_chunk</span><span class="p">[</span><span class="s1">&#39;v_phi_uncertainty&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">v_phi_samp</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">df_chunk</span><span class="p">[</span><span class="s1">&#39;v_Z_uncertainty&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">v_Z_samp</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="n">df_combined</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">df_chunk</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Processed chunk </span><span class="si">{</span><span class="n">chunk_num</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">num_chunks</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">df_combined</span><span class="p">,</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></div>
+
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">Disentagling the Components of the Milky Way</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Project Modules:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">src</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../src.html">src package</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2025, Raunaq Rai.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 8.1.3</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>
