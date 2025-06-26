@@ -14,16 +14,22 @@ from astropy.coordinates import ICRS, Galactocentric, CylindricalRepresentation,
 
 def generate_monte_carlo_samples(df_chunk, n_samples, correlation_pmra_pmdec):
     """
-    Generate Monte Carlo samples for each star using its uncertainties.
+    Generate Monte-Carlo samples for each star using its uncertainties.
 
-    Parameters:
-    - df_chunk (pd.DataFrame): Subset of the dataframe containing stellar data.
-    - n_samples (int): Number of samples per star.
-    - correlation_pmra_pmdec (float): Correlation coefficient between PMRA and PMDEC.
+    Parameters
+    ----------
+    df_chunk : pandas.DataFrame
+        Subset of the dataframe containing stellar data.
+    n_samples : int
+        Number of samples to draw for each star.
+    correlation_pmra_pmdec : float
+        Correlation coefficient between **pmra** and **pmdec**.
 
-    Returns:
-    - Tuple of arrays: (ra_samples, dec_samples, distance_samples,
-                        pmra_samples, pmdec_samples, vlos_samples)
+    Returns
+    -------
+    tuple of ndarray
+        ``(ra_samples, dec_samples, distance_samples,
+        pmra_samples, pmdec_samples, vlos_samples)``.
     """
     num_stars = len(df_chunk)
 

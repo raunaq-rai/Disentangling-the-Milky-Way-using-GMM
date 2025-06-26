@@ -8,6 +8,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=5ecbeea2" />
     <link rel="stylesheet" type="text/css" href="../../_static/basic.css?v=686e5160" />
     <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css?v=27fed22d" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <script src="../../_static/documentation_options.js?v=2709fde1"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
@@ -49,16 +50,22 @@
 <a class="viewcode-back" href="../../src.html#src.montecarlo_velocity.generate_monte_carlo_samples">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">generate_monte_carlo_samples</span><span class="p">(</span><span class="n">df_chunk</span><span class="p">,</span> <span class="n">n_samples</span><span class="p">,</span> <span class="n">correlation_pmra_pmdec</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Generate Monte Carlo samples for each star using its uncertainties.</span>
+<span class="sd">    Generate Monte-Carlo samples for each star using its uncertainties.</span>
 
-<span class="sd">    Parameters:</span>
-<span class="sd">    - df_chunk (pd.DataFrame): Subset of the dataframe containing stellar data.</span>
-<span class="sd">    - n_samples (int): Number of samples per star.</span>
-<span class="sd">    - correlation_pmra_pmdec (float): Correlation coefficient between PMRA and PMDEC.</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    df_chunk : pandas.DataFrame</span>
+<span class="sd">        Subset of the dataframe containing stellar data.</span>
+<span class="sd">    n_samples : int</span>
+<span class="sd">        Number of samples to draw for each star.</span>
+<span class="sd">    correlation_pmra_pmdec : float</span>
+<span class="sd">        Correlation coefficient between **pmra** and **pmdec**.</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">    - Tuple of arrays: (ra_samples, dec_samples, distance_samples,</span>
-<span class="sd">                        pmra_samples, pmdec_samples, vlos_samples)</span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    tuple of ndarray</span>
+<span class="sd">        ``(ra_samples, dec_samples, distance_samples,</span>
+<span class="sd">        pmra_samples, pmdec_samples, vlos_samples)``.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">num_stars</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">df_chunk</span><span class="p">)</span>
 

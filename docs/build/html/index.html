@@ -5,13 +5,15 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Disentagling the Components of the Milky Way documentation &#8212; Disentagling the Components of the Milky Way 0.1 documentation</title>
+    <title>Disentangling the Components of the Milky Way &#8212; Disentagling the Components of the Milky Way 0.1 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=5ecbeea2" />
     <link rel="stylesheet" type="text/css" href="_static/basic.css?v=686e5160" />
     <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=27fed22d" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <script src="_static/documentation_options.js?v=2709fde1"></script>
     <script src="_static/doctools.js?v=9bcbadda"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="src" href="modules.html" />
@@ -32,51 +34,67 @@
 
           <div class="body" role="main">
             
-  <section id="disentagling-the-components-of-the-milky-way-documentation">
-<h1>Disentagling the Components of the Milky Way documentation<a class="headerlink" href="#disentagling-the-components-of-the-milky-way-documentation" title="Link to this heading">¶</a></h1>
+  <section id="disentangling-the-components-of-the-milky-way">
+<h1>Disentangling the Components of the Milky Way<a class="headerlink" href="#disentangling-the-components-of-the-milky-way" title="Link to this heading">¶</a></h1>
 <section id="overview">
 <h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">¶</a></h2>
-<p>This project investigates the formation history of the Milky Way by analysing its stellar components—specifically old, low-metallicity stars. Using Gaia DR3 data, we apply Gaussian Mixture Modelling (GMM) to disentangle Galactic structures in velocity space. We first replicate the analysis of Zhang et al. (2024) and extend it by including alpha-element abundances, following the approach of Viswanathan et al. (2024).</p>
+<p>This project investigates the formation history of the Milky Way by analysing its
+stellar components—specifically old, low-metallicity stars.  Using Gaia DR3 data
+we apply Gaussian Mixture Modelling (GMM) to disentangle Galactic structures in
+velocity space.  We first replicate the analysis of Zhang <em>et al.</em> (2024) and
+extend it by including alpha-element abundances, following Viswanathan
+<em>et al.</em> (2024).</p>
 </section>
 <section id="goals">
 <h2>Goals<a class="headerlink" href="#goals" title="Link to this heading">¶</a></h2>
 <ul class="simple">
-<li><p>Identify and characterise Milky Way components across metallicity regimes</p></li>
-<li><p>Test for the existence of a disc component at very low metallicities ([M/H] &lt; –2)</p></li>
-<li><p>Examine how chemical composition correlates with Galactic kinematic structure</p></li>
+<li><p><strong>Identify and characterise</strong> Milky Way components across metallicity regimes</p></li>
+<li><p><strong>Test</strong> for a disc component at very low metallicities (<span class="math notranslate nohighlight">\([\mathrm{M/H}]&lt;-2\)</span>)</p></li>
+<li><p><strong>Examine</strong> how chemical composition correlates with Galactic kinematic structure</p></li>
 </ul>
 </section>
 <section id="scientific-motivation">
 <h2>Scientific Motivation<a class="headerlink" href="#scientific-motivation" title="Link to this heading">¶</a></h2>
-<p>The Milky Way comprises multiple structural components including the thin and thick discs and the stellar halo. While the halo is typically considered the home of the oldest stars, recent studies suggest that a disc may exist even at very low metallicities. Confirming this would challenge traditional models of Galactic evolution and provide new insights into the Milky Way’s early assembly.</p>
+<p>The Milky Way comprises several structural components including the thin and
+thick discs and the stellar halo. While the halo is usually regarded as the home
+of the oldest stars, recent studies hint that a disc may exist even at very low
+metallicities. Confirming this would challenge traditional pictures of Galactic
+evolution and shed new light on the Galaxy’s earliest assembly.</p>
 </section>
 <section id="resources">
 <h2>Resources<a class="headerlink" href="#resources" title="Link to this heading">¶</a></h2>
+<p><em>Data</em></p>
 <ul class="simple">
-<li><p><strong>Data:</strong>
-- Gaia DR3 RGB sample with metallicity ([Andrae et al. 2023](<a class="reference external" href="https://zenodo.org/records/7945154">https://zenodo.org/records/7945154</a>))
-- Distances: [Bailer-Jones et al. (2021)](<a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2021AJ....161..147B/abstract">https://ui.adsabs.harvard.edu/abs/2021AJ….161..147B/abstract</a>)
-- Alpha abundances: [Li et al. (2024)](<a class="reference external" href="https://arxiv.org/abs/2309.14294">https://arxiv.org/abs/2309.14294</a>)</p></li>
-<li><p><strong>Key publications:</strong>
-- Zhang et al. (2024): <a class="reference external" href="https://arxiv.org/pdf/2311.09294">On the existence of a very metal-poor disc</a>
-- Belokurov &amp; Deason (2024): <a class="reference external" href="https://arxiv.org/pdf/2402.12443">Galactic Archaeology with Gaia</a>
-- Bovy et al. (2011): <a class="reference external" href="https://projecteuclid.org/journals/annals-of-applied-statistics/volume-5/issue-2B/Extreme-deconvolution--Inferring-complete-distribution-functions-from-noisy-heterogeneous/10.1214/10-AOAS439.full">Extreme Deconvolution</a></p></li>
+<li><p>Gaia DR3 RGB sample with metallicity — <a class="reference external" href="https://zenodo.org/records/7945154">Andrae et al. 2023</a></p></li>
+<li><p>Distances — <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2021AJ....161..147B/abstract">Bailer-Jones et al. 2021</a></p></li>
+<li><p>Alpha abundances — <a class="reference external" href="https://arxiv.org/abs/2309.14294">Li et al. 2024</a></p></li>
+</ul>
+<p><em>Key publications</em></p>
+<ul class="simple">
+<li><p>Zhang et al. 2024 — <a class="reference external" href="https://arxiv.org/pdf/2311.09294">On the existence of a very metal-poor disc</a></p></li>
+<li><p>Belokurov &amp; Deason 2024 — <a class="reference external" href="https://arxiv.org/pdf/2402.12443">Galactic Archaeology with Gaia</a></p></li>
+<li><p>Bovy et al. 2011 — <a class="reference external" href="https://projecteuclid.org/journals/annals-of-applied-statistics/volume-5/issue-2B/Extreme-deconvolution--Inferring-complete-distribution-functions-from-noisy-heterogeneous/10.1214/10-AOAS439.full">Extreme Deconvolution</a></p></li>
 </ul>
 </section>
 <section id="methodology">
 <h2>Methodology<a class="headerlink" href="#methodology" title="Link to this heading">¶</a></h2>
 <ol class="arabic simple">
 <li><p><strong>Gaussian Mixture Modelling</strong>
-The 3D velocity distribution ((v_R, <a href="#id1"><span class="problematic" id="id2">v_</span></a>phi, v_Z)) is modelled as a sum of Gaussians. Each represents a kinematic component (disc, halo, GS/E, etc.).</p></li>
+The 3-D velocity distribution <span class="math notranslate nohighlight">\((v_R,\,v_\phi,\,v_Z)\)</span> is modelled as a
+sum of multivariate Gaussians, each representing a kinematic component
+(disc, halo, GS/E, etc.).</p></li>
 <li><p><strong>Extreme Deconvolution</strong>
-We use <cite>pyGMMis</cite> to perform Extreme Deconvolution, accounting for individual velocity uncertainties from Gaia.</p></li>
-<li><p><strong>Metallicity Binning and Component Selection</strong>
-Stars are binned by metallicity ([M/H] &lt; –1), and BIC is used to determine the number of Gaussians. We run 50 fits per bin using k-means seeding.</p></li>
+We use <em>pyGMMis</em> to perform Extreme Deconvolution, incorporating the
+per-star velocity uncertainties provided by Gaia directly in the fit.</p></li>
+<li><p><strong>Metallicity binning &amp; component selection</strong>
+Stars are split into metallicity bins (<span class="math notranslate nohighlight">\([\mathrm{M/H}]&lt;-1\)</span>).  For each
+bin we run 50 random initialisations and choose the number of Gaussians that
+minimises the Bayesian Information Criterion (BIC).</p></li>
 </ol>
 </section>
 <section id="interactive-visualisation">
 <h2>Interactive Visualisation<a class="headerlink" href="#interactive-visualisation" title="Link to this heading">¶</a></h2>
-<p>See README.md or project report for links</p>
+<p>Interactive Plotly figures are listed in the project <em>README</em> and main report.</p>
 </section>
 <section id="what-s-in-this-documentation">
 <h2>What’s in this documentation?<a class="headerlink" href="#what-s-in-this-documentation" title="Link to this heading">¶</a></h2>
@@ -90,8 +108,7 @@ Stars are binned by metallicity ([M/H] &lt; –1), and BIC is used to determine 
 <p>Each module includes:
 - Function and class docstrings
 - Argument descriptions
-- Return values
-- Usage examples where available</p>
+- Return values</p>
 </section>
 <section id="contents">
 <h2>Contents<a class="headerlink" href="#contents" title="Link to this heading">¶</a></h2>
