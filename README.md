@@ -20,6 +20,7 @@ We then extend this analysis by incorporating alpha-element abundance to analysi
 - [License](#license)
 - [Replication&nbsp;Results](#replication-results-interactive-3d-gmm-plots-with-weights)
 - [Expansion&nbsp;Results](#expansion-results-interactive-3d-gmm-plots-with-weights)
+- [Authors and Acknowledgment](#authors-and-acknowledgment)
 
 ## Project Goals
 
