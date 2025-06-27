@@ -6,7 +6,7 @@
 ## Overview
 This project aims to study the formation history of the Milky Way by analysing its stellar components, with a particular focus on old, low-metallicity stars. The goal is to disentangle the components of the Galaxy (e.g., thin disc, thick disc, and halo) using data from the Gaia DR3 release and apply Gaussian Mixture Modelling (GMM) to identify structures in velocity space. This report replicates and extends the analysis done by [Zhang et al. (2024)](https://arxiv.org/pdf/2311.09294).
 
-We then extend this analysis by incorporating alpha-element abundance to analysis as done by [Viswanathan et al . (2024)](https://arxiv.org/abs/2411.12165). We fit a number of gaussian components for each bin governed by BIC score and observe the difference between Milky Way components in teh high and low alpha regimes.
+We then extend this analysis by incorporating alpha-element abundance to analysis as done by [Viswanathan et al . (2024)](https://arxiv.org/abs/2411.12165). We fit a number of gaussian components for each bin governed by BIC score and observe the difference between Milky Way components in the high and low alpha regimes.
 
 
 ## Table of Contents
