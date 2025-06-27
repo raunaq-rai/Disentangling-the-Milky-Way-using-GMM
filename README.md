@@ -1,9 +1,25 @@
 # Disentangling the Components of the Milky Way with Gaussian Mixture Modelling
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+
+
 ## Overview
 This project aims to study the formation history of the Milky Way by analysing its stellar components, with a particular focus on old, low-metallicity stars. The goal is to disentangle the components of the Galaxy (e.g., thin disc, thick disc, and halo) using data from the Gaia DR3 release and apply Gaussian Mixture Modelling (GMM) to identify structures in velocity space. This report replicates and extends the analysis done by [Zhang et al. (2024)](https://arxiv.org/pdf/2311.09294).
 
 We then extend this analysis by incorporating alpha-element abundance to analysis as done by [Viswanathan et al . (2024)](https://arxiv.org/abs/2411.12165). We fit a number of gaussian components for each bin governed by BIC score and observe the difference between Milky Way components in teh high and low alpha regimes.
+
+
+## Table of Contents
+- [Overview](#overview)
+- [Project&nbsp;Goals](#project-goals)
+- [Why&nbsp;This&nbsp;Matters](#why-this-matters)
+- [Resources](#resources)
+- [Usage](#usage)
+- [Methodology](#methodology)
+- [Documentation](#documentation)
+- [License](#license)
+- [Replication&nbsp;Results](#replication-results-interactive-3d-gmm-plots-with-weights)
+- [Expansion&nbsp;Results](#expansion-results-interactive-3d-gmm-plots-with-weights)
 
 ## Project Goals
 
@@ -44,6 +60,10 @@ conda activate research_project_MW_GMM
 python -m ipykernel install --user --name research_project_MW_GMM --display-name "research_project_MW_GMM"
 ```
 
+## License
+
+This project is licensed under the [MIT License](https://opensource.org/licenses/MIT).
+
 
 ## Methodology
 
@@ -67,11 +87,6 @@ python -m ipykernel install --user --name research_project_MW_GMM --display-name
   cd docs
   make html
   open build/html/index.html 
-  ```
-- However we include the build file: open using
-
-  ```bash
-  open docs/build/html/index.html
   ```
 
 - This documentation provides API documentation for all modules in the src directory.
@@ -121,3 +136,10 @@ Click any of the links below to open the full interactive 3D Plotly widget (with
   [Low–α MP2](https://raw.githack.com/raunaq-rai/Disentangling-the-Milky-Way-using-GMM/main/figures/MP2_low____-1.3[M_H]-1.0.html)
 
 
+## Authors and Acknowledgment
+This project is maintained by [Raunaq Rai](https://www.linkedin.com/in/raunaq-rai/) at the University of Cambridge.
+
+Special thanks to my supervisor, [Dr. Anke Arentsen](https://www.ast.cam.ac.uk/people/anke.ardern-arentsen), for her guidance, expertise, and encouragement throughout this project.
+
+
+30th June 2025
