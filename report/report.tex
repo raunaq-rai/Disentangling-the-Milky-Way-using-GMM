@@ -1036,35 +1036,7 @@ examine the distribution of stars in radial–azimuthal velocity space.  For eac
 populations, we divide the RGB sample into eight metallicity bins and plot the $v_R$–$v_\phi$ distribution.
 
 Following the methodology outlined in Section~\ref{subsec:velocities}, we compute full six-dimensional 
-phase-space coordinates for each star.  Figure~\ref{fig:vr_vphi_alpha} shows the $v_R$–$v_\phi$ maps for 
-the high-$\alpha$ sequence (top) and the low-$\alpha$ sequence (bottom), with metallicity increasing from 
-left to right and top to bottom.
-
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=\textwidth]{../figures/high_alpha.png}
-  \vspace{0.5em}
-  \includegraphics[width=\textwidth]{../figures/low_alpha.png}
-  \caption{Distribution of stars in $v_R$–$v_\phi$ space across eight metallicity bins
-           (increasing left to right, top to bottom) for the high-$\alpha$ population (top)
-           and low-$\alpha$ population (bottom). The low-$\alpha$ stars are clearly more
-           rotation-supported at high metallicities, while the high-$\alpha$ sample shows a
-           broader velocity structure across all bins, consistent with thick-disc and halo populations.}
-  \label{fig:vr_vphi_alpha}
-\end{figure}
-
-The high-$\alpha$ stars show a continuous transition from a kinematically hot, low-rotation regime at low 
-metallicities to a more rotation-supported disc at higher metallicities. This reflects the gradual build-up 
-of the thick disc over time, as also noted in \citet{Chandra_2024}. The velocity dispersion remains broad 
-across the full metallicity range, indicating that high-$\alpha$ stars trace older, more dynamically heated 
-populations.
-
-By contrast, the low-$\alpha$ sample exhibits a more abrupt transition. At higher metallicities 
-($[\mathrm{M/H}] \gtrsim -1.0$), a strongly rotation-supported component dominates, with a narrow $v_\phi$ 
-distribution centred around $\sim200\,\mathrm{km\,s^{-1}}$ and low radial velocity dispersion, clear indications 
-of thin-disc kinematics. As metallicity decreases, this rotational component weakens, and the velocity 
-distributions in both $v_R$ and $v_\phi$ broaden significantly, consistent with increasing contributions 
-from halo or accreted stars.
+phase-space coordinates for stars in each alpha-metallicity bin.
 
 
 \subsection{Gaussian Mixture Model Fit}
@@ -1307,30 +1279,35 @@ Thick disc          &  25.4 &   2.13 &  69.98 & 183.15 &  48.36 &  1.75 &  54.21
 \subsection{\texorpdfstring{Contrasting the high and low $\alpha$ GMMs}{Contrasting the high/low–alpha GMMs}}
 \label{subsec:gmm_comparison}
 
-In the very-metal-poor (VMP; $[\mathrm{M/H}] < -2$) regime, both high- and low-$\alpha$ 
-populations are best fit by a single, non-rotating, isotropic halo component. The similarity 
-between the two sequences suggests that the structure of the stellar halo at these metallicities 
-is insensitive to $\alpha$-abundance.
+Figure~\ref{fig:v_over_sigma_alpha} shows the ratio of the mean rotational velocity to the azimuthal velocity dispersion, $V_{\rm rot}/\sigma_\phi$, for each GMM component. Symbol size represents the component weight, and colours match those in Figures~\ref{fig:gmm_4wide_hi} and \ref{fig:gmm_lowalpha_panel}. This metric quantifies rotational support—higher values suggest more disc-like kinematics.
 
-In the intermediate-metallicity regime (IMP; $-2.0 < [\mathrm{M/H}] < -1.6$), the low-$\alpha$ 
-sample separates cleanly into stationary and prograde halo components. In contrast, the 
-high-$\alpha$ fit yields four components, including two with highly radial kinematics. These are 
-less physically interpretable and likely reflect overfitting or contamination from $\alpha$-poor 
-stars misclassified at low signal-to-noise, rather than indicating the presence of a genuine 
-high-$\alpha$ GSE population.
+In the very-metal-poor bin (VMP; $[\mathrm{M/H}] < -2$), both high- and low-$\alpha$ populations are dominated by a single, isotropic, non-rotating halo component. The similarity in $V_{\rm rot}/\sigma_\phi$ across both tracks implies that $\alpha$-abundance has little influence on halo structure at these low metallicities.
 
-At moderately poor metallicity (MP1; $-1.6 < [\mathrm{M/H}] < -1.3$), a thick-disc component 
-emerges clearly in the high-$\alpha$ population, as expected from in-situ star formation and early 
-disc settling. In the low-$\alpha$ sequence, however, a distinct GSE-like component is now evident. 
-This supports the idea that the GSE merger contributed significantly at this metallicity, consistent 
-with the hypothesis that its stars were deposited after the high-$\alpha$ disc had begun to form 
-\citep{Helmi2018}.
+At intermediate metallicities (IMP; $-2.0 < [\mathrm{M/H}] < -1.6$), the low-$\alpha$ sample separates into stationary and prograde halo components, while the high-$\alpha$ fit includes two radially biased components with limited rotation. These are likely artefacts of overfitting or contamination by misclassified low-$\alpha$ stars.
 
-In the metal-richest bin (MP2; $-1.3 < [\mathrm{M/H}] < -1.0$), both sequences show prominent 
-thick-disc components, though the high-$\alpha$ disc is more dominant (52\%) and kinematically 
-warmer. The low-$\alpha$ thick disc is cooler and less massive (25\%), consistent with a younger, 
-possibly thin-disc progenitor. The absence of an ultra-cold thin disc in either case reflects the 
-selection bias against stars near the Galactic plane.
+In the MP1 bin ($-1.6 < [\mathrm{M/H}] < -1.3$), a thick disc component emerges in the high-$\alpha$ population, showing moderate $V_{\rm rot}/\sigma_\phi$, indicative of in-situ disc formation. Meanwhile, the low-$\alpha$ population develops a GSE-like halo structure, supporting a scenario where the GSE merger occurred after the onset of high-$\alpha$ disc formation \citep{Helmi2018}.
+
+In the most metal-rich bin (MP2; $-1.3 < [\mathrm{M/H}] < -1.0$), both sequences display prominent disc components. The high-$\alpha$ disc is kinematically hotter and more massive, while the low-$\alpha$ disc shows a sharp increase in $V_{\rm rot}/\sigma_\phi$, consistent with a dynamically colder, thin-disc-like population. The abrupt rise suggests that thin disc formation may have occurred rapidly in the low-$\alpha$ sequence, in contrast to the more gradual buildup in the high-$\alpha$ case. The absence of an ultra-cold thin disc in either track likely reflects a selection bias against stars near the Galactic plane.
+
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}{0.48\linewidth}
+    \includegraphics[width=\linewidth]{../figures/v_over_sigma_per_component_highalpha.png}
+    \caption{High-$\alpha$ sequence}
+    \label{fig:v_over_sigma_high}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}{0.48\linewidth}
+    \includegraphics[width=\linewidth]{../figures/v_over_sigma_per_component_lowalpha.png}
+    \caption{Low-$\alpha$ sequence}
+    \label{fig:v_over_sigma_low}
+  \end{subfigure}
+
+  \caption{Ratio of the mean rotational velocity to azimuthal velocity dispersion, $V_{\rm rot}/\sigma_\phi$, for individual GMM components in each metallicity bin. Larger circles represent more dominant components. Colours correspond to those in Figures~\ref{fig:gmm_4wide_hi} and \ref{fig:gmm_lowalpha_panel}.}
+  \label{fig:v_over_sigma_alpha}
+\end{figure}
+
+
 
 
 
