@@ -30,35 +30,79 @@
 
 \section*{Motivation and Scientific Justification}
 
-An important question in Galactic Archaeology is \emph{when} the Milky Way’s disc first settled.  
-Standard models suggest that the disc formed relatively late, after the interstellar medium had been enriched by multiple generations of stars \cite{Sestito2020} \cite{Gurvich2023}. 
-This implies a lack of stars with disc-like kinematics at very low metallicities. 
-Since metallicity generally increases over cosmic time, it can be used as a rough proxy for stellar age: lower metallicity stars are typically older, having formed when the Galaxy was less chemically evolved. 
-Thus, identifying a coherent, metal-poor disc population would challenge the \emph{late-disc} paradigm and force a reassessment of the balance between in-situ star formation and accreted growth.
+When did our Galaxy stop behaving like a chaotic proto-galaxy and settle into the orderly,
+rotating disc we see today?  An important question in Galactic Archaeology is
+\emph{when} the Milky Way’s disc first settled.  Standard models place this event
+relatively late, after the interstellar medium was enriched by multiple generations of
+stars \cite{Sestito2020,Gurvich2023}, implying a dearth of disc-like stars at very low
+metallicity.  Because metallicity rises over cosmic time, it serves as a rough stellar
+clock: metal-poor stars are generally older.  Finding a coherent, metal-poor disc would
+therefore overturn the \emph{late-disc} paradigm and force a rethink of in-situ versus
+accreted growth.
 
-Zhang et al.\ (2024)~\cite{zhang2024existencemetalpoordiscmilky} addressed this question by applying Extreme-Deconvolution Gaussian Mixture Modelling (XD-GMM) to the full $(v_{\phi},v_{R},v_{Z})$ phase-space of 
-Gaia DR3 bright red giant stars, and found no evidence for a cold, rotation-supported disc at very low metallicity. However, their analysis did not account for $\alpha$ abundance, which can serve as a tracer of star-formation timescales.
+A practical hurdle is that every Gaia DR3 velocity carries correlated uncertainties; if
+these “error ellipsoids” are ignored, genuine kinematic sub-structure can be blurred
+into (or out of) existence, producing components with no physical meaning.  
 
-We reproduce their metallicity-binned XD-GMM using the same bright RGB catalogue, and extend the work by dividing stars into high and low $\alpha$ sequences following Viswanathan et al.\ (2024)~\cite{Vis2024}.  
-Within each $\alpha$ branch, we perform XD-GMM fits in successive metallicity bins, selecting the optimal number of components via the Bayesian Information Criterion.  
-By inspecting the weights and kinematic properties of these components, we assess whether the disc-like signatures for the high and low $\alpha$ sequences emerge at different metallicities in line with current understanding.
-
-
-\section*{Methodology}
-
-After data cleaning and processing, the velocity distribution $(v_R, v_\phi, v_z)$ is modelled using Extreme-Deconvolution Gaussian Mixture Modelling (XD-GMM) \cite{Bovy2011}\cite{pygmmis}, 
-which accounts for observational uncertainties. We bin stars by metallicity and use the Bayesian Information Criterion (BIC) to determine the 
-number of Gaussian components per bin. This allows us to identify structure without over fitting and introducing too many gaussians.
+Following the methodology of Zhang et al. 2024 \cite{zhang2024existencemetalpoordiscmilky}, 
+we revisit the same Gaia DR3 sample, now splitting the stars into high- and
+low-$\alpha$ sequences \cite{Vis2024} and using an uncertainty-aware modelling approach
+to ask: \emph{at what metallicity does disc-like rotation truly appear in each
+sequence?}
 
 
-We extend the original method by splitting the sample into high and low $\alpha$ sequences \citep{Vis2024}, fitting separate 
-XD-GMMs to each. By inspecting the component weights and kinematic properties, we quantify the emergence of rotational support 
-and assess the presence of disc-like populations across both chemical tracks.
+\section*{Methodology – Solution Path}
 
-Following this, to determine the presence of disc-like kinematics, we compute the ratio of azimuthal velocity $v_\phi$ and its 
-dispersion $\sigma_\phi$ for each component: a ratio approximately above 3 is considered to be disk-like. 
-We then move to perform residual analysis to test whether disc-like kinematics are present
-but are too weak to be detected by XD-GMM.
+To pinpoint \emph{when} disc-like rotation truly emerges, we must see the
+\textbf{intrinsic} velocity field, stripped of Gaia’s measurement blur and
+interpreted in its chemical context.  Our five-step pipeline does exactly that,
+each step mapping onto a question posed in the Motivation.
+
+\begin{enumerate}
+  \item \textbf{Uncertainty-aware modelling.}  
+        Every star’s velocity $(v_R,v_\phi,v_z)$ carries a $3\times3$ covariance
+        matrix—its error ellipsoid.  We employ \emph{extreme-deconvolution}
+        Gaussian mixtures \cite{Bovy2011,pygmmis} to find the set of
+        noise-free Gaussians which, once convolved with those ellipsoids,
+        reproduce the observed cloud.  
+        \textit{Why:} de-blurring prevents spurious artefacts and ensures any
+        recovered disc component is physically real.
+
+  \item \textbf{Metallicity slicing with parsimony.}  
+        Because [M/H] is an age proxy, we bin the sample in metallicity and let
+        the Bayesian Information Criterion select the minimal number of
+        Gaussians per bin.  
+        \textit{Why:} isolates the precise metallicity—hence epoch—at which
+        rotation support first appears, directly testing the late-disc
+        paradigm.
+
+  \item \textbf{$\alpha$-sequence split.}  
+        We repeat the analysis separately for high- and low-$\alpha$
+        populations \cite{Vis2024}, tracers of rapid and prolonged
+        star-formation histories.  
+        \textit{Why:} reveals whether the thick and thin discs followed
+        distinct evolutionary timelines.
+
+  \item \textbf{Disc diagnostic.}  
+        For each recovered Gaussian we compute $V_{\rm rot}/\sigma_\phi$; a
+        ratio $\gtrsim3$ flags a rotation-supported disc.  
+        \textit{Why:} gives an objective, quantitative “disc/no-disc” verdict
+        instead of subjective eyeballing.
+
+  \item \textbf{Residual stress-test.}  
+        We Monte-Carlo sample mock data from the best-fit model, convolve them
+        with Gaia errors, and compare to the real sky.  Any significant
+        leftover overdensity signals structure the model missed.  
+        \textit{Why:} confirms that no low-metallicity disc is hiding below our
+        detection threshold, tightening the upper limit to \mbox{$<1\%$} of
+        stars.
+\end{enumerate}
+
+Together, these steps yield an unbiased, chemistry-aware map of the Milky
+Way’s phase-space—precisely what we need to answer the core questions:  
+\emph{Is a metal-poor disc present at all, and if not, which stellar population
+spun up first?}
+
 
 \section*{Key Findings}
 
@@ -90,29 +134,22 @@ but are too weak to be detected by XD-GMM.
 \end{figure}
 
 
-Below $\mathrm{[M/H]} \sim -2$, no disc-like component is detected. The kinematics are fully 
-explained by two broad halo Gaussians: one stationary and one mildly prograde likely associated 
-with the Aurora population~\cite{Belokurov2022}. In the intermediate metallicity bin, two 
-additional highly radial, non-rotating components emerge, linked to the 
-Gaia-Sausage/Enceladus (GS/E) merger~\cite{Belokurov2018}. These represent remnants of a 
-major head-on collision between the Milky Way and a massive dwarf galaxy, which deposited stars 
-on radial orbits and contributed significantly to the inner halo's anisotropic structure.
-
-Disc-like rotation first appears at $\mathrm{[M/H]}\gtrsim-1.6$, where a thick-disc 
-component (approximately $22\%$ of stars) rotates at $\langle v_\phi\rangle\approx160\ \mathrm{km\,s^{-1}}$ 
-with $\sigma_\phi\approx57\ \mathrm{km\,s^{-1}}$ ($V_{\rm rot}/\sigma_\phi\approx2.8$, just 
-below the “discy” threshold of $\sim3$). As metallicity increases to the MP2 bin, this component 
-grows to $37.4\%$ of the sample and surpasses the discy criterion with 
-$V_{\rm rot}/\sigma_\phi\approx3.5$, indicating a well-established, rotation-supported thick disc.  
+Below $\mathrm{[M/H]}\lesssim -2$ we detect \textbf{no rotation-supported disc}: the 
+velocity field is fully described by two halo Gaussians—one almost stationary and one 
+mildly prograde, the latter matching the Aurora structure~\cite{Belokurov2022}. At 
+intermediate metallicities, a pair of highly radial, non-rotating components emerges, 
+tracing debris from the Gaia–Sausage/Enceladus merger~\cite{Belokurov2018}. Disc-like 
+rotation appears only for $\mathrm{[M/H]}\gtrsim -1.6$, where a thick-disc component 
+(approximately 22\% of stars) rotates at $\langle v_{\phi}\rangle \approx 
+160\,\mathrm{km\,s^{-1}}$ with $V_{\mathrm{rot}}/\sigma_{\phi} \approx 2.8$; 
+by $\mathrm{[M/H]}\approx -1.3$ it grows to approximately 37\% of the sample 
+and surpasses the “discy” threshold with $V_{\mathrm{rot}}/\sigma_{\phi} \approx 3.5$. 
+Monte Carlo residual tests confine any hidden low-metallicity disc to less than 1\% of stars, 
+confirming \textbf{the absence of a disc below $\mathrm{[M/H]}\approx -1.6$}.
 
 
 
-Monte Carlo residual analysis in the VMP and IMP bins detects only minor excesses, 
-constraining any hidden low-metallicity disc to at most $\sim1\%$ of the sample. Together, these diagnostics suggest the 
-absence of a disc below $\mathrm{[M/H]}\sim-1.6$).  
-
-
-Following Viswanathan et al.~\cite{Vis2024}, we split the sample into high- and low-$\alpha$ sequences—proxies for 
+Following the method set by Viswanathan et al.~\cite{Vis2024}, we split the sample into high- and low-$\alpha$ sequences which are proxies for 
 rapid versus extended star-formation timescales. Figure~\ref{fig:mh_vphi_alpha} shows that high-$\alpha$ stars 
 spin up gradually, with $\langle v_\phi\rangle$ rising and $\sigma_\phi$ falling steadily from 
 $\mathrm{[M/H]}\!\sim\!-2$ to $-1$, whereas the low-$\alpha$ branch remains dispersion-dominated until a 
@@ -197,18 +234,20 @@ bin ($-1.3<\mathrm{[M/H]}<-1.0$), but its high $V_{\rm rot}/\sigma_{\phi}\approx
 the $\sim3$ discy threshold, suggests contamination by a colder thin‐disc population. We do not observe
 a thin disc in the low-$\alpha$ sequence as expected due to sample selection effects.
 
-GS/E-like radial Gaussians appear in both sequences, probably due to misclassified $\alpha$-poor debris, underscoring the need for robust chemical labelling.  
-Overall, the high-$\alpha$ thick disc assembled earlier and gradually (\mbox{$\mathrm{[M/H]}\!\gtrsim\!-1.6$}), while the low-$\alpha$ thin disc formed later and swiftly (\mbox{$\mathrm{[M/H]}\!\gtrsim\!-1.3$}).
-
-
 
 \section*{Recommendations and Next Steps}
 
 \begin{itemize}
-\item \textbf{Richer dynamical models.} Replace Gaussian mixtures with distribution-function or action-based models to capture non-Gaussian and asymmetric structures.  
-\item \textbf{Tighter chemistry.} Improve $\alpha$–abundance precision (or use high-resolution follow-up) to reduce sequence cross-contamination, especially at low metallicity.  
-\item \textbf{Explicit selection function.} Model Gaia’s magnitude and colour cuts to convert component weights into unbiased population fractions.  
-\item \textbf{GS/E contamination.} Re-examine the high-$\alpha$ bins with stricter chemical cuts to confirm whether the apparent GS/E signatures are real or artefacts.  
+\item \textbf{Richer dynamical models.} Replace Gaussian mixtures with distribution-function or 
+action-based models to capture non-Gaussian and asymmetric structures.  
+\item \textbf{Tighter chemistry.} Improve $\alpha$–abundance precision (or use high-resolution 
+follow-up) to reduce sequence cross-contamination, especially at low metallicity.  
+\item \textbf{Explicit selection function.} Model Gaia’s magnitude and colour cuts to convert 
+component weights into unbiased population fractions.  
+\item \textbf{Chemical-abundance validation at low metallicity.} Gaia XP $\alpha$-element 
+measurements become unreliable below $\mathrm{[M/H]}\!\approx\!-1.5$, so cross-match our 
+sample with high-resolution spectroscopic surveys (e.g., APOGEE, GALAH) to secure precise 
+abundances and verify whether the apparent GS/E signatures persist.
 \end{itemize}
 
 \section*{Conclusion and Research Impact}
