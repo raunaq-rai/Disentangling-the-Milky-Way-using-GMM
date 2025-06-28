@@ -117,13 +117,13 @@ def plot_gmm_with_contributions(df_bin, gmm, bin_label, bins=100, x_limits=(-400
                       edgecolor=component_colors[i], facecolor='none', lw=2, label=f"Component {i+1}")
         ax.add_patch(ell)
 
-    ax.set_xlabel(r"$v_R$ (km/s)")
-    ax.set_ylabel(r"$v_\phi$ (km/s)")
+    ax.set_xlabel(r"$v_R$ (km/s)",fontsize=14)
+    ax.set_ylabel(r"$v_\phi$ (km/s)",fontsize=14)
     ax.set_xlim(x_limits)
     ax.set_ylim(y_limits)
     ax.grid(False)
     ax.text(x_limits[1] - 50, y_limits[0] + 20, f"{bin_label}\n{metallicity_range}",
-            fontsize=12, color='black', ha='right', va='bottom')
+            fontsize=14, color='black', ha='right', va='bottom')
 
     ax_frac = axes[0]
     bars = ax_frac.bar(range(1, gmm.K + 1), weights, color=component_colors[:gmm.K], alpha=0.8)
