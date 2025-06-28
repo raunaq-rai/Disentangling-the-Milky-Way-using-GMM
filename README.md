@@ -103,6 +103,8 @@ python -m ipykernel install --user --name research_project_MW_GMM --display-name
 pip install e .
 ```
 
+make sure you select the correct kernel!
+
 ## License
 
 This project is licensed under the [MIT License](https://opensource.org/licenses/MIT).
