@@ -251,37 +251,42 @@ disc that transitions to the present-day thin disc.
 \section*{Recommendations and Next Steps}
 
 \begin{itemize}
-\item \textbf{Richer dynamical models.} Replace Gaussian mixtures with distribution-function or 
-action-based models to capture non-Gaussian and asymmetric structures.  
-\item \textbf{Tighter chemistry.} Improve $\alpha$–abundance precision (or use high-resolution 
-follow-up) to reduce sequence cross-contamination, especially at low metallicity.  
-\item \textbf{Explicit selection function.} Model Gaia’s magnitude and colour cuts to convert 
-component weights into unbiased population fractions.  
-\item \textbf{Chemical-abundance validation at low metallicity.} Gaia XP $\alpha$-element 
-measurements become unreliable below $\mathrm{[M/H]}\!\approx\!-1.5$, so cross-match our 
-sample with high-resolution spectroscopic surveys (e.g., APOGEE, GALAH) to secure precise 
-abundances and verify whether the apparent GS/E signatures persist.
+  \item \textbf{Upgrade the dynamics.}  Move beyond Gaussian mixtures to
+        action-based or distribution-function fitting with
+        \textsc{RoadMapping} (a Dynamo code that infers the Galaxy’s potential
+        directly from stellar actions) or the \textsc{Agama} library
+        (fast orbit integration and DF machinery).  These tools recover
+        asymmetric wings and resonance features, turning descriptive fits into
+        physically interpretable dynamical models.
+
+  \item \textbf{Sharpen the chemical ruler.}  Cross-match with high-resolution
+        spectra from APOGEE, GALAH, and the forthcoming WEAVE/4MOST surveys to
+        push $\alpha$-element precision below 0.03 dex.  Cleaner chemistry will
+        collapse the current high/low-$\alpha$ overlap.
+
+  \item \textbf{Correct for Gaia’s selection bias.}  Forward-model Gaia’s
+        magnitude, colour, and completeness cuts so mixture weights translate
+        into unbiased stellar-mass fractions, yielding a true
+        star-formation-efficiency curve for the thick and thin discs.
+
+  \item \textbf{Simulate and predict.}  Inject our metallicity–$\alpha$
+        thresholds into cosmological zoom simulations such as
+        \textsc{Auriga} (magneto-hydrodynamic Milky-Way analogues) and
+        \textsc{FIRE-2} (Feedback In Realistic Environments) to forecast
+        twin-disc signatures in external spirals—providing testable predictions
+        for JWST and Rubin LSST.
 \end{itemize}
 
-\section*{Conclusion and Research Impact}
 
-Splitting Gaia DR3 red giants by $\alpha$ abundance reveals a \emph{two-phase} disc build-up:  
-the high-$\alpha$ sequence gains rotational support at $\mathrm{[M/H]}\!\approx\!-1.6$, forming 
-a thick disc that grows gradually, while the low-$\alpha$ sequence does not reach disc 
-kinematics until $\mathrm{[M/H]}\!\approx\!-1.3$. This confirms that no metal-poor 
-($\mathrm{[M/H]}\!<\!-2$) disc exists and clarifies the distinct evolutionary paths of 
-the thick and thin discs.  
+\section*{Conclusion \& Research Impact}
 
-Coupling precise chemistry with full 3-D kinematics provides a template for forthcoming surveys 
-(WEAVE, 4MOST, SDSS-V) to isolate, date and map Milky-Way disc components. Pinpointing the 
-metallicity–$\alpha$ thresholds for disc formation tightens constraints on early star-formation, 
-feedback and merger heating in disc galaxies, advancing our reconstruction of the Galaxy’s 
-assembly history.  
+High-$\alpha$ stars acquire rotation at $\mathrm{[M/H]}\approx-1.6$, inaugurating the thick disc; low-$\alpha$ stars do not spin up until $\mathrm{[M/H]}\approx-1.3$, signalling the thin disc’s birth, and no rotation-supported disc exists below $\mathrm{[M/H]}\approx-2$.  These metallicity–$\alpha$ thresholds serve three roles: they provide hard priors for chemo-dynamical and zoom simulations, tightening disc-growth timescales; they offer WEAVE, 4MOST and SDSS-V a clean filter for targeting the Galaxy’s oldest disc stars, sharpening age–velocity calibrations; and, when folded into the \textsc{Auriga} and \textsc{FIRE-2} suites, they yield testable predictions of twin-disc signatures in external spirals for JWST and Rubin LSST.
+
 
 
 \newpage{}
 
-972 / 1000 words
+991 / 1000 words
 
 
 
