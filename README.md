@@ -14,10 +14,11 @@ We then extend this analysis by incorporating alpha-element abundance to analysi
 - [Project&nbsp;Goals](#project-goals)
 - [Why&nbsp;This&nbsp;Matters](#why-this-matters)
 - [Resources](#resources)
+- [Repository&nbsp;Structure](#repository-structure)
 - [Usage](#usage)
-- [Methodology](#methodology)
 - [Documentation](#documentation)
 - [License](#license)
+- [Methodology](#methodology)
 - [Replication&nbsp;Results](#replication-results-interactive-3d-gmm-plots-with-weights)
 - [Expansion&nbsp;Results](#expansion-results-interactive-3d-gmm-plots-with-weights)
 - [Authors and Acknowledgment](#authors-and-acknowledgment)
@@ -49,6 +50,41 @@ While the halo is commonly associated with the oldest stars, recent studies have
   - [Belokurov & Deason (2024)](https://arxiv.org/pdf/2402.12443): "Galactic Archaeology with Gaia".
   - [Bovy, Hogg & Roweis (2011)](https://projecteuclid.org/journals/annals-of-applied-statistics/volume-5/issue-2B/Extreme-deconvolution--Inferring-complete-distribution-functions-from-noisy-heterogeneous/10.1214/10-AOAS439.full): "Extreme Deconvolution: Inferring complete distribution functions from noisy, heterogeneous and incomplete observations".
 
+## Repository Structure
+
+Here’s an overview of the main folders and files in this repository:
+
+- **`data/`**  
+  Raw and processed datasets used for the GMM analysis.
+
+- **`docs/`**  
+  Sphinx source files for project documentation.
+
+- **`figures/`**  
+  Generated plots and interactive HTML widgets.
+
+- **`literature/`**  
+  Reference papers.
+
+- **`models/`**  
+  Saved GMM models and intermediate outputs (pickle, JSON).
+
+- **`notebooks/`**  
+  Jupyter notebooks for analysis and figure creation.
+
+- **`presentation/`**  
+  Slide decks and talk materials (only including the initial, introductory January presentation).
+
+- **`report/`**  
+  LaTeX source, bibliography, and compiled PDF of the final report and executive summary.
+
+- **`src/`**  
+  Core Python modules for data loading, processing, and GMM fitting.
+
+- **`tests/`**  
+  pytest-based unit and integration tests.
+
+
 ## Usage
 
 create environment:
@@ -58,13 +94,29 @@ git clone 'https://gitlab.developers.cam.ac.uk/phy/data-intensive-science-mphil/
 cd rsr45
 conda env create -f environment.yaml
 conda activate research_project_MW_GMM
+```
+
+```bash
 python -m ipykernel install --user --name research_project_MW_GMM --display-name "research_project_MW_GMM"
+pip install e .
 ```
 
 ## License
 
 This project is licensed under the [MIT License](https://opensource.org/licenses/MIT).
 
+## Documentation
+
+- Documentation was created using [Sphinx](https://www.sphinx-doc.org/).
+- To build it locally:
+
+  ```bash
+  cd docs
+  make html
+  open build/html/index.html 
+  ```
+
+- This documentation provides API documentation for all modules in the src directory.
 
 ## Methodology
 
@@ -79,18 +131,6 @@ This project is licensed under the [MIT License](https://opensource.org/licenses
    - We split stars into four metallicity bins ([M/H] < –1) and fit a separate GMM to each.  
    - The optimal number of Gaussians is chosen by minimizing the Bayesian Information Criterion (BIC) over multiple (50) random initializations, with k-means seeding to ensure stable convergence.  
 
-## Documentation
-
-- Documentation was created using [Sphinx](https://www.sphinx-doc.org/).
-- To build it locally:
-
-  ```bash
-  cd docs
-  make html
-  open build/html/index.html 
-  ```
-
-- This documentation provides API documentation for all modules in the src directory.
 
 ## Replication Results: Interactive 3D GMM Plots with Weights
 
