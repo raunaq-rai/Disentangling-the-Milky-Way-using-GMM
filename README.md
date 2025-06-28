@@ -95,6 +95,7 @@ cd rsr45
 conda env create -f environment.yaml
 conda activate research_project_MW_GMM
 ```
+create kernel and install functions:
 
 ```bash
 python -m ipykernel install --user --name research_project_MW_GMM --display-name "research_project_MW_GMM"

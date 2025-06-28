@@ -12,8 +12,6 @@ build/
 research_project.egg-info/
 src/research_project.egg-info/
 docs/build/
-!docs/build/html/
-!docs/build/html/index.html
 
 # Ignore LaTeX build files
 *.aux
