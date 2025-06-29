@@ -78,18 +78,19 @@ rotationally supported disc component. The prograde rotation signal stems from
 a prograde halo with a net prograde rotation of \(v_{\phi}\simeq68\;\mathrm{km\,s^{-1}}\).  
 In this regime, no component satisfies \(v_{\phi}/\sigma_{\phi}>1\); 
 any thick-disc contribution in the very-metal-poor interval \(-3.0<\mathrm{[M/H]}<-1.6\) 
-must therefore be negligible.
+is therefore be negligible.
 
-Splitting the sample by alpha abundance adds further detail to the kinematic picture. 
-This part of the analysis builds on the framework of \citet{Vis2024}, extending it using 
-the methodology in \citet{zhang2024existencemetalpoordiscmilky}. Our findings are consistent with 
-expectations: a thick-disc component emerges earlier in the high-$\alpha$ sequence, 
-becoming apparent from $\mathrm{[M/H]}\gtrsim-1.6$, whereas low-$\alpha$ 
-stars at the same metallicity remain more strongly halo-dominated. An unexpected 
-feature is the appearance of Gaia--Sausage/Enceladus-like 
-components within the high-$\alpha$ regime. This likely reflects misclassified 
-low signal-to-noise abundance measurements, rather than the presence of a truly 
-$\alpha$-rich GS/E population.
+Splitting the sample by $\alpha$ abundance sharpens the timeline of disc growth.  Building 
+on \citet{Vis2024} with the extreme-deconvolution framework of 
+\citet{zhang2024existencemetalpoordiscmilky}, we show that a rotation-supported thick disc 
+appears in the \textit{high-$\alpha$} branch at \(\mathrm{[M/H]}\gtrsim -1.6\), whereas 
+\textit{low-$\alpha$} stars remain halo-dominated until a rapid spin-up at 
+\(\mathrm{[M/H]}\approx -1.3\), which marks the thin-disc birth.  These metallicity–$\alpha$ 
+thresholds (\(-1.6\) dex and \(-1.3\) dex) constitute hard priors for chemo-dynamical 
+simulations, a clean survey filter for WEAVE, 4MOST and SDSS-V to isolate the oldest 
+disc stars, and inputs for \textsc{Auriga} and \textsc{FIRE-2} zoom suites to generate 
+testable JWST and Rubin-LSST predictions for disc structure in other spiral galaxies.
+
 
 \end{abstract}
 
@@ -139,7 +140,7 @@ Above the mid-plane lies the thick disc: an older ($\gtrsim8$–$10\;\mathrm{Gyr
 moderately metal-poor population , a scale 
 height of $z_{\mathrm{scale}}\approx1\;\mathrm{kpc}$, and hotter kinematics 
 ($\sigma_z \simeq 40\;\mathrm{km\,s^{-1}}$) while still retaining net prograde rotation.  
-Inside $R\lesssim2\;\mathrm{kpc}$, the central bulge—partly bar-shaped—hosts both 
+Inside $R\lesssim2\;\mathrm{kpc}$, the central bulge (partly bar-shaped) hosts both 
 old, metal-rich stars and a younger, actively forming component; stellar motions 
 there combine bar-driven streaming with high random velocities 
 ($\sigma\sim100\;\mathrm{km\,s^{-1}}$).  
@@ -149,7 +150,7 @@ of the total stellar mass yet includes the Galaxy’s oldest, most metal-poor st
 Its low density, rich substructure, and kinematics indicate an origin in the
  hierarchical accretion and tidal disruption of dwarf galaxies and globular clusters.  
 The spatial distribution, chemistry, and dynamics of these four components 
-include clues to the Milky Way’s formation history and its sequence of merger events.
+supply clues to the Milky Way’s formation history and its sequence of merger events.
 
 
 \subsection{Metallicity as a Cosmic Clock}
@@ -1094,44 +1095,30 @@ Detailed BIC scores for each metallicity bin are shown in Figure~\ref{fig:bic_gr
 
   \begin{subfigure}{0.245\linewidth}
     \includegraphics[width=\linewidth]{../figures/gmm_vmp_high_alpha_k1.png}
-    \caption{VMP ($k{=}1$)}
+    \caption{\href{https://raw.githack.com/raunaq-rai/Disentangling-the-Milky-Way-using-GMM/main/figures/VMP\_high\_\_\_-3\%5BM\_H\%5D-2.html}{VMP}}
     \label{fig:vmp_hi}
   \end{subfigure}\hfill
   \begin{subfigure}{0.245\linewidth}
     \includegraphics[width=\linewidth]{../figures/gmm_imp_high_alpha_k4.png}
-    \caption{IMP ($k{=}4$)}
+    \caption{\href{https://raw.githack.com/raunaq-rai/Disentangling-the-Milky-Way-using-GMM/main/figures/IMP\_high\_\_\_-2\%5BM\_H\%5D-1.6.html}{IMP}}
     \label{fig:imp_hi}
   \end{subfigure}\hfill
   \begin{subfigure}{0.245\linewidth}
     \includegraphics[width=\linewidth]{../figures/gmm_mp1_high_alpha_k5.png}
-    \caption{MP1 ($k{=}4$)}
+    \caption{\href{https://raw.githack.com/raunaq-rai/Disentangling-the-Milky-Way-using-GMM/main/figures/MP1\_high\_\_\_-1.6\%5BM\_H\%5D-1.3.html}{MP1}}
     \label{fig:mp1_hi}
   \end{subfigure}\hfill
   \begin{subfigure}{0.245\linewidth}
     \includegraphics[width=\linewidth]{../figures/gmm_mp2_high_alpha_k6.png}
-    \caption{MP2 ($k{=}6$)}
+    \caption{\href{https://raw.githack.com/raunaq-rai/Disentangling-the-Milky-Way-using-GMM/main/figures/MP2\_high\_\_\_-1.3\%5BM\_H\%5D-1.0.html}{MP2}}
     \label{fig:mp2_hi}
   \end{subfigure}
 
-  \caption{XD--GMM decomposition of high-$\alpha$ giants in four metallicity bins. Grey ellipses mark the $1\sigma$ contours of each Gaussian component.}
+  \caption{XD–GMM decomposition of high-$\alpha$ giants in four metallicity bins. Grey ellipses mark the $1\sigma$ contours of each Gaussian component; click the subcaptions to open the interactive 3D plots.}
   \label{fig:gmm_4wide_hi}
 \end{figure}
 
-See the fully interactive 3-D GMM decompositions served via RawGitHack:\medskip
 
-%TC:ignore
-\textbf{High–$\alpha$ VMP (\texttt{-3<[M/H]<-2})}:  
-\href{https://raw.githack.com/raunaq-rai/Disentangling-the-Milky-Way-using-GMM/main/figures/VMP_high___-3%5BM_H%5D-2.html}{High–$\alpha$ VMP}
-
-\textbf{High–$\alpha$ IMP (\texttt{-2<[M/H]<-1.6})}:  
-\href{https://raw.githack.com/raunaq-rai/Disentangling-the-Milky-Way-using-GMM/main/figures/IMP_high___-2%5BM_H%5D-1.6.html}{High–$\alpha$ IMP}
-
-\textbf{High–$\alpha$ MP1 (\texttt{-1.6<[M/H]<-1.3})}:  
-\href{https://raw.githack.com/raunaq-rai/Disentangling-the-Milky-Way-using-GMM/main/figures/MP1_high___-1.6%5BM_H%5D-1.3.html}{High–$\alpha$ MP1}
-
-\textbf{High–$\alpha$ MP2 (\texttt{-1.3<[M/H]<-1.0})}:  
-\href{https://raw.githack.com/raunaq-rai/Disentangling-the-Milky-Way-using-GMM/main/figures/MP2_high___-1.3%5BM_H%5D-1.0.html}{High–$\alpha$ MP2}
-%TC:endignore
 
 
 
@@ -1176,48 +1163,33 @@ Velocities are in km\,s$^{-1}$. Weights indicate the fraction of stars per metal
   \begin{subfigure}{0.24\linewidth}
     \centering
     \includegraphics[width=\linewidth]{../figures/gmm_vmp_low_alpha_k1.png}
-    \caption{VMP ($k{=}1$)}
+    \caption{\href{https://raw.githack.com/raunaq-rai/Disentangling-the-Milky-Way-using-GMM/main/figures/VMP_low____-3\%5BM_H\%5D-2.html}{VMP}}
     \label{fig:gmm_vmp_lo}
   \end{subfigure}\hfill
   \begin{subfigure}{0.24\linewidth}
     \centering
     \includegraphics[width=\linewidth]{../figures/gmm_imp_low_alpha_k2.png}
-    \caption{IMP ($k{=}2$)}
+    \caption{\href{https://raw.githack.com/raunaq-rai/Disentangling-the-Milky-Way-using-GMM/main/figures/IMP_low____-2\%5BM_H\%5D-1.6.html}{IMP}}
     \label{fig:gmm_imp_lo}
   \end{subfigure}\hfill
   \begin{subfigure}{0.24\linewidth}
     \centering
     \includegraphics[width=\linewidth]{../figures/gmm_mp1_low_alpha_k4.png}
-    \caption{MP1 ($k{=}4$)}
+    \caption{\href{https://raw.githack.com/raunaq-rai/Disentangling-the-Milky-Way-using-GMM/main/figures/MP1_low____-1.6\%5BM_H\%5D-1.3.html}{MP1}}
     \label{fig:gmm_mp1_lo}
   \end{subfigure}\hfill
   \begin{subfigure}{0.24\linewidth}
     \centering
     \includegraphics[width=\linewidth]{../figures/gmm_mp2_low_alpha_k6.png}
-    \caption{MP2 ($k{=}6$)}
+    \caption{\href{https://raw.githack.com/raunaq-rai/Disentangling-the-Milky-Way-using-GMM/main/figures/MP2_low____-1.3\%5BM_H\%5D-1.0.html}{MP2}}
     \label{fig:gmm_mp2_lo}
   \end{subfigure}
 
   \caption{XD–GMM decomposition of low-$\alpha$ giants in four metallicity
-           bins.  Grey ellipses show the $1\sigma$ contours of every Gaussian component.}
+           bins.  Grey ellipses show the $1\sigma$ contours of every Gaussian component; click the subcaptions to open the interactive 3D plots.}
   \label{fig:gmm_lowalpha_panel}
 \end{figure}
 
-See the fully interactive 3-D GMM decompositions served via RawGitHack:\medskip
-
-%TC:ignore
-\noindent\textbf{Low–$\alpha$ VMP (\texttt{-3<[M/H]<-2})}:  
-\href{https://raw.githack.com/raunaq-rai/Disentangling-the-Milky-Way-using-GMM/main/figures/VMP_low____-3%5BM_H%5D-2.html}{Low–$\alpha$ VMP}
-
-\noindent\textbf{Low–$\alpha$ IMP (\texttt{-2<[M/H]<-1.6})}:  
-\href{https://raw.githack.com/raunaq-rai/Disentangling-the-Milky-Way-using-GMM/main/figures/IMP_low____-2%5BM_H%5D-1.6.html}{Low–$\alpha$ IMP}
-
-\noindent\textbf{Low–$\alpha$ MP1 (\texttt{-1.6<[M/H]<-1.3})}:  
-\href{https://raw.githack.com/raunaq-rai/Disentangling-the-Milky-Way-using-GMM/main/figures/MP1_low____-1.6%5BM_H%5D-1.3.html}{Low–$\alpha$ MP1}
-
-\noindent\textbf{Low–$\alpha$ MP2 (\texttt{-1.3<[M/H]<-1.0})}:  
-\href{https://raw.githack.com/raunaq-rai/Disentangling-the-Milky-Way-using-GMM/main/figures/MP2_low____-1.3%5BM_H%5D-1.0.html}{Low–$\alpha$ MP2}
-%TC:endignore
 
 \begin{table}[H]
 \centering
