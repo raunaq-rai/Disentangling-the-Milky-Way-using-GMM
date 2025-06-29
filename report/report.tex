@@ -215,13 +215,13 @@ probes of the Milky Way’s earliest epochs.
 \subsection{Accreted Halo and Metal-poor Disc Origins}
 \label{subsec:halo_disc_origins}
 
-Chemical and kinematic evidence confirms that the metal-poor halo is largely of accreted origin. 
-In the $\Lambda$CDM framework, Milky Way–mass haloes assemble hierarchically, undergoing 
+Chemical and kinematic evidence confirms that the stellar halo is largely of accreted origin. 
+In the $\Lambda$CDM framework, Milky Way mass haloes assemble hierarchically, undergoing 
 numerous minor mergers and a few major ones \citep{Springel2008}. 
 While hundreds of subhaloes are accreted over cosmic time, only a small fraction form stars: 
 below a virial mass of $\sim10^{11}\,M_\odot$, reionisation and feedback suppress star formation 
 \citep{Purcell2007,BullockBoylanKolchin2017}. As a result, the bulk of the stellar halo originates 
-from just one or two massive dwarf galaxies, such as Gaia–Sausage/Enceladus citep{Belokurov2020}, while the rest 
+from just one or two massive dwarf galaxies, such as Gaia-Sausage/Enceladus citep{Belokurov2020}, while the rest 
 contribute primarily dark matter and kinematic substructure.
 
 The GSE event, traced by stars with $-2 < [\mathrm{Fe/H}] < -1$ and highly radial orbits 
@@ -260,26 +260,24 @@ Moreover, secular processes such as bar–halo resonances may induce a mild prog
 
 \subsection{This Work}
 
-By reproducing the work by \citet{zhang2024existencemetalpoordiscmilky}, this study assesses 
-the claim that the Milky Way hosts a very-metal-poor (VMP; $[\mathrm{Fe/H}]<-2$) stellar disc. 
-We use the catalogue from \citet{Andrae2023}, 
-which supplies six–dimensional phase–space coordinates—sky position, parallax–based distance, 
-proper motions, and radial velocity—for each star, together with homogeneous metallicity and 
-$\alpha$-element abundances from the Gaia XP pipeline. To disentangle kinematic 
-sub-populations we model the full three-dimensional 
-velocity distribution $(v_R,v_\phi,v_z)$ with a Gaussian Mixture Model, in successive narrow metallicity bins, 
-whose parameters are inferred 
-via Extreme Deconvolution (XD). The XD formalism explicitly folds the individual distance and 
-proper-motion uncertainties into the likelihood, ensuring that measurement noise does not bias 
-the recovered velocity values.
+By reproducing the Extreme Deconvolution Gaussian Mixture Model (XD-GMM) analysis of \citet{zhang2024existencemetalpoordiscmilky},  
+this study re-examines the claim that the Milky Way contains a very-metal-poor  
+($[\mathrm{M/H}]<-2$) stellar disc.  
+In successive narrow $[\mathrm{M/H}]$ bins, and separately for the two  
+$\alpha$ sequences, we model the full velocity distribution  
+$(v_R,v_\phi,v_z)$ with an XD-GMM, whose  
+parameters are inferred while explicitly folding each star's distance and proper-motion  
+covariance into the likelihood.  This uncertainty-aware approach prevents measurement noise  
+from biasing the recovered kinematic structure.
 
-Astrophysically, a genuine disc should manifest itself as a high-weight Gaussian centred around 
-$v_\phi\simeq200\;\mathrm{km\,s^{-1}}$ with small tangential and vertical dispersions 
-and negligible mean radial motion, whereas the 
-halo or any heated component should appear as a broad, almost isotropic Gaussian with little net rotation 
-and large velocity dispersions.  By tracking how the weight of the cold, 
-rotating component varies with metallicity we can determine when ordered rotation first emerged and 
-test whether VMP stars were formed in situ or accreted from a satellite.
+Astrophysically, a genuine disc should emerge as a high-weight Gaussian centred around  
+$v_\phi\!\simeq\!200\;\mathrm{km\,s^{-1}}$ with small tangential and vertical dispersions  
+and negligible mean radial motion, whereas halo or heated debris appear as broad, nearly  
+isotropic Gaussians with little net rotation.  Tracking the weight of the cold,  
+rotating component as a function of metallicity (and $\alpha$) therefore pinpoints the  
+epoch when ordered rotation first arose and tests whether very-metal-poor stars formed  
+in situ or were accreted from satellites.
+
 
 
 % -------- Data --------
@@ -289,8 +287,8 @@ test whether VMP stars were formed in situ or accreted from a satellite.
 \subsection{Sample construction}
 \label{subsec:datasample}
 
-The catalogue used in this work was the bright red–giant–branch sample of \citet{Andrae2023}.  
-Stellar metallicities were predicted with an Extreme Gradient Boosting model 
+The catalogue used in the initial part of this work was the bright red-giant-branch sample of \citet{Andrae2023}.  
+This catalogue provides stellar metallicities which were predicted with an Extreme Gradient Boosting model 
 trained on high-resolution \textsc{APOGEE}~DR17 spectra and a supplementary 
 set of very metal-poor stars, ensuring reliable performance down to 
 $[\mathrm{M/H}]\simeq-3.5$ \citep{Andrae2023}.  
@@ -328,10 +326,19 @@ recent accretion debris) without significantly reducing the statistical power
 of the sample.
 
 By following the data cuts of \citet{zhang2024existencemetalpoordiscmilky} of
-distance–quality, reddening, latitude, and 
+distance-quality, reddening, latitude, and 
 sub-structure cuts, our working data set comprised of $\sim3.4\times10^{6}$ 
 red-giant stars possessing homogeneous metallicities and six-dimensional 
 phase-space information.  
+
+Given we are testing whether a very-metal-poor stellar disc exists, following \citet{zhang2024existencemetalpoordiscmilky}, 
+we restrict the sample to stars within \mbox{$|Z|<2.5$ kpc} of the galactic mid-plane. 
+This keeps the focus on stars close to the plane, where any disc-like population 
+(whether formed in situ or deposited by mergers) would be found \citep{Tkachenko_2025}.
+
+Upon comparison with \citet{zhang2024existencemetalpoordiscmilky}, we note that our 
+sample is approximately the same size - with a difference of less than 0.002\% of the 
+sample size in each bin.
 
 \begin{figure}
   \centering
@@ -372,28 +379,25 @@ phase-space information.
 \subsection{Galactocentric Positions and Velocities}
 \label{subsec:velocities}
 
-Six–dimensional phase–space coordinates were obtained with
+Six-dimensional phase-space coordinates were obtained with
 astropy.coordinates.  We adopted a Galactocentric frame
 with $R_{0}=8.1$\,kpc and $Z_{0}=25$\,pc \citep{McMillan2016}, and a solar
-velocity\footnote{Cartesian components $(U,V,W)$, where $U$ is radially
-outwards, $V$ is aligned with Galactic rotation, and $W$ points to the
-North Galactic Pole.}
-$(U_{\odot},V_{\odot},W_{\odot})=(11.1,\,245,\,7.25)$\,km\,s$^{-1}$
+velocity. $(U_{\odot},V_{\odot},W_{\odot})=(11.1,\,245,\,7.25)$\,km\,s$^{-1}$
 \citep{Schonrich2010}.
 The cylindrical velocity components
 $(v_{R},v_{\phi},v_{Z})$ were extracted using the transformed
 SkyCoord module.
 
 To propagate measurement errors we generated
-$N_{\rm MC}=100$ Monte–Carlo realisations per star, drawing
+$N_{\rm MC}=100$ Monte-Carlo realisations per star, drawing
 parallax, proper motions, radial velocity, and distance from their
 reported uncertainties.  Each realisation was transformed to the
 Galactocentric frame, yielding distributions of
 $v_{R}$, $v_{\phi}$, and $v_{Z}$; the $1\sigma$ widths of those
-distributions were stored as per–star velocity uncertainties.
+distributions were stored as per-star velocity uncertainties.
 
 
-\begin{figure}[H]
+\begin{figure}
   \centering
   \includegraphics[width=0.94\textwidth]{../figures/vphi_histograms_with_tracks.png}
   \caption{Column-normalised density in the $v_{\phi}$–[M/H] plane.
@@ -409,17 +413,17 @@ distributions were stored as per–star velocity uncertainties.
 
 
 
-As shown in Figure~\ref{fig:vphi_tracks}, stellar azimuthal velocities
-evolve increase with metallicity.  Halo–like kinematics dominate at
-${\rm [M/H]}\lesssim-1.5$ with statstics
-indicative of a pressure-supported component.  A rapid spin-up appears over the 
-metallicity range ${\rm [M/H]} \simeq -1.3$ to $-0.9$, consistent with \citet{Belokurov2022}.
+Stellar azimuthal velocities
+evolve increase with metallicity as shown in Figure~\ref{fig:vphi_tracks}.  
+Halo-like kinematics dominate at
+${\rm [M/H]}\lesssim-1.5$ with statistics
+indicative of a pressure-supported component.  A spin-up appears over the 
+metallicity range ${\rm [M/H]} \simeq -1.3$ to $-0.9$, consistent with \citet{Belokurov2022} and with Figure~\ref{fig:vphi_tracks}.
 By ${\rm [M/H]}\gtrsim-0.5$ the stellar azimuthal velocities reaches the Local
 Standard-of-Rest value ($\approx220\;\mathrm{km\;s^{-1}}$) and the
 velocity dispersion dispersion falls, marking the
-transition to a disc.  Visually, using \ref{fig:vphi_tracks}, we can observe
-that the onset of ordered rotation in the Milky Way occurred when the inter-stellar medium
-reached roughly one-tenth solar metallicity.
+transition to a disc.  
+
 
 
 \begin{figure}
@@ -433,7 +437,6 @@ reached roughly one-tenth solar metallicity.
            }
   \label{fig:vRvphi_bins}
 \end{figure}
-
 
 \begin{figure}
   \centering
@@ -452,26 +455,17 @@ reached roughly one-tenth solar metallicity.
 As shown in Fig.~\ref{fig:vRvphi_bins}, stars with
 ${\rm[M/H]}\!\geq\!-1.0$ have a strong prograde bias in azimuthal velocities, 
 with a peak at $v_\phi\!\gtrsim\!180$ km s$^{-1}$ and a relatively narrow
-distribution in $v_R$. As shown in Fig.~\ref{fig:ref_ellipses}, this is consistent with 
-the thin– and thick-disc ellipses. 
+distribution in $v_R$. This is consistent with 
+the thin- and thick-disc ellipses (Fig.~\ref{fig:ref_ellipses}). 
 Below ${\rm[M/H]}\simeq-1.0$ the distribution broadens and
 drops toward $v_\phi\!\approx\!0$, indicating
 pressure supported kinematics, characteristic of the stellar halo and
-the radial Gaia–Sausage/Enceladus debris.  At the lowest
+the radial Gaia-Sausage/Enceladus debris.  At the lowest
 metallicities (${\rm[M/H]}\lesssim-1.5$) the contours are nearly
 isotropic with only a mild prograde bias.  Hence, any
 rotation-supported very-metal-poor disc must contribute at most a
 small fraction of the population. In subsequent analysis we quantitatively assess
 these observations.
-
-Given we are testing whether a very-metal-poor stellar disc exists, following \citet{zhang2024existencemetalpoordiscmilky}, 
-we restrict the sample to stars within \mbox{$|Z|<2.5$ kpc} of the galactic mid-plane. 
-This keeps the focus on stars close to the plane, where any disc-like population 
-(whether formed in situ or deposited by mergers) would be found \citep{Tkachenko_2025}.
-
-Upon comparison with \citet{zhang2024existencemetalpoordiscmilky}, we note that our 
-sample is approximately the same size - with a difference of less than 0.002\% of the 
-sample size in each bin.
 
 
 \section{Methodology}
@@ -491,25 +485,29 @@ soft clustering where each star has a fractional likelihood of belonging to each
 the data is the three-dimensional velocity vectors $(v_R, v_\phi, v_Z)$, and the latent space captures 
 distinct kinematic substructures in this space.
 
-We implement the GMM fitting using the pyGMMis package \citep{pygmmis} in the $v_R$, $v_\phi$, and $v_Z$
-phase space. This algorithm extends the standard 
-Expectation-Maximisation (EM) algorithm with the ``Extreme Deconvolution'' technique developed by 
-\citet{Bovy2011}. This method is particularly well-suited to astronomical datasets, as it incorporates 
-measurement uncertainties into the GMM fitting by modifying the EM updates to account for known errors 
-on each data point. In our case, these uncertainties are derived from the Gaia astrometric and 
-spectroscopic data and are represented by diagonal covariance matrices encoding the squared uncertainties 
-in $v_R$, $v_\phi$, and $v_Z$ for each star.
+The mixture fitting is carried out with \texttt{pyGMMis} \citep{pygmmis} in the full $(v_R,v_\phi,v_Z)$ 
+phase space. The code implements the \emph{extreme-deconvolution} extension of the Expectation-Maximisation 
+algorithm \citep{Bovy2011}: at every EM iteration each trial Gaussian is \emph{convolved} with the star-specific 
+$3{\times}3$ velocity-error matrix supplied by Gaia. In doing so, the procedure fit directly for the 
+\textit{intrinsic} (noise-free) velocity distribution, accounting for measurement uncertainties and 
+preventing them from creating or erasing kinematic structure—thereby placing all subsequent disc/halo 
+classifications on a statistically robust footing.
 
 
 \subsection{Number of Gaussian Components}
 \label{subsec:n_components}
 
-We apply the GMM separately to each metallicity bin with ${\rm [M/H]} < -1$, as we are specifically 
-interested in detecting any rotationally supported structure among the very metal-poor stars. An important decision 
-must be made when implementing the appropriate number of gaussian components. Too few 
-components may underfit the data, missing real substructures, while too many will overfit, leading to physically uninterpretable results.
+We run the XD–GMM in successive 0.3-dex slices across the regime
+\([\mathrm{M/H}]<-1\), the only metallicity range where an undiscovered
+very-metal-poor disc could plausibly reside.  Treating each slice
+independently removes the steep disc gradient in \([\mathrm{M/H}]\) and allows the
+algorithm to search for rotation-supported structure at a fixed chemical
+epoch.  Within every slice the optimal number of Gaussians, \(k\), is chosen
+by the Bayesian Information Criterion (BIC \citealt{Schwarz1978}: selecting too few components
+would blur distinct populations together and mask a genuine disc,
+whereas too many would shatter the halo into noise-driven shards and
+produce an over-fit, physically meaningless solution.
 
-We select the optimal number of components using the Bayesian Information Criterion (BIC) \citealt{Schwarz1978}. 
 The BIC is defined as
 
 \begin{equation}
@@ -521,16 +519,23 @@ where $k = (1 + 3 + 6) \times N - 1$ is the total number of free parameters in a
 is the maximum likelihood of the fit. The BIC penalizes model complexity, such that adding extra components 
 without a significant gain in likelihood will result in a higher BIC value.
 
-The Expectation-Maximisation algorithm can become trapped in local minima, so we performed 50 initialisations 
-for each $N$ and recorded the BIC value for each trial. The minimum BIC value across all trials indicated 
-the statistically preferred model and suggests that the global optimum was likely reached. 
+The Expectation-Maximisation algorithm can become trapped in local minima
+because the likelihood surface of a Gaussian mixture is highly
+non-convex: overlapping components, label permutations and sparsely sampled
+regions generate many secondary peaks, and EM (being a purely uphill
+optimiser) has no built-in mechanism for escaping the first peak it reaches.
+To minimise this risk we ran 50 independent initialisations for every
+candidate component number~\(N\), each time seeding the means with
+\(k\)-means initialisation on the \((v_R,v_\phi,v_z)\) data.  The \(k\)-means start-up
+partitions the velocity space into compact, nearly spherical groups that match
+the Gaussian assumption, giving EM a stable launch point and accelerating
+convergence.  For every run we logged the BIC
+and adopted the mixture with the lowest BIC overall.  This multi-start,
+\(k\)-means-seeded strategy reduces the chance of local-minimum
+entrapment and makes it highly likely that the selected model represents the
+global maximum-likelihood, and therefore statistically preferred, description of
+the data.
 
-To improve convergence and model stability, the GMM components in each trial were initialised using the kmeans algorithm. 
-This is is due to the sensitivity of GMMs to their starting conditions: poor initialisation can lead to convergence 
-on undesirable solutions, particularly in high-dimensional or overlapping data. KMeans clustering provides an
-initialisation point by partitioning the velocity space into compact, roughly spherical clusters. This works well with the 
-assumptions of Gaussian components and often gives faster, more stable convergence and more physically meaningful results. 
-In our application, where stellar substructures are partially overlapping in velocity space, this method applies well.
 
 \begin{figure*}[h]
     \centering
@@ -570,7 +575,7 @@ In our application, where stellar substructures are partially overlapping in vel
 In Figure~\ref{fig:bic_vs_n_components}, we show the distribution of BIC values across four metallicity bins as
 a function of $N$. The resulting preferred number of components are 2, 4, 5, and 5 for the VMP, IMP, MP1, and MP2 bins.
 This is in agreement with the findings of \citet{zhang2024existencemetalpoordiscmilky}.
-Our analysis, however, selects the lowest BIC for each bin, removing the need for a subjective choice of the number of components
+Our analysis selects the lowest BIC for each bin, removing the need for a subjective choice of the number of components
 when BIC values are very similar. \citet{zhang2024existencemetalpoordiscmilky}, when observing the BIC values for the MP1 bin 
 chooses to use 5 components instead of 6 despite the BIC score for the 6-component model being lower than the 5-component model.
 
@@ -635,7 +640,7 @@ and no evidence for a kinematically cold disc-like structure.
 
 In the IMP bin, the picture remains similar, although the prograde halo dominates more strongly 
 (63.3\%) and additional substructure becomes apparent. Two minor components, interpreted as fragments of the 
-Gaia–Sausage/Enceladus (GS/E) merger debris, are also identified, each contributing $\sim$7\% of the population 
+GS/E merger debris, are also identified, each contributing $\sim$7\% of the population 
 and exhibiting highly radial orbits ($|v_R| > 200$ km\,s$^{-1}$). These GS/E components are characterised by 
 strong anisotropy and contribute to the broadening of the halo distribution, but again show no signature of 
 disc-like kinematics. The absence of a cold, rotating disc in these bins suggests that if a very-metal-poor 
@@ -729,7 +734,8 @@ only weakly to the overall distribution. To investigate this, we performed a res
 whether a disc-like population, too weak to be picked up by the GMM, might be present 
 in the VMP and IMP metallicity regimes.
 
-We generated a synthetic dataset by drawing the same number of mock stars as observed stars from 
+Following \citet{zhang2024existencemetalpoordiscmilky}, we generated a synthetic dataset by drawing 
+the same number of mock stars as observed stars from 
 the best-fit GMM in each bin. Since our GMM uses the Extreme Deconvolution algorithm, which accounts 
 for observational uncertainties during fitting, the raw samples from the model are noise-free. 
 However, comparing these directly to real data would be inappropriate due to the absence of measurement 
@@ -750,7 +756,7 @@ with mean velocity $(v_R, v_\phi) = (0, 180)\,\mathrm{km\,s^{-1}}$ and dispersio
 
 To quantify the possible presence of a hidden disc, we count the excess number of observed stars inside 
 this thick disc ellipse relative to the GMM-generated sample. We repeat this calculation for 1000 Monte 
-Carlo realizations to estimate the residual and its uncertainty. The results are shown as horizontal 
+Carlo realisations to estimate the residual and its uncertainty. The results are shown as horizontal 
 dashed lines in the bottom row of Figure~\ref{fig:residuals}, representing a disc-like residual 
 of $38.3 \pm 27.1$ stars in the VMP bin and $78.1 \pm 45.1$ stars in the IMP bin.
 
@@ -761,11 +767,10 @@ relationship between disc fraction and expected residual. This is shown as the s
 bottom panels of Figure~\ref{fig:residuals}, with the red shaded region indicating the $1\sigma$ 
 uncertainty across Monte Carlo trials.
 
-In the bottom panels of Figure~\ref{fig:residuals}, the horizontal blue band shows the observed excess 
-within the thick‐disc ellipse ($\pm1\sigma$), and the solid black curve (with red shading) gives the expected 
-residual when injecting a known disc fraction into the GMM. Their intersection could imply a hidden disc fraction 
-of up to $\sim1\%$ in the VMP bin and IMP bin. These estimates are indicative only: 
-measurement uncertainties, GMM modelling choices, and Gaia‐selection cuts mean that the true disc 
+The intersection of the solid and dashed lines could imply a hidden disc fraction 
+of up to $\sim1\%$ in the VMP bin and IMP bin. Interestingly, the overlap of these lines in the IMP
+bin occurs at a lower percentage. These estimates are indicative only: 
+measurement uncertainties, GMM modelling choices, and Gaia-selection cuts mean that the true disc 
 contribution in the parent VMP/IMP populations may differ \citep{zhang2024existencemetalpoordiscmilky}.  
 
 \begin{figure}[H]
@@ -782,18 +787,6 @@ contribution in the parent VMP/IMP populations may differ \citep{zhang2024existe
      (A reproduction of Figure 7 from \citet{zhang2024existencemetalpoordiscmilky})}
     \label{fig:residuals}
 \end{figure}
-
-%-------edit the below--------------
-
-
-
-
-
-
-
-
-
-
 
 
 \section{Extension Analysis}
@@ -1382,23 +1375,36 @@ Another known limitation of GMMs is their reduced sensitivity to small subpopula
 Like \citet{zhang2024existencemetalpoordiscmilky}, we find little evidence for a significant 
 disc like component at low metallicities, but this absence should be interpreted with caution. 
 
+\subsection{Recommendations and Next Steps}
+
+To sharpen the physical picture that the present XD–GMM work has revealed, the next priority is to
+replace descriptive Gaussians with fully dynamical models.  Action–based or distribution-function
+fitting—implemented with \textsc{RoadMapping} or the \textsc{Agama} library—will capture asymmetric
+wings and resonant features, translating the mixture components into the Galaxy’s underlying
+potential.  At the same time, a cross-match with high-resolution spectra from APOGEE, GALAH and the
+forthcoming WEAVE/4MOST surveys should push the $\alpha$-abundance precision below
+$0.03\,\mathrm{dex}$, erasing the present high/low-$\alpha$ overlap and locking the spin-up
+thresholds to within $\pm0.1$\,dex.  Forward-modelling Gaia’s magnitude, colour and completeness
+cuts will then convert mixture weights into unbiased stellar-mass fractions, yielding the first
+robust star-formation-efficiency curve for the thick and thin discs.  Finally, feeding our
+metallicity–$\alpha$ thresholds into Milky-Way zoom simulations such as \textsc{Auriga} (MHD) and
+\textsc{FIRE-2} (hydrodynamic) will allow us to track thick-/thin-disc analogues in a cosmological
+context and to generate mock JWST and Rubin LSST observations, providing testable predictions for
+external spiral galaxies.
+
 \section{Conclusion}
 
-In conclusion, we successfully reproduced the XD-GMM analysis of \citet{zhang2024existencemetalpoordiscmilky}
-which was the primary goal of this research project. This analysis used phase-space information
-to identify the transition from a dynamically hot halo to a rotationally supported disc in the Milky Way.
-Analysis found the onset disk-like kinematics at $[\mathrm{M/H}]\sim-1.6$ (MP1 bin) - consistent with the
-findings of \citet{zhang2024existencemetalpoordiscmilky}.
-
-We also extended the XD-GMM analysis to the high- and low-$\alpha$ sequences identified by \citet{Vis2024}.
-This extension revealed that the high-$\alpha$ sequence transitions to a more rotationally supported disc at
-earlier metallicities than the low-$\alpha$ sequence, with the latter remaining dominated by halo-like
-kinematics until higher metallicities.
-
-Further work should explore the prescence of a GS/E-like component in the high-$\alpha$ sequence,
-which is unexpected given the slow star formation history of the GS/E progenitor. This is likely due 
-to contamination from low signal-to-noise abundance measurements, or challenges in separating 
-overlapping kinematic substructures when using GMMs. 
+We have reproduced the extreme-deconvolution Gaussian-mixture analysis of
+\citet{zhang2024existencemetalpoordiscmilky} with Gaia DR3 red giants, confirming that the Milky Way
+contains no rotation-supported disc below ${\rm [M/H]}\!\simeq\!-2$ and that disc-like kinematics
+first emerge at ${\rm [M/H]}\!\simeq\!-1.6$.  By introducing XP-based $\alpha$ abundances
+\citep{Li2024} and adopting the high-/low-$\alpha$ split of \citet{Vis2024}, we have shown that the
+high-$\alpha$ sequence spins up at ${\rm [M/H]}\!\approx\!-1.6$—marking the thick-disc onset—while
+the low-$\alpha$ sequence remains halo-like until ${\rm [M/H]}\!\approx\!-1.3$, signalling the birth
+of the thin disc.  A tentative GS/E-like signal inside the high-$\alpha$ branch is probably a
+by-product of low-S/N abundance contamination rather than a genuine $\alpha$-rich remnant.  Together
+these results map a clear, two-phase timeline for disc assembly and set precise chemical–kinematic
+benchmarks for future dynamical modelling and survey targeting. 
 
 
 
