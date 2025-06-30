@@ -1377,34 +1377,76 @@ disc like component at low metallicities, but this absence should be interpreted
 
 \subsection{Recommendations and Next Steps}
 
-To sharpen the physical picture that the present XD–GMM work has revealed, the next priority is to
-replace descriptive Gaussians with fully dynamical models.  Action–based or distribution-function
-fitting—implemented with \textsc{RoadMapping} or the \textsc{Agama} library—will capture asymmetric
-wings and resonant features, translating the mixture components into the Galaxy’s underlying
-potential.  At the same time, a cross-match with high-resolution spectra from APOGEE, GALAH and the
-forthcoming WEAVE/4MOST surveys should push the $\alpha$-abundance precision below
-$0.03\,\mathrm{dex}$, erasing the present high/low-$\alpha$ overlap and locking the spin-up
-thresholds to within $\pm0.1$\,dex.  Forward-modelling Gaia’s magnitude, colour and completeness
-cuts will then convert mixture weights into unbiased stellar-mass fractions, yielding the first
-robust star-formation-efficiency curve for the thick and thin discs.  Finally, feeding our
-metallicity–$\alpha$ thresholds into Milky-Way zoom simulations such as \textsc{Auriga} (MHD) and
-\textsc{FIRE-2} (hydrodynamic) will allow us to track thick-/thin-disc analogues in a cosmological
-context and to generate mock JWST and Rubin LSST observations, providing testable predictions for
-external spiral galaxies.
+To sharpen the physical picture exposed by the XD-GMM analysis, the first priority is to
+replace descriptive Gaussian mixtures with fully dynamical models.  
+Action-based or distribution-function fitting with packages such as \textsc{RoadMapping} or
+\textsc{Agama} can recover asymmetric wings and resonant features, tying each kinematic component
+directly to the Galactic potential.  
+In parallel, cross-matching our \emph{Gaia} sample with high-resolution spectra from APOGEE, 
+GALAH, and the forthcoming WEAVE and 4MOST surveys will tighten the $\alpha$-abundance 
+uncertainties to a few hundredths of a dex, removing the present overlap between the high- 
+and low-$\alpha$ tracks. Once those cleaner chemical labels are in place, a forward model of 
+Gaia's selection function—encompassing its magnitude limits, colour cuts, and 
+sky-coverage completeness—can translate the fitted mixture weights into \textit{unbiased} 
+stellar-mass fractions for each kinematic component. Plotting these bias-corrected masses 
+against look-back time, or metallicity, produces a star-formation-efficiency 
+(SFE) curve: a quantitative record of how efficiently gas was converted into stars in the 
+thick and thin discs at every epoch. Because the underlying masses are corrected for 
+observational selection effects, this procedure could deliver reliable
+SFE curves for both discs, giving a direct benchmark for galaxy-formation models.
+
+With tighter chemical constraints in hand, the empirical [M/H]–$\alpha$ thresholds can be folded 
+into Milky-Way zoom simulations such as \textsc{Auriga} and \textsc{FIRE-2}, allowing the thick- 
+and thin-disc analogues to be tracked self-consistently through cosmic time and yielding 
+synthetic data cubes tailored to forthcoming observatories.  
+
+Near-infrared imaging with \textit{JWST} is the natural next step: red-giant stars—dominant in 
+the low-surface-brightness outskirts of spirals—peak in the NIR and are only weakly affected by 
+dust.  \textit{JWST} therefore resolves individual giants well beyond the Local Group, and 
+NIRSpec simultaneously records the CO, CN and Fe-peak features required for accurate 
+\([\mathrm{M/H}]\) and \([\alpha/\mathrm{Fe}]\) measurements for each star \citep{Jakobsen_2022}.
+
+The Rubin Observatory's Legacy Survey of Space and Time will deliver the complementary view.  
+A decade of deep, multi-epoch imaging will map whole galactic discs to very faint limits, 
+provide sub-mas\,yr\(^{-1}\) proper motions for bright giants, and trace stellar-density 
+variations at per-cent fidelity \citep{Ivezic2019}.  Combined, \textit{JWST} spectroscopy 
+and LSST astrometry will furnish full six-dimensional phase-space coordinates plus detailed 
+chemistry for resolved giants in dozens of nearby spirals.  
+
+Once those data arrive, the XD-GMM method can be applied 
+wholesale to external galaxies, decomposing their velocity fields into halo, thick-disc and 
+thin-disc components and measuring the metallicity-$\alpha$ spin-up thresholds in each system.  
+What is now a single-galaxy case study will become a statistically robust, cross-galaxy 
+experiment that tests the Milky Way's two-phase disc-assembly scenario against a much broader 
+population of spirals.
+
+
+
 
 \section{Conclusion}
 
-We have reproduced the extreme-deconvolution Gaussian-mixture analysis of
-\citet{zhang2024existencemetalpoordiscmilky} with Gaia DR3 red giants, confirming that the Milky Way
-contains no rotation-supported disc below ${\rm [M/H]}\!\simeq\!-2$ and that disc-like kinematics
-first emerge at ${\rm [M/H]}\!\simeq\!-1.6$.  By introducing XP-based $\alpha$ abundances
-\citep{Li2024} and adopting the high-/low-$\alpha$ split of \citet{Vis2024}, we have shown that the
-high-$\alpha$ sequence spins up at ${\rm [M/H]}\!\approx\!-1.6$—marking the thick-disc onset—while
-the low-$\alpha$ sequence remains halo-like until ${\rm [M/H]}\!\approx\!-1.3$, signalling the birth
-of the thin disc.  A tentative GS/E-like signal inside the high-$\alpha$ branch is probably a
-by-product of low-S/N abundance contamination rather than a genuine $\alpha$-rich remnant.  Together
-these results map a clear, two-phase timeline for disc assembly and set precise chemical–kinematic
-benchmarks for future dynamical modelling and survey targeting. 
+We have successfully reproduced the XD-GMM work of \citet{zhang2024existencemetalpoordiscmilky} with
+\textit{Gaia}~DR3 red giants and confirmed that no rotation-supported disc exists below
+${\rm [M/H]}\!\simeq\!-2$, while ordered rotation appears at
+${\rm [M/H]}\!\simeq\!-1.6$.  Adding XP-based $\alpha$ abundances
+\citep{Li2024} and the high/low-$\alpha$ split of \citet{Vis2024} reveals a chemically
+tagged, two-phase timeline: high-$\alpha$ stars spin up first and build the thick disc,
+whereas low-$\alpha$ stars remain halo-like until ${\rm [M/H]}\!\approx\!-1.3$, signalling
+the birth of a less-dispersed disc, signalling thin-disk onset.  These thresholds tighten 
+earlier, purely metallicity pictures of disc growth and provide quantitative anchors for 
+dynamical modelling, chemical-tagging surveys and simulation work.
+
+The path forward is therefore clear: adopt action-based distribution-function fitting to
+replace descriptive Gaussians, sharpen the $\alpha$ scale with forthcoming high-resolution
+spectroscopy, correct mixture weights with an explicit \textit{Gaia} selection function,
+and inject the resulting [M/H]-$\alpha$ thresholds into \textsc{Auriga} and
+\textsc{FIRE-2} zoom simulations.  Synthetic \textit{JWST} and LSST data built from those
+simulations will put the Milky Way's two-phase disc-assembly timeline to its first
+rigorous, galaxy-to-galaxy test.
+
+
+
+
 
 
 
