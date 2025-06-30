@@ -94,6 +94,11 @@ testable JWST and Rubin-LSST predictions for disc structure in other spiral gala
 
 \end{abstract}
 
+\vspace{1em}           
+\begin{center}
+  \footnotesize\textbf{Word count: 6\,947}  
+\end{center}
+\vspace{1em}
 
 \newpage
 
@@ -842,26 +847,15 @@ incorporates the red-giant selection and photometric quality cuts from
 position, and XP calibration reliability. 
 
 To further ensure robust $\alpha$ abundances and kinematics, we apply 
-several additional cuts:
-\begin{itemize}\setlength\itemsep{2pt}
-  \item we reject stars within $1^\circ$ of known dwarf galaxies and 
-        those associated with globular clusters;
-  \item a reddening cut $E(B-V)<0.5$ removes stars in regions of high 
-        extinction, where XP abundances are less reliable;
-  \item a Galactic latitude cut $|b|>10^\circ$ similarly avoids 
-        the dust-dominated plane;
-  \item we relax the fractional parallax uncertainty cut relative to 
-        Section~\ref{subsec:datasample}, requiring only $\mathrm{fpu}<0.2$
-        to retain sufficient stars in the metal-poor regime, which is 
-        the focus of this analysis.
-\end{itemize}
-
-
+same cuts as in Secion~\ref{subsec:datasample}, however we relax the 
+fractional parallax uncertainty cut requiring only $\mathrm{fpu}<0.2$
+to retain sufficient stars in the metal-poor regime.
 We obtain approximately 3.4 million stars in our final sample with alpha-element abundances.
 
 Figure~\ref{fig:alphametal} shows the logarithmic density of our
 RGB sample in the $[\alpha/\mathrm{M}]$–$[\mathrm{M/H}]$ plane.
-Following \citet{Chandra_2024}, but with a deliberately tighter boundary as in \citet{Vis2024}:
+Following \citet{Chandra_2024}, but with a deliberately tighter 
+boundary as defined in \citet{Vis2024}:
 
 \[
 \begin{aligned}
@@ -884,8 +878,8 @@ Following \citet{Chandra_2024}, but with a deliberately tighter boundary as in \
 \end{aligned}
 \]
 
-This high-$\alpha$ threshold is raised so that the
-chemistry of the Gaia–Sausage/Enceladus debris
+\citet{Vis2024} raise the high-$\alpha$ threshold so that the
+chemistry of the GS/E debris
 \citep{Belokurov2018,Helmi2018} does not leak into the
 in-situ sequence; the exclusion band between the branches is widened to maximise purity
 in both sub-samples \citep{Vis2024}.
@@ -903,9 +897,9 @@ in both sub-samples \citep{Vis2024}.
 
 
 Figure~\ref{fig:rz_metallicity} shows the distribution of our sample in cylindrical Galactocentric radius 
-$R$ versus height above the midplane $z$, colour–coded by the mean metallicity in each pixel. The top panel 
-presents this distribution for the full RGB sample, while the bottom panels split the data into high–$\alpha$ 
-(left) and low–$\alpha$ (right) subsamples. 
+$R$ versus height above the midplane $z$, colour-coded by the mean metallicity in each pixel. The top panel 
+presents this distribution for the full RGB sample, while the bottom panels split the data into high-$\alpha$ 
+(left) and low-$\alpha$ (right) subsamples. 
 
 \begin{figure}[H]
   \centering
@@ -941,22 +935,16 @@ presents this distribution for the full RGB sample, while the bottom panels spli
   \label{fig:rz_metallicity}
 \end{figure}
 
-The high–$\alpha$ population is more centrally concentrated and spans a smaller range in $R$ and $z$ than the 
-low–$\alpha$ stars. The broader vertical extent of the low–$\alpha$ sequence likely reflects contributions 
-from accreted material at large scale heights. A steep negative metallicity gradient with increasing $z$ is 
-evident in the low–$\alpha$ sample and also visible in the full sample, likely due to the dominance of 
-low–$\alpha$ stars in the overall dataset. In contrast, the high–$\alpha$ population exhibits a shallower 
+A steep negative metallicity gradient with increasing $z$ is 
+evident in the low-$\alpha$ sample and also visible in the full sample, likely due to the dominance of 
+low-$\alpha$ stars in the overall dataset. In contrast, the high-$\alpha$ population exhibits a shallower 
 vertical metallicity gradient and a thicker disc structure. We also observe a metallicity gradient towards 
-larger $R$ in the low–$\alpha$ disc, indicative of radial migration and consistent with flaring commonly 
+larger $R$ in the low-$\alpha$ disc, indicative of radial migration and consistent with flaring commonly 
 seen in the Galactic thin disc \citep[e.g.][]{Haywood2013,ratcliffe2023}.
 
 
-To trace how rotational support evolves with metallicity and $\alpha$–element enrichment, following \citet{Vis2024} 
-we examine the distribution of azimuthal velocity ($v_\phi$) as a function of $[\mathrm{M/H}]$.  
-Figure~\ref{fig:mh_vphi_alpha} presents this relation for (i) the full RGB sample, and (ii) the chemically 
-separated high–$\alpha$ and low–$\alpha$ subsamples derived in Section~\ref{subsec:alpha}.  Each panel shows 
-the column-normalised density in the $[\mathrm{M/H}]$–$v_\phi$ plane together with running medians 
-(red dashed) and 16th/84th percentiles (black).
+To trace how rotational support evolves with metallicity and $\alpha$-element enrichment, following \citet{Vis2024} 
+we examine the distribution of azimuthal velocity ($v_\phi$) as a function of $[\mathrm{M/H}]$:   
 
 \begin{figure}[H]
   \centering
@@ -1005,9 +993,6 @@ However, above $[\mathrm{M/H}]\gtrsim -1.2$, the low-$\alpha$ sequence
 undergoes a sharper transition to a population with high net prograde rotation and lower velocity dispersion. 
 By $[\mathrm{M/H}]\gtrsim -0.5$, the low-$\alpha$ population exhibits kinematics consistent with the thin disc: 
 a strongly rotating, dynamically colder component with lower dispersion than the high-$\alpha$ sequence.
-
-In summary, we observe that the high-$\alpha$ population shows a gradual evolution from halo to thick disc, whereas the 
-low-$\alpha$ population exhibits a more abrupt shift to a dynamically cold disc at higher metallicities.
 
 \subsection{Gaussian Mixture Model Fit}
 
@@ -1244,17 +1229,11 @@ At intermediate metallicities (IMP; $-2.0 < [\mathrm{M/H}] < -1.6$), the low-$\a
 
 In the MP1 bin ($-1.6 < [\mathrm{M/H}] < -1.3$), a thick disc component emerges in the high-$\alpha$ population, showing moderate $V_{\rm rot}/\sigma_\phi$, indicative of in-situ disc formation. Meanwhile, the low-$\alpha$ population develops a GSE-like halo structure, supporting a scenario where the GSE merger occurred around the onset of high-$\alpha$ disc formation \citep{Helmi2018}.
 
-In the most metal-rich bin (MP2; $-1.3 < [\mathrm{M/H}] < -1.0$), both sequences display prominent disc components. The high-$\alpha$ disc is kinematically hotter and more massive, while the low-$\alpha$ disc shows a sharp increase in $V_{\rm rot}/\sigma_\phi$, consistent with a dynamically colder, thin-disc-like population. The abrupt rise suggests that thin disc formation may have occurred rapidly in the low-$\alpha$ sequence, in contrast to the more gradual buildup in the high-$\alpha$ case. The absence of an ultra-cold thin disc in either track reflects a selection bias against stars near the Galactic plane.
+In the most metal-rich bin (MP2; $-1.3 < [\mathrm{M/H}] < -1.0$), both sequences display prominent disc components. The high-$\alpha$ disc is kinematically hotter and more massive, while the low-$\alpha$ disc shows a sharp increase in $V_{\rm rot}/\sigma_\phi$, consistent with a dynamically colder, thin-disc-like population. The abrupt rise suggests that thin disc formation may have occurred rapidly in the low-$\alpha$ sequence, in contrast to the more gradual buildup in the high-$\alpha$ case.
 
 
 %------------------------------------------------------------------
 \section{Discussion} \label{sec:discussion}
-
-The discussion of the GMM process mirrors that of the discussion in \citet{zhang2024existencemetalpoordiscmilky}.
-Since the primary goal of this report was to assess the reproducability of \citet{zhang2024existencemetalpoordiscmilky},
-the discussion will focus on the differences between the results of this report and those of \citet{zhang2024existencemetalpoordiscmilky}.
-We do however mention the limitations of the GMM approach and selection effects - which are largely 
-the same as those discussed in \citet{zhang2024existencemetalpoordiscmilky}.
 
 \subsection{\texorpdfstring{Reproducability of \citet{zhang2024existencemetalpoordiscmilky}}{Reproducability of Zhang et al.\ (2024)}}
 
@@ -1346,7 +1325,7 @@ uncertainties in the metallicity estimates, since Gaia XP abundances are known t
 egions of high extinction, and obscure the halo to disc transition that is central to this investigation.
 
 
-It is important to note that the component weights derived in this work reflect the properties of our 
+It is important to emphasise that the component weights derived in this work reflect the properties of our 
 selected sample and should not be generalised to the full Galaxy without modelling the underlying 
 selection function.
 
@@ -1377,7 +1356,7 @@ disc like component at low metallicities, but this absence should be interpreted
 
 \subsection{Recommendations and Next Steps}
 
-To sharpen the physical picture exposed by the XD-GMM analysis, the first priority is to
+To better the physical picture exposed by the XD-GMM analysis, the first priority is to
 replace descriptive Gaussian mixtures with fully dynamical models.  
 Action-based or distribution-function fitting with packages such as \textsc{RoadMapping} or
 \textsc{Agama} can recover asymmetric wings and resonant features, tying each kinematic component
