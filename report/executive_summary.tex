@@ -31,13 +31,13 @@
 \section*{Motivation and Scientific Justification}
 
 When did our Galaxy stop behaving like a chaotic proto-galaxy and settle into the orderly,
-rotating disc we see today?  An important question in Galactic Archaeology is
-\emph{when} the Milky Way’s disc first settled.  Standard models place this event
+rotating k we see today?  An important question in Galactic Archaeology is
+\emph{when} the Milky Way's disk first settled.  Standard models place this event
 relatively late, after the interstellar medium was enriched by multiple generations of
-stars \cite{Sestito2020,Gurvich2023}, implying a dearth of disc-like stars at very low
+stars \cite{Sestito2020,Gurvich2023}, implying a dearth of disk-like stars at very low
 metallicity.  Because metallicity rises over cosmic time, it serves as a rough stellar
-clock: metal-poor stars are generally older.  Finding a coherent, metal-poor disc would
-therefore overturn the \emph{late-disc} paradigm and force a rethink of in-situ versus
+clock: metal-poor stars are generally older.  Finding a coherent, metal-poor disk would
+therefore overturn the \emph{late-disk} paradigm and force a rethink of in-situ versus
 accreted growth.
 
 A practical hurdle is that every Gaia DR3 velocity carries correlated uncertainties; if
@@ -47,13 +47,13 @@ into (or out of) existence, producing components with no physical meaning.
 Following the methodology of Zhang et al. 2024 \cite{zhang2024existencemetalpoordiscmilky}, 
 we revisit the same Gaia DR3 sample, now splitting the stars into high- and
 low-$\alpha$ sequences \cite{Vis2024} and using an uncertainty-aware modelling approach
-to ask: \emph{at what metallicity does disc-like rotation truly appear in each
+to ask: \emph{at what metallicity does disk-like rotation truly appear in each
 sequence?}
 
 
 \section*{Methodology – Solution Path}
 
-To pinpoint \emph{when} disc-like rotation truly emerges, we must see the
+To pinpoint \emph{when} disk-like rotation truly emerges, we must see the
 \textbf{intrinsic} velocity field, stripped of Gaia’s measurement blur and
 interpreted in its chemical context.  Our five-step pipeline does exactly that,
 each step mapping onto a question posed in the Motivation.
@@ -66,41 +66,41 @@ each step mapping onto a question posed in the Motivation.
         noise-free Gaussians which, once convolved with those ellipsoids,
         reproduce the observed cloud.  
         \textit{Why:} de-blurring prevents spurious artefacts and ensures any
-        recovered disc component is physically real.
+        recovered disk component is physically real.
 
   \item \textbf{Simple metallicity binning.}  
         Because [M/H] is an age proxy, we bin the sample in metallicity and let
         the Bayesian Information Criterion select the minimal number of
         Gaussians per bin.  
         \textit{Why:} isolates the metallicity (hence epoch) at which
-        rotation support first appears, directly testing the late-disc
+        rotation support first appears, directly testing the late-disk
         paradigm.
 
   \item \textbf{$\alpha$-sequence split.}  
         We repeat the analysis separately for high- and low-$\alpha$
         populations \cite{Vis2024}, tracers of rapid and prolonged
         star-formation histories.  
-        \textit{Why:} reveals whether the thick and thin discs followed
+        \textit{Why:} reveals whether the thick and thin disks followed
         distinct evolutionary timelines.
 
-  \item \textbf{Disc diagnostic.}  
+  \item \textbf{Disk diagnostic.}  
         For each recovered Gaussian we compute $V_{\rm rot}/\sigma_\phi$; a
-        ratio $\gtrsim3$ flags a rotation-supported disc.  
-        \textit{Why:} gives an objective, quantitative “disc/no-disc” verdict
+        ratio $\gtrsim3$ flags a rotation-supported disk.  
+        \textit{Why:} gives an objective, quantitative “disk/no-disk” verdict
         instead of subjective eyeballing.
 
   \item \textbf{Residual stress-test.}  
         We Monte-Carlo sample mock data from the best-fit model, convolve them
         with Gaia errors, and compare to the real sky.  Any significant
         leftover overdensity signals structure the model missed.  
-        \textit{Why:} confirms that no low-metallicity disc is hiding below our
+        \textit{Why:} confirms that no low-metallicity disk is hiding below our
         detection threshold, tightening the upper limit to \mbox{$<1\%$} of
         stars.
 \end{enumerate}
 
 Together, these steps yield an unbiased, chemistry-aware map of the Milky
 Way’s phase-space allowing us to answer the core questions:  
-\emph{Is a metal-poor disc present at all, and if not, which stellar population
+\emph{Is a metal-poor disk present at all, and if not, which stellar population
 spun up first?}
 
 
@@ -133,18 +133,18 @@ spun up first?}
   \label{fig:gmm_zhang}
 \end{figure}
 
-\paragraph{No metal-poor disc.}
+\paragraph{No metal-poor disk.}
 Below $\mathrm{[M/H]}\lesssim-2$ we find only halo kinematics: one
 nearly stationary Gaussian and a mildly prograde “Aurora” halo
 component~\cite{Belokurov2022}.  Monte-Carlo residual tests place a strict
-upper limit of $<1\%$ on any hidden, rotation-supported disc in this regime.
+upper limit of $<1\%$ on any hidden, rotation-supported disk in this regime.
 
-\paragraph{Onset of the thick disc.}
-Disc-like rotation emerges at $\mathrm{[M/H]}\gtrsim-1.6$ as a thick-disc
+\paragraph{Onset of the thick disk.}
+Disk-like rotation emerges at $\mathrm{[M/H]}\gtrsim-1.6$ as a thick-disk
 Gaussian containing $\sim22\%$ of stars and
 $V_{\rm rot}/\sigma_\phi\!\approx\!2.8$.  By
 $\mathrm{[M/H]}\approx-1.3$ the component grows to $\sim37\%$ and exceeds the
-canonical “discy” threshold with $V_{\rm rot}/\sigma_\phi\!\approx\!3.5$.
+canonical “disky” threshold with $V_{\rm rot}/\sigma_\phi\!\approx\!3.5$.
 
 
 
@@ -152,10 +152,10 @@ canonical “discy” threshold with $V_{\rm rot}/\sigma_\phi\!\approx\!3.5$.
 \begin{itemize}
   \item \textit{High-$\alpha$ branch:} rotation support rises gradually from
         $\mathrm{[M/H]}\!\sim\!-2$ to $-1$, indicating an early, steady build-up
-        of the thick disc.
+        of the thick disk.
   \item \textit{Low-$\alpha$ branch:} remains dispersion-dominated until a
         sharp spin-up at $\mathrm{[M/H]}\!\sim\!-1.3$, marking a later, more
-        rapid disc formation episode.
+        rapid disk formation episode.
 \end{itemize}
 
 \begin{figure}[H]
@@ -226,26 +226,26 @@ canonical “discy” threshold with $V_{\rm rot}/\sigma_\phi\!\approx\!3.5$.
   \label{fig:gmm_alpha_bins}
 \end{figure}
 
-% Chemistry-dependent disc growth
-\paragraph{Chemistry-dependent disc growth (Fig.~\ref{fig:gmm_alpha_bins}).}
+
+\paragraph{Chemistry-dependent disk growth (Fig.~\ref{fig:gmm_alpha_bins}).}
 
 \begin{itemize}
   \item \textbf{High-$\alpha$ track:} Below $\mathrm{[M/H]}\lesssim -2$ the population is purely halo.  
-        A thick-disc component appears at $-1.6 < [\mathrm{M/H}] < -1.3$ with 
+        A thick-disk component appears at $-1.6 < [\mathrm{M/H}] < -1.3$ with 
         $V_{\rm rot}/\sigma_\phi \approx 2.4$ and grows steadily; by 
         $[\mathrm{M/H}]\approx -1.1$ it comprises $\sim$50\% of stars and 
         reaches $V_{\rm rot}/\sigma_\phi \approx 2.8$, indicating a gradual 
-        thick-disc build-up.
+        thick-disk build-up.
   \item \textbf{Low-$\alpha$ track:} The distribution remains dispersion-dominated 
-        until $-1.3 < [\mathrm{M/H}] < -1.0$, when a thick-disc component 
+        until $-1.3 < [\mathrm{M/H}] < -1.0$, when a thick-disk component 
         ($\sim$25\%) emerges with $V_{\rm rot}/\sigma_\phi \approx 3.8$.  
-        The high ratio suggests contamination by a colder thin disc and marks a 
-        later, rapid disc-formation episode.
+        The high ratio suggests contamination by a colder thin disk and marks a 
+        later, rapid disk-formation episode.
 \end{itemize}
 
 Taken together, the two sequences reveal a two-phase assembly: an early, 
-slowly rotating high-$\alpha$ thick disc followed by a later, faster low-$\alpha$ 
-disc that transitions to the present-day thin disc.
+slowly rotating high-$\alpha$ thick disk followed by a later, faster low-$\alpha$ 
+disk that transitions to the present-day thin disk.
 
 
 \section*{Recommendations and Next Steps}
@@ -266,26 +266,26 @@ disc that transitions to the present-day thin disc.
 
   \item \textbf{Simulate.}  
         Feed the empirical [M/H]–$\alpha$ spin-up thresholds into Milky-Way-like zoom simulations
-        (\textsc{Auriga}, Magneto-HydroDynamics; \textsc{FIRE-2}, hydrodynamics) to trace the coupled growth of thick- and thin-disc analogues.
+        (\textsc{Auriga}, Magneto-HydroDynamics; \textsc{FIRE-2}, hydrodynamics) to trace the coupled growth of thick- and thin-disk analogues.
 
   \item \textbf{Observe.}  
-        Post-process the simulations to create mock surveys that mimic JWST/NIRSpec spectra of outer-disc red giants
+        Post-process the simulations to create mock surveys that mimic JWST/NIRSpec spectra of outer-disk red giants
         (capturing the CO, CN and Fe-peak lines for precise [M/H] and [$\alpha$/Fe]) and Rubin LSST multi-epoch imaging with proper-motion maps of
-        complete spiral disc galaxies.  Direct comparison of these synthetics with forthcoming JWST and LSST data will offer the
-        first extragalactic test of the Milky Way's two-phase disc-assembly timeline.
+        complete spiral disk galaxies.  Direct comparison of these synthetics with forthcoming JWST and LSST data will offer the
+        first extragalactic test of the Milky Way's two-phase disk-assembly timeline.
 
 \end{itemize}
 
 \section*{Conclusion \& Research Impact}
 
-High-$\alpha$ stars acquire rotation at $\mathrm{[M/H]}\approx-1.6$, inaugurating the thick disc; 
-low-$\alpha$ stars do not spin up until $\mathrm{[M/H]}\approx-1.3$, signalling the thin disc's 
-birth, and no rotation-supported disc exists below $\mathrm{[M/H]}\approx-2$.  These 
+High-$\alpha$ stars acquire rotation at $\mathrm{[M/H]}\approx-1.6$, inaugurating the thick disk; 
+low-$\alpha$ stars do not spin up until $\mathrm{[M/H]}\approx-1.3$, signalling the thin disk's 
+birth, and no rotation-supported disk exists below $\mathrm{[M/H]}\approx-2$.  These 
 metallicity-$\alpha$ thresholds serve three roles: they provide hard priors for chemo-dynamical 
-and zoom simulations, tightening disc-growth timescales; they offer WEAVE, 4MOST and SDSS-V a 
-clean filter for targeting the Galaxy's oldest disc stars, sharpening age-velocity calibrations; 
+and zoom simulations, tightening disk-growth timescales; they offer WEAVE, 4MOST and SDSS-V a 
+clean filter for targeting the Galaxy's oldest disk stars, sharpening age-velocity calibrations; 
 and, when folded into the \textsc{Auriga} and \textsc{FIRE-2} suites, they yield testable predictions 
-of twin-disc signatures in external spiral galaxies for JWST and Rubin LSST.
+of twin-disk signatures in external spiral galaxies for JWST and Rubin LSST.
 
 
 
