@@ -4,7 +4,7 @@
 
 
 ## Overview
-This project aims to study the formation history of the Milky Way by analysing its stellar components, with a particular focus on old, low-metallicity stars. The goal is to disentangle the components of the Galaxy (e.g., thin disc, thick disc, and halo) using data from the Gaia DR3 release and apply Gaussian Mixture Modelling (GMM) to identify structures in velocity space. This report replicates and extends the analysis done by [Zhang et al. (2024)](https://arxiv.org/pdf/2311.09294).
+This project aims to study the formation history of the Milky Way by analysing its stellar components, with a particular focus on old, low-metallicity stars. The goal is to disentangle the components of the Galaxy (e.g., thin disk, thick disk, and halo) using data from the Gaia DR3 release and apply Gaussian Mixture Modelling (GMM) to identify structures in velocity space. This report replicates and extends the analysis done by [Zhang et al. (2024)](https://arxiv.org/pdf/2311.09294).
 
 We then extend this analysis by incorporating alpha-element abundance to analysis as done by [Viswanathan et al . (2024)](https://arxiv.org/abs/2411.12165). We fit a number of gaussian components for each bin governed by BIC score and observe the difference between Milky Way components in the high and low alpha regimes.
 
@@ -29,16 +29,16 @@ We then extend this analysis by incorporating alpha-element abundance to analysi
 The primary goal of this project is to leverage recent advancements in astrometric and spectroscopic data provided by the Gaia satellite's Data Release 3 (DR3) to disentangle the components of the Milky Way using Gaussian Mixture Modelling (GMM). Specifically, we aim to:
 
 1. **Identify and characterise the components of the Milky Way** in different metallicity regimes, focusing on the oldest and most metal-poor stars.
-2. **Test for the presence of a disc component at very low metallicities** ([M/H] < -2) and place quantitative limits on its contribution if present.
+2. **Test for the presence of a disk component at very low metallicities** ([M/H] < -2) and place quantitative limits on its contribution if present.
 3. **Expand on analysis** for further understanding the relationship between chemical composition and milkyway components.
 
 ## Why This Matters
 
 ### Galactic Formation History
-The Milky Way's structure is composed of several key components, including the young thin disc, the older thick disc, and the ancient spherical halo. By studying the properties and dynamics of the stars within these components, we can infer their formation history and evolutionary processes. Of particular interest are the stars formed in the early Universe, which are identifiable by their extremely low metallicities. 
+The Milky Way's structure is composed of several key components, including the young thin disk, the older thick disk, and the ancient spherical halo. By studying the properties and dynamics of the stars within these components, we can infer their formation history and evolutionary processes. Of particular interest are the stars formed in the early Universe, which are identifiable by their extremely low metallicities. 
 
-### Early Disc Formation
-While the halo is commonly associated with the oldest stars, recent studies have hinted at the existence of a disc component even at very low metallicities. The confirmation of such a disc would challenge traditional views of Galactic formation, suggesting that the Milky Way's disc structure began to form earlier than previously thought. Understanding the properties of this ancient disc, if it exists, would provide crucial insights into the assembly of the Milky Way and the broader context of galaxy formation in the Universe.
+### Early Disk Formation
+While the halo is commonly associated with the oldest stars, recent studies have hinted at the existence of a disk component even at very low metallicities. The confirmation of such a disk would challenge traditional views of Galactic formation, suggesting that the Milky Way's disk structure began to form earlier than previously thought. Understanding the properties of this ancient disk, if it exists, would provide crucial insights into the assembly of the Milky Way and the broader context of galaxy formation in the Universe.
 
 ## Resources
 
@@ -126,7 +126,7 @@ This project is licensed under the [MIT License](https://opensource.org/licenses
 
 1. **Gaussian Mixture Modeling**  
    - We model the 3D velocity distribution \((v_R,\,v_\phi,\,v_Z)\) of stars as a sum of multivariate Gaussians.  
-   - Each Gaussian represents a kinematic sub-population (e.g.\ halo, disc, GS/E) and yields a probabilistic (“soft”) assignment of stars to components.  
+   - Each Gaussian represents a kinematic sub-population (e.g.\ halo, disk, GS/E) and yields a probabilistic (“soft”) assignment of stars to components.  
 
 2. **Extreme Deconvolution with Uncertainties**  
    - Fitting is done via the pyGMMis package, which extends EM with “Extreme Deconvolution” to incorporate per-star velocity uncertainties (from Gaia) directly into the likelihood.  
