@@ -1,4 +1,4 @@
-# Disentangling the Components of the Milky Way with Gaussian Mixture Modelling
+# NOT FINISHED - NEED TO PUSH FROM DEVICE AFTER COURSEWORK Disentangling the Components of the Milky Way with Gaussian Mixture Modelling
 
 ## Overview
 This project aims to study the formation history of the Milky Way by analysing its stellar components, with a particular focus on old, low-metallicity stars. The goal is to disentangle the components of the Galaxy (e.g., thin disc, thick disc, and halo) using data from the Gaia DR3 release and apply Gaussian Mixture Modelling (GMM) to identify structures in velocity space. This report replicates and extends the analysis done by [Zhang et al. (2024)](https://arxiv.org/pdf/2311.09294).
